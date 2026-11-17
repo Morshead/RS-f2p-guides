@@ -196,7 +196,7 @@ export default function Sidebar({
                     onClick={() => onSelectNav('skills', skill.id)}
                   >
                     <span className="nav-subitem-label">{skill.name}</span>
-                    <span className="subitem-tag">99</span>
+                    <span className="subitem-tag">{skill.maxF2pLevel.split(' ')[0]}</span>
                   </button>
                 ))}
               </div>

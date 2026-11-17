@@ -6,7 +6,8 @@ import {
   ChevronRight,
   ScrollText,
   Lightbulb,
-  ArrowRight
+  ArrowRight,
+  CheckSquare
 } from 'lucide-react';
 import GlassCard from '../components/ui/GlassCard';
 import Badge from '../components/ui/Badge';
@@ -14,7 +15,7 @@ import SectionHeader from '../components/ui/SectionHeader';
 import CalloutBanner from '../components/ui/CalloutBanner';
 import { SKILLS_DATA } from '../data/guideData';
 
-const SKILL_FILTERS = ['All', 'Combat', 'Artisan', 'Gathering', 'Support'];
+const SKILL_FILTERS = ['All', 'Combat', 'Artisan', 'Gathering', 'Support', 'F2P Cap 20/5'];
 
 export default function SkillsView({
   selectedItemId,
@@ -37,10 +38,14 @@ export default function SkillsView({
         skill.name.toLowerCase().includes(q) ||
         skill.category.toLowerCase().includes(q) ||
         skill.overview.toLowerCase().includes(q) ||
+        skill.defaultSellLocation.toLowerCase().includes(q) ||
+        skill.prerequisites.some((p) => p.toLowerCase().includes(q)) ||
         skill.brackets.some(
           (b) =>
             b.method.toLowerCase().includes(q) ||
-            b.location.toLowerCase().includes(q)
+            b.location.toLowerCase().includes(q) ||
+            b.whereToSell.toLowerCase().includes(q) ||
+            b.prereqs.toLowerCase().includes(q)
         )
       );
     });
@@ -66,6 +71,15 @@ export default function SkillsView({
           subtitle={`${focusedSkill.category} • Max F2P Level: ${focusedSkill.maxF2pLevel} • ${focusedSkill.tier}`}
           actions={
             <div className="nav-action-group">
+              <Badge variant="blue" mono>
+                XP: {focusedSkill.peakXpHr}
+              </Badge>
+              <Badge
+                variant={focusedSkill.gpTrend === 'positive' ? 'emerald' : 'red'}
+                mono
+              >
+                GP: {focusedSkill.netGpHr}
+              </Badge>
               <button
                 type="button"
                 className="pill-tab"
@@ -96,9 +110,35 @@ export default function SkillsView({
           }
         />
 
-        {/* Overview & GIM Synergy */}
-        <GlassCard padding="spacious">
+        {/* Prerequisites, Ironman Prep & Where to Sell */}
+        <GlassCard
+          padding="spacious"
+          icon={CheckSquare}
+          title="Prerequisites, Ironman Prep & Where to Sell"
+          badge={<Badge variant="indigo">{focusedSkill.prerequisites.length} Prerequisites</Badge>}
+        >
           <p className="focused-overview">{focusedSkill.overview}</p>
+
+          <div className="prereq-grid">
+            {focusedSkill.prerequisites.map((prereq, idx) => (
+              <div key={idx} className="prereq-item">
+                <span className="prereq-bullet">✓</span>
+                <span>{prereq}</span>
+              </div>
+            ))}
+          </div>
+
+          <CalloutBanner label="Ironman Item Gathering & Prep Time" variant="amber">
+            {focusedSkill.ironmanGatheringNote}
+          </CalloutBanner>
+
+          <CalloutBanner
+            label="Where to Sell Items (Ironman Liquidation)"
+            variant={focusedSkill.gpTrend === 'positive' ? 'emerald' : 'red'}
+          >
+            {focusedSkill.defaultSellLocation}
+          </CalloutBanner>
+
           <CalloutBanner label="Group Ironman Synergy" variant="blue">
             {focusedSkill.gimSynergy}
           </CalloutBanner>
@@ -106,17 +146,19 @@ export default function SkillsView({
 
         {/* Leveling Brackets Table */}
         <GlassCard
-          title="1–99 F2P Leveling Path"
-          subtitle="Recommended methods, locations, and RS3/GIM optimizations"
+          title={`1–${focusedSkill.maxF2pLevel.split(' ')[0]} F2P Ironman Leveling Path`}
+          subtitle="Effective Ironman XP/hr, gathering time, red/green GP/hr, and exact NPC shops or alchemy outlets"
           badge={<Badge variant="emerald">{focusedSkill.brackets.length} Brackets</Badge>}
         >
           <div className="table-wrap">
             <table className="compact-table">
               <thead>
                 <tr>
-                  <th style={{ width: '76px' }}>Levels</th>
-                  <th>Training Method</th>
-                  <th>Location</th>
+                  <th style={{ width: '88px' }}>Levels</th>
+                  <th>Training Method &amp; Prerequisites</th>
+                  <th style={{ width: '130px' }}>XP / Hour (Ironman)</th>
+                  <th>Ironman Item Gathering Time</th>
+                  <th style={{ width: '220px' }}>Money / Hour &amp; Where to Sell</th>
                   <th>RS3 &amp; GIM Notes</th>
                 </tr>
               </thead>
@@ -124,8 +166,28 @@ export default function SkillsView({
                 {focusedSkill.brackets.map((b, i) => (
                   <tr key={i}>
                     <td className="mono level-cell">{b.levels}</td>
-                    <td className="method-cell">{b.method}</td>
-                    <td>{b.location}</td>
+                    <td>
+                      <div className="method-cell">{b.method}</div>
+                      <div className="bracket-prereq">Prereq: {b.prereqs}</div>
+                      <div className="bracket-location">📍 {b.location}</div>
+                    </td>
+                    <td>
+                      <span className="mono">{b.xpPerHour}</span>
+                    </td>
+                    <td>
+                      <div className="prep-cell">{b.ironmanPrep}</div>
+                    </td>
+                    <td>
+                      <Badge
+                        variant={b.gpTrend === 'positive' ? 'emerald' : 'red'}
+                        mono
+                      >
+                        {b.gpPerHour}
+                      </Badge>
+                      <div className="sell-where-box">
+                        <strong>Where to Sell:</strong> {b.whereToSell}
+                      </div>
+                    </td>
                     <td className="notes-cell">{b.notes}</td>
                   </tr>
                 ))}
@@ -175,8 +237,8 @@ export default function SkillsView({
     <div className="view-stack">
       <SectionHeader
         icon={Pickaxe}
-        title="F2P Skills Catalog (1–99)"
-        subtitle="Select any skill card or sidebar entry to inspect full leveling brackets, quest XP skips, and GIM tips."
+        title="F2P Ironman Skills Catalog (All 20 Guides)"
+        subtitle="Includes all 17 full 1–99/120 F2P skills, Level 20 previews (Necromancy & Archaeology), and Level 5 trial skills with XP/hr, Red/Green GP/hr, prep time, and sell shops."
         filters={SKILL_FILTERS}
         activeFilter={activeFilter}
         onFilterChange={setActiveFilter}
@@ -212,15 +274,30 @@ export default function SkillsView({
                 </Badge>
               }
             >
+              <div className="badge-row">
+                <Badge variant="blue" mono>
+                  {skill.peakXpHr}
+                </Badge>
+                <Badge
+                  variant={skill.gpTrend === 'positive' ? 'emerald' : 'red'}
+                  mono
+                >
+                  {skill.netGpHr}
+                </Badge>
+              </div>
+
               <p className="card-desc">{skill.overview}</p>
 
-              <CalloutBanner label="GIM Synergy" variant="blue">
-                {skill.gimSynergy}
+              <CalloutBanner
+                label="Prereqs & Where to Sell"
+                variant={skill.gpTrend === 'positive' ? 'emerald' : 'red'}
+              >
+                Prereqs: {skill.prerequisites[0]} • Sell: {skill.defaultSellLocation}
               </CalloutBanner>
 
               <div className="card-footer-meta">
                 <span className="meta-chip">
-                  {skill.brackets.length} Level Brackets • {skill.quests.length} Quests
+                  {skill.brackets.length} Brackets • {skill.prerequisites.length} Prereqs • {skill.quests.length} Quests
                 </span>
                 <span className="card-footer-link">
                   <span>View Full Guide</span>
