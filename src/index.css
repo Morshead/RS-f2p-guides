@@ -1134,6 +1134,18 @@ textarea {
   gap: 16px;
 }
 
+.summary-grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+@media (max-width: 1200px) {
+  .summary-grid-4 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
 .catalog-grid-3 {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1180,6 +1192,7 @@ textarea {
 }
 
 @media (max-width: 720px) {
+  .summary-grid-4,
   .catalog-grid-3,
   .dense-grid-2 {
     grid-template-columns: 1fr;
@@ -1718,4 +1731,426 @@ textarea {
   color: var(--primary);
   font-weight: 700;
   flex-shrink: 0;
+}
+
+/* ==================== LEVEL BRACKET DROPDOWNS & METHOD TABS ==================== */
+.bracket-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.bracket-dropdown {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  overflow: hidden;
+  transition: border-color 150ms ease-in-out;
+}
+
+.bracket-dropdown:hover,
+.bracket-dropdown.open {
+  border-color: var(--primary);
+}
+
+.bracket-highlighted {
+  box-shadow: 0 0 0 1px var(--primary);
+}
+
+.bracket-dropdown-trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 12px 14px;
+  border: none;
+  background: var(--surface-geo);
+  color: var(--primary);
+  cursor: pointer;
+  text-align: left;
+  transition: background 150ms ease-in-out;
+}
+
+.bracket-dropdown-trigger:hover {
+  background: var(--surface);
+}
+
+.bracket-trigger-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  flex: 1;
+}
+
+.bracket-level-pill {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 3px 8px;
+  border-radius: 4px;
+  background: var(--primary);
+  color: var(--surface);
+  flex-shrink: 0;
+}
+
+.bracket-trigger-titles {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.bracket-rec-title {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.bracket-rec-sub {
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+.bracket-trigger-right {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  flex-shrink: 0;
+}
+
+.bracket-dropdown-body {
+  padding: 14px;
+  border-top: 1px solid var(--border);
+  background: var(--surface);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.method-tabs-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+}
+
+.method-tab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 11px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--surface-geo);
+  color: var(--text-secondary);
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color 150ms ease-in-out, color 150ms ease-in-out, background 150ms ease-in-out;
+}
+
+.method-tab-btn:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.method-tab-btn.active {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: var(--surface);
+}
+
+.method-rec-tag {
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 1px 5px;
+  border-radius: 3px;
+  border: 1px solid currentColor;
+  opacity: 0.9;
+}
+
+.method-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.method-telemetry-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+
+@media (max-width: 1100px) {
+  .method-telemetry-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .method-telemetry-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.telemetry-box {
+  padding: 10px 12px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--surface-geo);
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.telemetry-label {
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+}
+
+.telemetry-value {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--primary);
+  line-height: 1.45;
+}
+
+.method-prereq-panel {
+  padding: 11px 13px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--surface-geo);
+  font-size: 11.5px;
+  color: var(--text-secondary);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.prereq-links-box {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.prereq-links-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 2px;
+}
+
+.prereq-link-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 9px;
+  border-radius: 5px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--primary);
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: border-color 150ms ease-in-out, background 150ms ease-in-out, color 150ms ease-in-out;
+}
+
+.prereq-link-btn:hover {
+  border-color: var(--primary);
+  background: var(--primary);
+  color: var(--surface);
+}
+
+/* ==================== BLUEPRINT SECTOR MAP ==================== */
+.blueprint-map-card {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface-geo);
+  overflow: hidden;
+}
+
+.blueprint-map-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.blueprint-map-title-group {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--primary);
+}
+
+.blueprint-map-loc {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+
+.blueprint-map-compass {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+}
+
+.blueprint-map-svg-wrap {
+  width: 100%;
+  background: var(--surface-geo);
+  border-bottom: 1px solid var(--border);
+  padding: 6px;
+}
+
+.blueprint-map-svg {
+  width: 100%;
+  height: auto;
+  max-height: 195px;
+  display: block;
+}
+
+.blueprint-map-legend {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  padding: 10px 12px;
+  background: var(--surface);
+}
+
+@media (max-width: 960px) {
+  .blueprint-map-legend {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  .blueprint-map-legend {
+    grid-template-columns: 1fr;
+  }
+}
+
+.map-waypoint-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.map-pin-badge {
+  width: 20px;
+  height: 20px;
+  border-radius: 9999px;
+  border: 1px solid var(--primary);
+  background: var(--surface);
+  color: var(--primary);
+  font-size: 10px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.map-pin-active {
+  background: var(--primary);
+  color: var(--surface);
+}
+
+.map-waypoint-val {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--primary);
+  line-height: 1.35;
+}
+
+.blueprint-map-route {
+  padding: 8px 12px;
+  border-top: 1px solid var(--border);
+  background: var(--surface-geo);
+  font-size: 11px;
+  color: var(--text-secondary);
+}
+
+/* ==================== NEW PLAYER IN-GAME MECHANICS ==================== */
+.mechanics-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+@media (max-width: 900px) {
+  .mechanics-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.mechanic-card {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  padding: 12px 14px;
+  border-radius: 8px;
+  background: var(--surface-geo);
+  border: 1px solid var(--border);
+  transition: border-color 150ms ease-in-out;
+}
+
+.mechanic-card:hover {
+  border-color: var(--primary);
+}
+
+.mechanic-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--border);
+}
+
+.mechanic-title {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.mechanic-row {
+  font-size: 11.5px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+/* ==================== PVM LOOT TABLE HIGHLIGHTS ==================== */
+.loot-highlight-row td {
+  background: var(--surface-geo);
 }

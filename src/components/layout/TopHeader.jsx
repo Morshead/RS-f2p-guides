@@ -10,6 +10,7 @@ import {
 const SECTION_LABELS = {
   overview: 'OVERVIEW & ROLES',
   skills: 'SKILLS CATALOG',
+  pvm: 'PVM & BOSS LOOT',
   money: 'MONEY MAKING',
   quests: 'QUEST LEDGER'
 };

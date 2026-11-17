@@ -2,6 +2,7 @@ import React from 'react';
 import {
   Shield,
   Pickaxe,
+  Swords,
   Coins,
   ScrollText,
   ChevronDown,
@@ -14,6 +15,7 @@ import {
 } from 'lucide-react';
 import {
   SKILLS_DATA,
+  PVM_DATA,
   MONEY_MAKING_DATA,
   QUESTS_DATA
 } from '../../data/guideData';
@@ -38,6 +40,19 @@ export default function Sidebar({
       !q ||
       s.name.toLowerCase().includes(q) ||
       s.category.toLowerCase().includes(q)
+  );
+
+  const matchingPvm = PVM_DATA.filter(
+    (p) =>
+      !q ||
+      p.name.toLowerCase().includes(q) ||
+      p.combatRange.toLowerCase().includes(q) ||
+      p.title.toLowerCase().includes(q) ||
+      p.options.some(
+        (opt) =>
+          opt.name.toLowerCase().includes(q) ||
+          opt.lootDrops.some((d) => d.item.toLowerCase().includes(q))
+      )
   );
 
   const matchingMoney = MONEY_MAKING_DATA.filter(
@@ -261,6 +276,61 @@ export default function Sidebar({
             )}
           </div>
 
+          {/* PVM & BOSS LOOT MENU */}
+          <div className="nav-group">
+            <div className="nav-group-label">PVM &amp; BOSS LOOT</div>
+            <div className="nav-section-row">
+              <button
+                type="button"
+                className={`nav-section-header ${activeSection === 'pvm' ? 'active' : ''}`}
+                onClick={() => onSelectNav('pvm', 'all')}
+              >
+                <span className="nav-header-left">
+                  <Swords size={14} />
+                  <span>PvM &amp; Drops</span>
+                </span>
+                <span className="nav-count">{matchingPvm.length}</span>
+              </button>
+              <button
+                type="button"
+                className="icon-btn"
+                onClick={() => onToggleMenu('pvm')}
+                title={openMenus.pvm ? 'Hide PvM items' : 'Show PvM items'}
+                aria-expanded={openMenus.pvm}
+              >
+                {openMenus.pvm ? <ChevronDown size={13} /> : <ChevronRight size={13} />}
+              </button>
+            </div>
+
+            {openMenus.pvm && (
+              <div className="nav-submenu">
+                <button
+                  type="button"
+                  className={`nav-subitem ${
+                    activeSection === 'pvm' && selectedItemId === 'all' ? 'active' : ''
+                  }`}
+                  onClick={() => onSelectNav('pvm', 'all')}
+                >
+                  <span>All Combat Brackets</span>
+                  <span className="subitem-tag">ALL</span>
+                </button>
+                {matchingPvm.map((entry) => (
+                  <button
+                    key={entry.id}
+                    type="button"
+                    className={`nav-subitem ${
+                      activeSection === 'pvm' && selectedItemId === entry.id ? 'active' : ''
+                    }`}
+                    onClick={() => onSelectNav('pvm', entry.id)}
+                  >
+                    <span className="nav-subitem-label">{entry.name}</span>
+                    <span className="subitem-tag">{entry.options.length}</span>
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+
           {/* QUESTS MENU */}
           <div className="nav-group">
             <div className="nav-group-label">QUEST LEDGER</div>
@@ -340,6 +410,14 @@ export default function Sidebar({
             title="Skills (1–99 F2P)"
           >
             <Pickaxe size={16} />
+          </button>
+          <button
+            type="button"
+            className={`icon-btn rail-btn ${activeSection === 'pvm' ? 'active' : ''}`}
+            onClick={() => onSelectNav('pvm', 'all')}
+            title="PvM & Boss Loot"
+          >
+            <Swords size={16} />
           </button>
           <button
             type="button"

@@ -3,10 +3,12 @@ import Sidebar from './components/layout/Sidebar';
 import TopHeader from './components/layout/TopHeader';
 import OverviewView from './views/OverviewView';
 import SkillsView from './views/SkillsView';
+import PvmView from './views/PvmView';
 import MoneyMakingView from './views/MoneyMakingView';
 import QuestsView from './views/QuestsView';
 import {
   SKILLS_DATA,
+  PVM_DATA,
   MONEY_MAKING_DATA,
   QUESTS_DATA,
   DAILY_CHECKLIST
@@ -15,9 +17,12 @@ import {
 export default function App() {
   const [activeSection, setActiveSection] = useState('overview');
   const [selectedItemId, setSelectedItemId] = useState('all');
+  const [targetBracket, setTargetBracket] = useState(null);
+  const [previousNav, setPreviousNav] = useState(null);
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [openMenus, setOpenMenus] = useState({
     skills: true,
+    pvm: true,
     money: true,
     quests: true
   });
@@ -54,12 +59,14 @@ export default function App() {
   };
 
   const handleToggleAllMenus = (show) => {
-    setOpenMenus({ skills: show, money: show, quests: show });
+    setOpenMenus({ skills: show, pvm: show, money: show, quests: show });
   };
 
-  const handleSelectNav = (section, itemId = 'all') => {
+  const handleSelectNav = (section, itemId = 'all', bracket = null, fromNav = null) => {
     setActiveSection(section);
     setSelectedItemId(itemId);
+    setTargetBracket(bracket);
+    setPreviousNav(fromNav || null);
   };
 
   const handleToggleQuest = (id) => {
@@ -81,6 +88,9 @@ export default function App() {
     if (selectedItemId === 'all') return null;
     if (activeSection === 'skills') {
       return SKILLS_DATA.find((s) => s.id === selectedItemId)?.name || null;
+    }
+    if (activeSection === 'pvm') {
+      return PVM_DATA.find((p) => p.id === selectedItemId)?.name || null;
     }
     if (activeSection === 'money') {
       return MONEY_MAKING_DATA.find((m) => m.id === selectedItemId)?.title || null;
@@ -111,7 +121,7 @@ export default function App() {
         <TopHeader
           activeSection={activeSection}
           selectedItemLabel={selectedItemLabel}
-          onResetItem={() => setSelectedItemId('all')}
+          onResetItem={() => handleSelectNav(activeSection, 'all')}
           onNavigate={handleSelectNav}
           completedQuestCount={completedQuestCount}
           totalQuests={QUESTS_DATA.length}
@@ -136,6 +146,35 @@ export default function App() {
           <SkillsView
             selectedItemId={selectedItemId}
             onSelectSkill={(id) => handleSelectNav('skills', id)}
+            onNavigate={handleSelectNav}
+            targetBracket={targetBracket}
+            previousNav={previousNav}
+            onReturnPrevious={() =>
+              previousNav &&
+              handleSelectNav(
+                previousNav.section,
+                previousNav.itemId,
+                previousNav.bracket || null
+              )
+            }
+            searchQuery={searchQuery}
+          />
+        )}
+
+        {activeSection === 'pvm' && (
+          <PvmView
+            selectedItemId={selectedItemId}
+            onSelectPvm={(id) => handleSelectNav('pvm', id)}
+            onNavigate={handleSelectNav}
+            previousNav={previousNav}
+            onReturnPrevious={() =>
+              previousNav &&
+              handleSelectNav(
+                previousNav.section,
+                previousNav.itemId,
+                previousNav.bracket || null
+              )
+            }
             searchQuery={searchQuery}
           />
         )}

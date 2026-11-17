@@ -1,3 +1,7 @@
+import { enrichSkillsData } from './skillMethodsData.js';
+export { GLOBAL_RS3_MECHANICS } from './skillMechanicsData.js';
+export { PVM_DATA, PVM_BRACKETS, TOP_F2P_LOOT_HIGHLIGHTS } from './pvmData.js';
+
 export const GIM_ROLES = [
   {
     id: 'artisan-smith',
@@ -53,7 +57,7 @@ export const GIM_ROLES = [
   }
 ];
 
-export const SKILLS_DATA = [
+const BASE_SKILLS_DATA = [
   {
     id: 'mining',
     name: 'Mining',
@@ -1698,6 +1702,8 @@ export const SKILLS_DATA = [
     ]
   }
 ];
+
+export const SKILLS_DATA = enrichSkillsData(BASE_SKILLS_DATA);
 
 export const MONEY_MAKING_DATA = [
   {

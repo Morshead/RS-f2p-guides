@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import {
   Pickaxe,
+  Swords,
   Coins,
   ScrollText,
   Users,
@@ -8,7 +9,8 @@ import {
   Flame,
   ArrowRight,
   ArrowUpRight,
-  RotateCcw
+  RotateCcw,
+  Cpu
 } from 'lucide-react';
 import GlassCard from '../components/ui/GlassCard';
 import Badge from '../components/ui/Badge';
@@ -20,9 +22,11 @@ import {
 import {
   GIM_ROLES,
   SKILLS_DATA,
+  PVM_DATA,
   MONEY_MAKING_DATA,
   QUESTS_DATA,
-  DAILY_CHECKLIST
+  DAILY_CHECKLIST,
+  GLOBAL_RS3_MECHANICS
 } from '../data/guideData';
 
 const DAY_1_STEPS = [
@@ -143,8 +147,8 @@ export default function OverviewView({
         </button>
       </div>
 
-      {/* 3-Column Abstract Geometric Cards */}
-      <div className="summary-grid-3">
+      {/* 4-Column Abstract Geometric Cards */}
+      <div className="summary-grid-4">
         <div
           className="geo-card"
           onClick={() => onNavigate('skills', 'all')}
@@ -179,6 +183,38 @@ export default function OverviewView({
 
         <div
           className="geo-card"
+          onClick={() => onNavigate('pvm', 'all')}
+          role="button"
+          tabIndex={0}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              onNavigate('pvm', 'all');
+            }
+          }}
+        >
+          <AbstractGeometricBox
+            icon={Swords}
+            variant="triangles"
+            aspectSquare
+            tag="SECTOR-02"
+            code="BOSSES + MOBS"
+            iconSize={40}
+          />
+          <div className="geo-card-footer">
+            <div className="geo-card-left">
+              <div className="geo-card-title">{PVM_DATA.length} PvM Combat Tiers</div>
+              <div className="geo-card-tag">CB 3–126+ • KBD • MOLE • GUD RAIDER</div>
+            </div>
+            <div className="geo-card-right">
+              <div className="geo-card-metric gp-positive">+850K/HR</div>
+              <Badge>19 TARGETS</Badge>
+            </div>
+          </div>
+        </div>
+
+        <div
+          className="geo-card"
           onClick={() => onNavigate('money', 'all')}
           role="button"
           tabIndex={0}
@@ -193,7 +229,7 @@ export default function OverviewView({
             icon={Coins}
             variant="circles"
             aspectSquare
-            tag="SECTOR-02"
+            tag="SECTOR-03"
             code="ALCH + D&D"
             iconSize={40}
           />
@@ -223,9 +259,9 @@ export default function OverviewView({
         >
           <AbstractGeometricBox
             icon={ScrollText}
-            variant="triangles"
+            variant="grid"
             aspectSquare
-            tag="SECTOR-03"
+            tag="SECTOR-04"
             code={`${totalQpEarned}/${maxQp} QP`}
             iconSize={40}
           />
@@ -244,18 +280,28 @@ export default function OverviewView({
         </div>
       </div>
 
-      {/* Main Split: Tabbed Team Strategy + Daily Checklist */}
+      {/* Main Split: Tabbed Team Strategy / Mechanics + Daily Checklist */}
       <div className="overview-main-grid">
         <GlassCard
-          icon={strategyTab === 'roles' ? Users : Sparkles}
+          icon={
+            strategyTab === 'roles'
+              ? Users
+              : strategyTab === 'mechanics'
+              ? Cpu
+              : Sparkles
+          }
           title={
             strategyTab === 'roles'
               ? 'Group Ironman Role Division'
+              : strategyTab === 'mechanics'
+              ? 'RS3 Core Mechanics for New Players'
               : 'Day 1 Optimal Rush Order'
           }
           subtitle={
             strategyTab === 'roles'
               ? 'Specialize early so your Group Storage unlocks high-tier tools and alchs faster.'
+              : strategyTab === 'mechanics'
+              ? 'Essential RS3 gameplay mechanics (Lodestones, Tool Belt, Revolution++, Rockertunities, Auto-Urns, PvP Opt-Out).'
               : 'Follow this 6-step sequence on launch day to skip early grinds.'
           }
           headerRight={
@@ -273,6 +319,13 @@ export default function OverviewView({
                 onClick={() => setStrategyTab('roadmap')}
               >
                 Day 1 Rush (6)
+              </button>
+              <button
+                type="button"
+                className={`segmented-btn ${strategyTab === 'mechanics' ? 'active' : ''}`}
+                onClick={() => setStrategyTab('mechanics')}
+              >
+                Mechanics ({GLOBAL_RS3_MECHANICS.length})
               </button>
             </div>
           }
@@ -292,6 +345,25 @@ export default function OverviewView({
                       <li key={i}>{m}</li>
                     ))}
                   </ul>
+                </div>
+              ))}
+            </div>
+          ) : strategyTab === 'mechanics' ? (
+            <div className="roles-grid-2">
+              {GLOBAL_RS3_MECHANICS.map((mech, idx) => (
+                <div key={idx} className="mechanic-card">
+                  <div className="mechanic-card-header">
+                    <span className="mechanic-title">{mech.title}</span>
+                    <Badge>{mech.badge}</Badge>
+                  </div>
+                  <div className="mechanic-row">
+                    <span className="meta-label">HOW IT WORKS:</span>{' '}
+                    <span>{mech.howItWorks}</span>
+                  </div>
+                  <div className="mechanic-row">
+                    <span className="meta-label">ACTION / SETTING:</span>{' '}
+                    <span>{mech.howToUse}</span>
+                  </div>
                 </div>
               ))}
             </div>
