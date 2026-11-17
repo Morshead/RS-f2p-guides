@@ -27,7 +27,7 @@ Use this skill after making any code, documentation, or configuration changes to
    - Once the user responds in the affirmative (or suggests edits to the comment), run the required Git commands **one per tool call** (never combined with `;` or `&&`):
      1. Stage changes: `git add -A` (or selective paths if requested).
      2. Commit with the descriptive comment: `git commit -m "<your descriptive comment>"` (skip if already committed).
-     3. Push to GitHub: `git push` (or `git push -u origin <branch>` if upstream isn't set).
+     3. Push to GitHub: `git push origin HEAD` (or `git push -u origin <branch>` if upstream isn't set).
      4. Verify final state: `git status --short --branch`.
    - Report the branch, commit hash, and commit comment to the user.
 
