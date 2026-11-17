@@ -118,6 +118,8 @@ export default function App() {
           totalQpEarned={totalQpEarned}
           completedDailyCount={completedDailyCount}
           totalDailies={DAILY_CHECKLIST.length}
+          searchQuery={searchQuery}
+          onSearchChange={setSearchQuery}
         />
 
         {activeSection === 'overview' && (

@@ -73,10 +73,12 @@ export default function Sidebar({
             }}
           >
             <div className="brand-icon-box">
-              <Shield size={15} />
+              <Shield size={16} />
             </div>
-            <span>RS3 F2P GIM</span>
-            <span className="brand-badge">GUIDE</span>
+            <div className="brand-text-group">
+              <span className="brand-kicker">SYS // BLUEPRINT</span>
+              <span className="brand-name">RS3 F2P GIM</span>
+            </div>
           </div>
         )}
         <button
@@ -85,7 +87,7 @@ export default function Sidebar({
           onClick={onToggleSidebar}
           title={sidebarCollapsed ? 'Expand navigation panel' : 'Collapse navigation panel'}
         >
-          {sidebarCollapsed ? <PanelLeftOpen size={15} /> : <PanelLeftClose size={15} />}
+          {sidebarCollapsed ? <PanelLeftOpen size={14} /> : <PanelLeftClose size={14} />}
         </button>
       </div>
 
@@ -93,10 +95,10 @@ export default function Sidebar({
         <div className="sidebar-scroll">
           {/* Quick Search Filter */}
           <div className="sidebar-search">
-            <Search size={13} className="sidebar-search-icon" />
+            <Search size={12} className="sidebar-search-icon" />
             <input
               type="text"
-              placeholder="Search skills, quests, GP..."
+              placeholder="Filter navigation..."
               value={searchQuery}
               onChange={(e) => onSearchChange(e.target.value)}
             />
@@ -114,14 +116,14 @@ export default function Sidebar({
 
           {/* Menu Visibility Controls */}
           <div className="menu-controls-row">
-            <span>NAVIGATION</span>
+            <span>MAIN MENU</span>
             <div className="menu-controls-actions">
               <button
                 type="button"
                 onClick={() => onToggleAllMenus(true)}
                 title="Show all menu items"
               >
-                Show All
+                EXPAND
               </button>
               <span>/</span>
               <button
@@ -129,7 +131,7 @@ export default function Sidebar({
                 onClick={() => onToggleAllMenus(false)}
                 title="Hide all menu items"
               >
-                Hide All
+                COLLAPSE
               </button>
             </div>
           </div>
@@ -142,15 +144,16 @@ export default function Sidebar({
               onClick={() => onSelectNav('overview', 'all')}
             >
               <span className="nav-header-left">
-                <Compass size={15} />
-                <span>GIM Overview & Roles</span>
+                <Compass size={14} />
+                <span>Overview &amp; Roles</span>
               </span>
-              <span className="nav-count">Hub</span>
+              <span className="nav-count">HUB</span>
             </button>
           </div>
 
           {/* SKILLS MENU */}
           <div className="nav-group">
+            <div className="nav-group-label">SKILLS CATALOG</div>
             <div className="nav-section-row">
               <button
                 type="button"
@@ -158,8 +161,8 @@ export default function Sidebar({
                 onClick={() => onSelectNav('skills', 'all')}
               >
                 <span className="nav-header-left">
-                  <Pickaxe size={15} />
-                  <span>Skills (1–99 F2P)</span>
+                  <Pickaxe size={14} />
+                  <span>All Skills</span>
                 </span>
                 <span className="nav-count">{matchingSkills.length}</span>
               </button>
@@ -170,7 +173,7 @@ export default function Sidebar({
                 title={openMenus.skills ? 'Hide Skills menu items' : 'Show Skills menu items'}
                 aria-expanded={openMenus.skills}
               >
-                {openMenus.skills ? <ChevronDown size={14} /> : <ChevronRight size={14} />}
+                {openMenus.skills ? <ChevronDown size={13} /> : <ChevronRight size={13} />}
               </button>
             </div>
 
@@ -184,7 +187,7 @@ export default function Sidebar({
                   onClick={() => onSelectNav('skills', 'all')}
                 >
                   <span>All F2P Skills</span>
-                  <span className="subitem-tag">All</span>
+                  <span className="subitem-tag">ALL</span>
                 </button>
                 {matchingSkills.map((skill) => (
                   <button
@@ -205,6 +208,7 @@ export default function Sidebar({
 
           {/* MONEY MAKING MENU */}
           <div className="nav-group">
+            <div className="nav-group-label">ECONOMY &amp; GP</div>
             <div className="nav-section-row">
               <button
                 type="button"
@@ -212,7 +216,7 @@ export default function Sidebar({
                 onClick={() => onSelectNav('money', 'all')}
               >
                 <span className="nav-header-left">
-                  <Coins size={15} />
+                  <Coins size={14} />
                   <span>Money Making</span>
                 </span>
                 <span className="nav-count">{matchingMoney.length}</span>
@@ -224,7 +228,7 @@ export default function Sidebar({
                 title={openMenus.money ? 'Hide Money Making items' : 'Show Money Making items'}
                 aria-expanded={openMenus.money}
               >
-                {openMenus.money ? <ChevronDown size={14} /> : <ChevronRight size={14} />}
+                {openMenus.money ? <ChevronDown size={13} /> : <ChevronRight size={13} />}
               </button>
             </div>
 
@@ -238,7 +242,7 @@ export default function Sidebar({
                   onClick={() => onSelectNav('money', 'all')}
                 >
                   <span>All GP Methods</span>
-                  <span className="subitem-tag">All</span>
+                  <span className="subitem-tag">ALL</span>
                 </button>
                 {matchingMoney.map((method) => (
                   <button
@@ -259,6 +263,7 @@ export default function Sidebar({
 
           {/* QUESTS MENU */}
           <div className="nav-group">
+            <div className="nav-group-label">QUEST LEDGER</div>
             <div className="nav-section-row">
               <button
                 type="button"
@@ -266,8 +271,8 @@ export default function Sidebar({
                 onClick={() => onSelectNav('quests', 'all')}
               >
                 <span className="nav-header-left">
-                  <ScrollText size={15} />
-                  <span>Quests & Order</span>
+                  <ScrollText size={14} />
+                  <span>Quests &amp; Order</span>
                 </span>
                 <span className="nav-count">
                   {completedQuestCount}/{QUESTS_DATA.length}
@@ -280,7 +285,7 @@ export default function Sidebar({
                 title={openMenus.quests ? 'Hide Quests menu items' : 'Show Quests menu items'}
                 aria-expanded={openMenus.quests}
               >
-                {openMenus.quests ? <ChevronDown size={14} /> : <ChevronRight size={14} />}
+                {openMenus.quests ? <ChevronDown size={13} /> : <ChevronRight size={13} />}
               </button>
             </div>
 
@@ -294,7 +299,7 @@ export default function Sidebar({
                   onClick={() => onSelectNav('quests', 'all')}
                 >
                   <span>All Priority Quests</span>
-                  <span className="subitem-tag">All</span>
+                  <span className="subitem-tag">ALL</span>
                 </button>
                 {matchingQuests.map((quest) => {
                   const isDone = !!completedQuests[quest.id];
@@ -309,7 +314,7 @@ export default function Sidebar({
                     >
                       <span className="nav-subitem-label">{quest.name}</span>
                       <span className={`subitem-tag ${isDone ? 'done' : ''}`}>
-                        {isDone ? '✓' : `${quest.qp}QP`}
+                        {isDone ? 'OK' : `${quest.qp}QP`}
                       </span>
                     </button>
                   );

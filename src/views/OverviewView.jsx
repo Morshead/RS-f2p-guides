@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import {
-  Compass,
   Pickaxe,
   Coins,
   ScrollText,
@@ -8,12 +7,16 @@ import {
   Sparkles,
   Flame,
   ArrowRight,
+  ArrowUpRight,
   RotateCcw
 } from 'lucide-react';
 import GlassCard from '../components/ui/GlassCard';
 import Badge from '../components/ui/Badge';
-import SectionHeader from '../components/ui/SectionHeader';
 import CalloutBanner from '../components/ui/CalloutBanner';
+import {
+  GeometricSvg,
+  AbstractGeometricBox
+} from '../components/ui/GeometricPattern';
 import {
   GIM_ROLES,
   SKILLS_DATA,
@@ -82,68 +85,163 @@ export default function OverviewView({
 
   return (
     <div className="view-stack">
-      <SectionHeader
-        icon={Compass}
-        title="RS3 F2P Group Ironman Command Hub"
-        subtitle="Coordinate team roles, track daily runs, and jump straight into focused skill, GP, or quest guides."
-      />
+      {/* 50/50 Blueprint Hero Section */}
+      <section className="hero-card">
+        <div className="hero-left">
+          <div className="hero-meta-row">
+            <Badge>BLUEPRINT // V2.0</Badge>
+            <span className="meta-label">RS3 FREE-TO-PLAY IRONMAN</span>
+          </div>
+          <h1 className="hero-title">
+            RS3 F2P GROUP IRONMAN COMMAND HUB
+          </h1>
+          <p className="hero-body">
+            Coordinate team specializations, audit Ironman gathering time vs. active XP/hr, track net red/green GP rates across specialty NPC shops, and follow Day 1 quest skips across all 20 F2P skills.
+          </p>
+          <div className="hero-actions">
+            <button
+              type="button"
+              className="primary-cta-btn"
+              onClick={() => onNavigate('skills', 'all')}
+            >
+              <span>OPEN 20-SKILL MATRIX</span>
+              <ArrowRight size={14} />
+            </button>
+          </div>
+        </div>
 
-      {/* Quick Navigation Summary Cards */}
-      <div className="summary-grid-3">
-        <GlassCard
-          interactive
+        <div className="hero-right">
+          <GeometricSvg variant="hero" />
+          <div className="hero-geo-overlay">
+            <span className="geo-corner-tag geo-corner-tl">SYS // SCHEMATIC-01</span>
+            <span className="geo-corner-tag geo-corner-tr">GRID: 10PX</span>
+            <span className="geo-corner-tag geo-corner-bl">MODE: GROUP IRONMAN</span>
+            <span className="geo-corner-tag geo-corner-br">
+              {SKILLS_DATA.length} SKILLS • {QUESTS_DATA.length} QUESTS
+            </span>
+          </div>
+        </div>
+      </section>
+
+      {/* Category Grid Section Header */}
+      <div className="category-section-header">
+        <div>
+          <h2 className="category-section-title">CORE SYSTEM MODULES</h2>
+          <p className="category-section-sub">
+            SELECT A BLUEPRINT SECTOR TO INSPECT FULL PROGRESSION &amp; SHOP DATA
+          </p>
+        </div>
+        <button
+          type="button"
+          className="check-all-link"
           onClick={() => onNavigate('skills', 'all')}
-          icon={Pickaxe}
-          title={`${SKILLS_DATA.length} F2P Skill Guides`}
-          badge={<Badge variant="blue">1–99 Paths</Badge>}
         >
-          <p className="card-desc">
-            Reworked Mining &amp; Smithing, zero-rune Magic Revolution, F2P Fletching, Runespan, and Daemonheim party training.
-          </p>
-          <div className="card-footer-link">
-            <span>Browse Skill Guides</span>
-            <ArrowRight size={14} />
-          </div>
-        </GlassCard>
+          <span>CHECK ALL</span>
+          <span className="check-all-circle">
+            <ArrowUpRight size={11} />
+          </span>
+        </button>
+      </div>
 
-        <GlassCard
-          interactive
+      {/* 3-Column Abstract Geometric Cards */}
+      <div className="summary-grid-3">
+        <div
+          className="geo-card"
+          onClick={() => onNavigate('skills', 'all')}
+          role="button"
+          tabIndex={0}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              onNavigate('skills', 'all');
+            }
+          }}
+        >
+          <AbstractGeometricBox
+            icon={Pickaxe}
+            variant="grid"
+            aspectSquare
+            tag="SECTOR-01"
+            code="1–99/20/5"
+            iconSize={40}
+          />
+          <div className="geo-card-footer">
+            <div className="geo-card-left">
+              <div className="geo-card-title">{SKILLS_DATA.length} F2P Skill Guides</div>
+              <div className="geo-card-tag">PREREQS • PREP • SELL SHOPS</div>
+            </div>
+            <div className="geo-card-right">
+              <div className="geo-card-metric">ALL 20</div>
+              <Badge>IM XP/HR</Badge>
+            </div>
+          </div>
+        </div>
+
+        <div
+          className="geo-card"
           onClick={() => onNavigate('money', 'all')}
-          icon={Coins}
-          title={`${MONEY_MAKING_DATA.length} GIM Money Makers`}
-          badge={<Badge variant="emerald">Up to 750k/hr</Badge>}
+          role="button"
+          tabIndex={0}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              onNavigate('money', 'all');
+            }
+          }}
         >
-          <p className="card-desc">
-            250k Magical Dice milestones, Rune +3 High Alching, Cockroach Soldiers salvage, and daily Shooting Star buffs.
-          </p>
-          <div className="card-footer-link">
-            <span>View GP Methods</span>
-            <ArrowRight size={14} />
+          <AbstractGeometricBox
+            icon={Coins}
+            variant="circles"
+            aspectSquare
+            tag="SECTOR-02"
+            code="ALCH + D&D"
+            iconSize={40}
+          />
+          <div className="geo-card-footer">
+            <div className="geo-card-left">
+              <div className="geo-card-title">{MONEY_MAKING_DATA.length} GIM Money Makers</div>
+              <div className="geo-card-tag">MAGICAL DICE • SALVAGE • RUNE +3</div>
+            </div>
+            <div className="geo-card-right">
+              <div className="geo-card-metric gp-positive">+750K/HR</div>
+              <Badge>GP ENGINE</Badge>
+            </div>
           </div>
-        </GlassCard>
+        </div>
 
-        <GlassCard
-          interactive
+        <div
+          className="geo-card"
           onClick={() => onNavigate('quests', 'all')}
-          icon={ScrollText}
-          title={`${QUESTS_DATA.length} Priority F2P Quests`}
-          badge={
-            <Badge variant="indigo" mono>
-              {totalQpEarned}/{maxQp} QP
-            </Badge>
-          }
+          role="button"
+          tabIndex={0}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              onNavigate('quests', 'all');
+            }
+          }}
         >
-          <p className="card-desc">
-            Day 1 XP skips and group-shareable item checklists ({completedQuestCount} of {QUESTS_DATA.length} complete).
-          </p>
-          <div className="progress-track">
-            <div className="progress-fill" style={{ width: `${questPct}%` }} />
+          <AbstractGeometricBox
+            icon={ScrollText}
+            variant="triangles"
+            aspectSquare
+            tag="SECTOR-03"
+            code={`${totalQpEarned}/${maxQp} QP`}
+            iconSize={40}
+          />
+          <div className="geo-card-footer">
+            <div className="geo-card-left">
+              <div className="geo-card-title">{QUESTS_DATA.length} Priority F2P Quests</div>
+              <div className="geo-card-tag">
+                {completedQuestCount} OF {QUESTS_DATA.length} COMPLETE
+              </div>
+            </div>
+            <div className="geo-card-right">
+              <div className="geo-card-metric">{questPct}%</div>
+              <Badge>{totalQpEarned} QP</Badge>
+            </div>
           </div>
-          <div className="card-footer-link">
-            <span>Open Quest Tracker</span>
-            <ArrowRight size={14} />
-          </div>
-        </GlassCard>
+        </div>
       </div>
 
       {/* Main Split: Tabbed Team Strategy + Daily Checklist */}

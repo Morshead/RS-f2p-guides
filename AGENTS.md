@@ -1,5 +1,9 @@
 # Project Rules
 
+## UI & Design System
+
+Whenever you create, edit, or restyle any UI components, pages, layouts, or CSS files in this project, read and follow the [`monospace-blueprint-design`](./.agents/skills/monospace-blueprint-design/SKILL.md) skill strictly (monospace `JetBrains Mono` typography, grayscale `#F3F4F6` / `#FFFFFF` / `#FAFAFA` / `#E5E7EB` / `#111827` palette, `1px` borders, low-opacity geometric SVG patterns, and zero photography).
+
 ## GitHub Upload Confirmation
 
 Whenever you create, edit, or delete files in this project, follow the [`github-auto-upload`](./.agents/skills/github-auto-upload/SKILL.md) skill:

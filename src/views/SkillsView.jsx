@@ -13,9 +13,11 @@ import GlassCard from '../components/ui/GlassCard';
 import Badge from '../components/ui/Badge';
 import SectionHeader from '../components/ui/SectionHeader';
 import CalloutBanner from '../components/ui/CalloutBanner';
+import { AbstractGeometricBox } from '../components/ui/GeometricPattern';
 import { SKILLS_DATA } from '../data/guideData';
 
 const SKILL_FILTERS = ['All', 'Combat', 'Artisan', 'Gathering', 'Support', 'F2P Cap 20/5'];
+const GEO_VARIANTS = ['grid', 'circles', 'triangles'];
 
 export default function SkillsView({
   selectedItemId,
@@ -252,59 +254,66 @@ export default function SkillsView({
         </GlassCard>
       ) : (
         <div className="catalog-grid-3">
-          {filteredSkills.map((skill) => (
-            <GlassCard
+          {filteredSkills.map((skill, idx) => (
+            <div
               key={skill.id}
-              interactive
+              className="geo-card skill-geo-card"
               onClick={() => onSelectSkill(skill.id)}
-              icon={Pickaxe}
-              title={skill.name}
-              subtitle={`${skill.category} • Max ${skill.maxF2pLevel}`}
-              badge={
-                <Badge
-                  variant={
-                    skill.tier.startsWith('S-Tier')
-                      ? 'emerald'
-                      : skill.tier.startsWith('A-Tier')
-                      ? 'blue'
-                      : 'amber'
-                  }
-                >
-                  {skill.tier.replace(' GIM Priority', '')}
-                </Badge>
-              }
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  onSelectSkill(skill.id);
+                }
+              }}
             >
-              <div className="badge-row">
-                <Badge variant="blue" mono>
-                  {skill.peakXpHr}
-                </Badge>
-                <Badge
-                  variant={skill.gpTrend === 'positive' ? 'emerald' : 'red'}
-                  mono
-                >
-                  {skill.netGpHr}
-                </Badge>
+              <AbstractGeometricBox
+                icon={Pickaxe}
+                variant={GEO_VARIANTS[idx % GEO_VARIANTS.length]}
+                aspectSquare
+                tag={skill.category}
+                code={`MAX ${skill.maxF2pLevel.split(' ')[0]}`}
+                iconSize={38}
+              />
+
+              <div className="geo-card-footer">
+                <div className="geo-card-left">
+                  <div className="geo-card-title">{skill.name}</div>
+                  <div className="geo-card-tag">
+                    {skill.brackets.length} BRACKETS • {skill.prerequisites.length} PREREQS • {skill.quests.length} QUESTS
+                  </div>
+                </div>
+                <div className="geo-card-right">
+                  <div className="geo-card-metric">{skill.peakXpHr}</div>
+                  <Badge
+                    variant={skill.gpTrend === 'positive' ? 'emerald' : 'red'}
+                    mono
+                  >
+                    {skill.netGpHr}
+                  </Badge>
+                </div>
               </div>
 
-              <p className="card-desc">{skill.overview}</p>
+              <div className="geo-card-submeta">
+                <div>
+                  <span className="meta-label">PREREQ:</span>{' '}
+                  <span>{skill.prerequisites[0]}</span>
+                </div>
+                <div>
+                  <span className="meta-label">SELL:</span>{' '}
+                  <span>{skill.defaultSellLocation}</span>
+                </div>
+              </div>
 
-              <CalloutBanner
-                label="Prereqs & Where to Sell"
-                variant={skill.gpTrend === 'positive' ? 'emerald' : 'red'}
-              >
-                Prereqs: {skill.prerequisites[0]} • Sell: {skill.defaultSellLocation}
-              </CalloutBanner>
-
-              <div className="card-footer-meta">
-                <span className="meta-chip">
-                  {skill.brackets.length} Brackets • {skill.prerequisites.length} Prereqs • {skill.quests.length} Quests
-                </span>
+              <div className="geo-card-action-row">
+                <Badge>{skill.tier.replace(' GIM Priority', '')}</Badge>
                 <span className="card-footer-link">
-                  <span>View Full Guide</span>
-                  <ArrowRight size={13} />
+                  <span>OPEN BLUEPRINT</span>
+                  <ArrowRight size={12} />
                 </span>
               </div>
-            </GlassCard>
+            </div>
           ))}
         </div>
       )}

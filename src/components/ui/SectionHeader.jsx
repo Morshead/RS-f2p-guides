@@ -1,4 +1,5 @@
 import React from 'react';
+import { ArrowUpRight } from 'lucide-react';
 
 export default function SectionHeader({
   title,
@@ -7,7 +8,9 @@ export default function SectionHeader({
   actions,
   filters,
   activeFilter,
-  onFilterChange
+  onFilterChange,
+  checkAllLabel,
+  onCheckAll
 }) {
   return (
     <div className="glass-panel section-header">
@@ -15,7 +18,7 @@ export default function SectionHeader({
         <div className="section-header-title-wrap">
           {Icon && (
             <div className="section-header-icon">
-              <Icon size={17} />
+              <Icon size={16} />
             </div>
           )}
           <div>
@@ -23,7 +26,23 @@ export default function SectionHeader({
             {subtitle && <p className="section-subtitle">{subtitle}</p>}
           </div>
         </div>
-        {actions && <div className="section-actions">{actions}</div>}
+        {(actions || checkAllLabel) && (
+          <div className="section-actions">
+            {actions}
+            {checkAllLabel && onCheckAll && (
+              <button
+                type="button"
+                className="check-all-link"
+                onClick={onCheckAll}
+              >
+                <span>{checkAllLabel}</span>
+                <span className="check-all-circle">
+                  <ArrowUpRight size={11} />
+                </span>
+              </button>
+            )}
+          </div>
+        )}
       </div>
 
       {filters && filters.length > 0 && (
