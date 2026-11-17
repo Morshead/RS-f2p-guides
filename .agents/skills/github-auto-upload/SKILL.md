@@ -1,49 +1,37 @@
 ---
 name: github-auto-upload
 description: >-
-  Guides a step-by-step GitHub upload (stage, commit with a descriptive comment
-  related to the changes made, and push), asking the user for confirmation before
-  each individual step. Use this skill whenever you create, edit, or delete files
-  in the project.
+  Guides an interactive, step-by-step GitHub upload (inspecting git state,
+  staging, committing with a descriptive comment related to the changes made,
+  and pushing), asking the user for confirmation before each step. Use this
+  skill whenever you create, edit, or delete files in the project.
 ---
 
-# GitHub Auto-Upload Skill (Step-by-Step)
+# GitHub Auto-Upload Skill (LLM-Driven, Step-by-Step)
 
-Use this skill after making any code, documentation, or configuration changes to the project. You **must** execute the upload in **3 separate steps**, asking the user for affirmative confirmation before **each** step.
+Use this skill after making any code, documentation, or configuration changes to the project. Instead of relying on a wrapper script, inspect the live Git state yourself, decide the next logical step in the upload workflow, and ask the user for affirmative confirmation before executing each individual step.
 
-**Never** chain `stage`, `commit`, and `push` together in a single turn without waiting for the user's response at each step.
+**Never** combine staging, committing, and pushing into a single turn without waiting for user confirmation at each step.
 
-## Step-by-Step Workflow
+## How to Decide & Execute Each Step
 
-### Step 1/3 — Stage Changes
-1. Run `git status --short` to inspect all modified, added, or deleted files (ensure no sensitive credentials or unintended temporary files are included).
-2. List the changed files for the user and ask:
-   > *"Step 1/3 (Stage): Would you like me to stage these changes?"*
-3. **Stop and wait** for the user's confirmation.
-4. Once the user responds affirmatively, run:
-   ```powershell
-   powershell -ExecutionPolicy Bypass -File .\.agents\skills\github-auto-upload\scripts\upload.ps1 -Step stage
-   ```
+1. **Inspect Git State First**
+   Run `git status --short --branch` (and `git remote -v` if needed) to understand where the repository stands:
+   - **No `.git` repo or no remote**: Offer to initialize Git (`git init -b main`) or add the remote (`git remote add origin <url>`) and wait for confirmation.
+   - **Unstaged / untracked changes exist**: Your next step is **Stage**.
+   - **Staged changes exist (and nothing left to stage, or user chose selective staging)**: Your next step is **Commit**.
+   - **Working tree is clean and local branch is ahead of remote (`[ahead N]`)**: Your next step is **Push**.
 
-### Step 2/3 — Commit with a Related Comment
-1. After staging succeeds, draft a clear, concise commit comment that directly describes the changes made and why (e.g., `feat: add F2P quest progression table and skill requirements`).
-2. Present the staged files and proposed commit comment to the user and ask:
-   > *"Step 2/3 (Commit): Would you like me to commit the staged changes with the comment: `<your descriptive comment>`?"*
-3. **Stop and wait** for the user's confirmation (if the user suggests edits to the comment, use their updated wording).
-4. Once the user responds affirmatively, run:
-   ```powershell
-   powershell -ExecutionPolicy Bypass -File .\.agents\skills\github-auto-upload\scripts\upload.ps1 -Step commit -Message "<your descriptive comment>"
-   ```
+2. **Step: Stage (if unstaged or untracked changes exist)**
+   - List the changed files and make sure no sensitive credentials or unwanted temporary files are included.
+   - Ask the user for confirmation (e.g., *"Would you like me to stage these changes?"*).
+   - **Wait** for their reply. Once confirmed, run the appropriate `git add` command (e.g., `git add -A`, or selective paths if the user requested exclusions).
 
-### Step 3/3 — Push to GitHub
-1. After committing succeeds, show the created commit summary and target branch (e.g., `origin/main`) and ask:
-   > *"Step 3/3 (Push): Would you like me to push this commit to GitHub (`origin/<branch>`)?"*
-2. **Stop and wait** for the user's confirmation.
-3. Once the user responds affirmatively, run:
-   ```powershell
-   powershell -ExecutionPolicy Bypass -File .\.agents\skills\github-auto-upload\scripts\upload.ps1 -Step push
-   ```
-4. Confirm in the command output that `git push` succeeded without errors and report the branch and commit hash to the user.
+3. **Step: Commit (when staged changes are ready)**
+   - Inspect staged changes (`git diff --cached --stat`) if needed and craft a concise, descriptive commit comment directly describing the changes made and why (e.g., `feat: add F2P quest progression table`).
+   - Show the proposed commit comment to the user and ask for confirmation (e.g., *"Would you like me to commit the staged changes with the comment: `<comment>`?"*).
+   - **Wait** for their reply (use any edits the user requests). Once confirmed, run `git commit -m "<comment>"`.
 
-## Handling Uninitialized Repo or Missing Remote
-- If the workspace does not yet have a `.git` repository or `origin` remote configured, inform the user and offer to initialize the repository (`git init -b main`) and connect it to their GitHub repository URL before proceeding with Step 1.
+4. **Step: Push (when local commits are ahead of remote)**
+   - Show the commit summary (`git log -1 --oneline`) and target remote/branch (e.g., `origin/main`) and ask for confirmation (e.g., *"Would you like me to push this commit to GitHub (`origin/<branch>`)?"*).
+   - **Wait** for their reply. Once confirmed, run `git push -u origin <branch>` (or `git push`) and verify the output succeeded without errors.
