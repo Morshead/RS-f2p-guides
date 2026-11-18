@@ -2364,3 +2364,107 @@ textarea {
   color: #FFFFFF;
   border-color: rgba(255, 255, 255, 0.35);
 }
+
+/* ==================== LIQUIDATION GP/HR BREAKDOWN ==================== */
+.liquidation-panel {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface-geo);
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.liquidation-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.liquidation-legend {
+  font-size: 9.5px;
+  color: var(--text-muted);
+}
+
+.liquidation-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+}
+
+@media (max-width: 900px) {
+  .liquidation-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 520px) {
+  .liquidation-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.liquidation-cell {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 8px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.liquidation-cell.tone-positive {
+  border-top: 2px solid var(--gp-green);
+}
+
+.liquidation-cell.tone-negative {
+  border-top: 2px solid var(--gp-red);
+}
+
+.liquidation-cell.tone-info {
+  border-top: 2px solid var(--area-afk);
+}
+
+.liquidation-cell.tone-muted {
+  border-top: 2px solid var(--border);
+}
+
+.liquidation-cell-label {
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+}
+
+.liquidation-cell-value {
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.liquidation-cell.tone-positive .liquidation-cell-value {
+  color: var(--gp-green);
+}
+
+.liquidation-cell.tone-negative .liquidation-cell-value {
+  color: var(--gp-red);
+}
+
+.liquidation-cell.tone-info .liquidation-cell-value {
+  color: #0369A1;
+}
+
+.liquidation-cell.tone-muted .liquidation-cell-value {
+  color: var(--text-secondary);
+}
+
+.liquidation-cell-note {
+  font-size: 10px;
+  color: var(--text-secondary);
+  line-height: 1.35;
+}

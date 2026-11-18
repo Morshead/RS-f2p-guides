@@ -16,6 +16,7 @@ import SectionHeader from '../components/ui/SectionHeader';
 import CalloutBanner from '../components/ui/CalloutBanner';
 import CollapsibleSection from '../components/ui/CollapsibleSection';
 import BlueprintMap from '../components/ui/BlueprintMap';
+import LiquidationBreakdown from '../components/ui/LiquidationBreakdown';
 import { PVM_BRACKETS, TOP_F2P_LOOT_HIGHLIGHTS, TOP_F2P_AFK_SPOTS } from '../data/guideData';
 
 const PVM_FILTERS = [
@@ -455,6 +456,17 @@ export default function PvmView({
                             </div>
                           </div>
                         </div>
+
+                        <LiquidationBreakdown
+                          gpPerHour={activeOption.gpPerHour}
+                          gpTrend={activeOption.gpTrend}
+                          whereToSell={`${activeOption.mapData?.sellSpot || ''} ${activeOption.lootDrops
+                            .map((d) => `${d.item} ${d.ironmanUseAndSell}`)
+                            .join(' ')}`}
+                          title={activeOption.name}
+                          description={activeOption.overview}
+                          isPvm
+                        />
 
                         {/* Highlighted Good Loot Drops Table */}
                         <div className="sub-surface">

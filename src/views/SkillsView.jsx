@@ -18,6 +18,7 @@ import SectionHeader from '../components/ui/SectionHeader';
 import CalloutBanner from '../components/ui/CalloutBanner';
 import CollapsibleSection from '../components/ui/CollapsibleSection';
 import BlueprintMap from '../components/ui/BlueprintMap';
+import LiquidationBreakdown from '../components/ui/LiquidationBreakdown';
 import { AbstractGeometricBox } from '../components/ui/GeometricPattern';
 import { SKILLS_DATA, QUESTS_DATA } from '../data/guideData';
 
@@ -479,6 +480,14 @@ export default function SkillsView({
                             </div>
                           </div>
                         </div>
+
+                        <LiquidationBreakdown
+                          gpPerHour={activeMethod.gpPerHour}
+                          gpTrend={activeMethod.gpTrend}
+                          whereToSell={activeMethod.whereToSell}
+                          title={activeMethod.method}
+                          skillId={focusedSkill.id}
+                        />
 
                         <div className="method-prereq-panel">
                           <div>

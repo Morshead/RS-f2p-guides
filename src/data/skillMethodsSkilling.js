@@ -93,14 +93,14 @@ export const SKILLING_METHODS = {
             ironmanPrep: '0 min prep (upgrade Iron Pickaxe & Ore Box at 10 Smithing)',
             gpPerHour: '+45,000 GP/hr',
             gpTrend: 'positive',
-            whereToSell: "Smelt Iron Bars & smith Iron +1 Platebodies; sell to Horvik's Armour Shop (Varrock) at 60% value",
+            whereToSell: "High Alch (55 Magic, 60%), Low Alch (21 Magic, 40%), or Varrock General Store (30%) on Iron +1 Platebodies (Horvik's buys base +0 only)",
             notes: 'Complete The Knight\'s Sword at 10 Mining to skip directly to 29 Smithing.',
             mapData: {
               terrain: 'city',
               lodestone: 'Varrock Lodestone',
               bank: 'Varrock West Bank',
               target: 'Varrock SW Iron Rocks (3-Rock Cluster)',
-              sellSpot: "Horvik's Armour Shop (Varrock Square)",
+              sellSpot: "High/Low Alch or General Store (+1) / Horvik's (+0 only)",
               routeNote: 'Fill inventory + Iron Ore Box (holds 100 Iron), bank at Varrock West, or smelt at Edgeville.'
             },
             steps: [
@@ -193,14 +193,14 @@ export const SKILLING_METHODS = {
             ironmanPrep: '0 min prep',
             gpPerHour: '+55,000 GP/hr',
             gpTrend: 'positive',
-            whereToSell: "Smelt Steel Bars & smith Steel +2 Platebodies for Horvik's Armour Shop (Varrock)",
+            whereToSell: "High/Low Alch or Falador General Store (30% flat rate) on Steel +2 Platebodies (Horvik's buys base +0 only)",
             notes: 'Stockpiles Coal needed for Steel (20) & Mithril (30) Smithing.',
             mapData: {
               terrain: 'dungeon',
               lodestone: 'Falador Lodestone',
               bank: 'Falador East Bank / Dwarven Deposit Box',
               target: 'Dwarven Mine Coal Veins',
-              sellSpot: "Artisans' Workshop / Horvik's (Varrock)",
+              sellSpot: "Artisans' Workshop → Alch / Falador General Store (+2)",
               routeNote: 'Enter Dwarven Mine south of Ice Mountain or via Falador; deposit Coal at the 15 DG Resource Dungeon box.'
             },
             steps: [
@@ -230,14 +230,14 @@ export const SKILLING_METHODS = {
             ironmanPrep: '0 min prep (1:1 Coal to Mithril ratio)',
             gpPerHour: '+95,000 GP/hr',
             gpTrend: 'positive',
-            whereToSell: "Smelt & smith Mithril +2 Chainbodies/Platebodies; sell to Wayne's Chains (Falador) or Horvik's",
+            whereToSell: "High Alch (55 Magic, 60%), Low Alch (21 Magic, 40%), or Falador General Store (30%) on Mithril +2 (Wayne's Chains buys base +0 only)",
             notes: 'Keep Mining Urns active in pocket slot for +20% bonus XP.',
             mapData: {
               terrain: 'dungeon',
               lodestone: 'Falador Lodestone',
               bank: 'Falador East Bank',
               target: 'Dwarven Mine Mithril Chamber',
-              sellSpot: "Wayne's Chains (Falador South)",
+              sellSpot: "High/Low Alch or Falador General Store (+2) / Wayne's (+0)",
               routeNote: 'Mine Mithril + Coal inside Dwarven Mine, then smelt/smith at Falador Artisans\' Workshop.'
             },
             steps: [
@@ -298,14 +298,14 @@ export const SKILLING_METHODS = {
             ironmanPrep: '0 min prep (Luminite is needed 1:1 with Adamantite & Runite)',
             gpPerHour: '+150,000 GP/hr',
             gpTrend: 'positive',
-            whereToSell: "Smith Adamant +2 Platebodies & High Alch (5,760 GP) or sell to Horvik's Armour Shop",
+            whereToSell: "Smith Adamant +2 Platebodies & High Alch (60%), Low Alch (40%), or General Store (30% flat rate — Horvik's rejects +2)",
             notes: 'Stockpile extra Luminite here — you will need hundreds for 50–99 Runite.',
             mapData: {
               terrain: 'dungeon',
               lodestone: 'Falador Lodestone',
               bank: 'Falador East Bank / Dwarven Resource Box',
               target: 'Dwarven Mine Luminite & Rimmington Addy',
-              sellSpot: "Artisans' Workshop / Horvik's Armour Shop",
+              sellSpot: "High Alch (60%) / Low Alch (40%) / General Store (30%)",
               routeNote: 'Alternate between Dwarven Mine Luminite veins and Rimmington Adamantite rocks.'
             },
             steps: [
@@ -367,14 +367,14 @@ export const SKILLING_METHODS = {
             ironmanPrep: '0 min prep (10 min daily Shooting Star grants 15 min Double Ore buff)',
             gpPerHour: '+300,000 – +450,000 GP/hr',
             gpTrend: 'positive',
-            whereToSell: "Smith Rune Platebodies +3 & High Alch (20,000 GP) or sell at Scavvo's Rune Store (Champions' Guild)",
+            whereToSell: "Smith Rune Platebodies +3 & High Alch (20,000 GP), Low Alch (13,333 GP), or General Store (10,000 GP at 30%; Scavvo's rejects +3)",
             notes: 'Use Shooting Star double-ore buff strictly on Runite rocks for peak GIM GP.',
             mapData: {
               terrain: 'dungeon',
               lodestone: 'Falador Lodestone',
               bank: 'Falador East Bank / Artisans\' Metal Bank',
               target: 'Falador Mining Guild (60+) & Dwarven Luminite',
-              sellSpot: "High Alch / Scavvo's Rune Store",
+              sellSpot: "High Alch (20k) / Low Alch (13.3k) / General Store (10k)",
               routeNote: 'Lodestone to Falador, drop down Mining Guild ladder (60 Mining), fill Rune Ore Box, deposit at Artisans\' Workshop.'
             },
             steps: [
@@ -478,7 +478,7 @@ export const SKILLING_METHODS = {
             ironmanPrep: '~15 min baking Redberry Pie, smelting 2 Iron Bars & mining Blurite',
             gpPerHour: '+15,000 GP/hr',
             gpTrend: 'positive',
-            whereToSell: "Keep spare Blurite items; sell Bronze/Iron leftovers to Horvik's Armour Shop (Varrock)",
+            whereToSell: "Keep spare Blurite items; sell base (+0) Bronze/Iron leftovers to Horvik's Armour Shop (Varrock)",
             notes: 'Never smith Bronze/Iron from 1–29; always do Knight\'s Sword after Doric\'s Quest.',
             mapData: {
               terrain: 'dungeon',
@@ -523,7 +523,7 @@ export const SKILLING_METHODS = {
               'Start What\'s Mine is Yours with Doric north of Falador at 5 Smithing.',
               'Smelt Bronze/Iron Bars into your Metal Bank at Falador Artisans\' Workshop.',
               'Craft Bronze/Iron Platebodies and Ore Boxes.',
-              'Sell unwanted gear to Horvik\'s Armour Shop in Varrock Square.'
+              'Sell unwanted base (+0) Bronze/Iron gear to Horvik\'s Armour Shop in Varrock Square (upgraded +1 items go to General Store or Low/High Alch).'
             ]
           }
         ]
@@ -545,21 +545,21 @@ export const SKILLING_METHODS = {
             ironmanPrep: '~35 min mining Iron/Coal/Mithril per 25 min smithing',
             gpPerHour: '+75,000 GP/hr',
             gpTrend: 'positive',
-            whereToSell: "Horvik's Armour Shop (Varrock) or Wayne's Chains (Falador) at 60% specialty value",
+            whereToSell: "High Alch (55 Magic, 60%), Low Alch (21 Magic, 40%), or Falador General Store (30%) on +1/+2 gear (Wayne's Chains buys base +0 only)",
             notes: 'Upgrade your Iron/Steel/Mithril Pickaxes & Hatchets for the team here.',
             mapData: {
               terrain: 'city',
               lodestone: 'Falador Lodestone',
               bank: 'Artisans\' Metal Bank (On-Site)',
               target: "Falador Artisans' Workshop Anvils",
-              sellSpot: "Wayne's Chains (Falador) / Horvik's (Varrock)",
-              routeNote: 'Smelt Bars at the Artisans\' Workshop furnace, forge at adjacent anvils, sell right outside at Wayne\'s Chains.'
+              sellSpot: "High/Low Alch or Falador General Store (+1/+2) / Wayne's (+0)",
+              routeNote: 'Smelt Bars at the Artisans\' Workshop furnace, forge at adjacent anvils, then High/Low Alch +1/+2 items or sell to Falador General Store at 30% (Wayne\'s only buys base +0 chainbodies).'
             },
             steps: [
               'Deposit mined Iron, Coal, and Mithril Ore into the Artisans\' Workshop Furnace.',
               'Smelt Steel Bars (29–30) then Mithril Bars (30–40) into your Metal Bank.',
               'Create Mithril Platebodies and upgrade them to +2 using the central Forge to reheat at <66% heat.',
-              'Sell Mithril +2 gear at Wayne\'s Chains (Falador) or Horvik\'s Armour Shop (Varrock).'
+              'Liquidate +1/+2 gear via High Alch (60%), Low Alch (40%), or Falador General Store (30% flat rate — specialty shops like Wayne\'s/Horvik\'s reject +1/+2 and only buy base +0 stock).'
             ]
           },
           {
@@ -613,21 +613,21 @@ export const SKILLING_METHODS = {
             ironmanPrep: '~38 min mining Adamantite & Luminite per 22 min smithing',
             gpPerHour: '+160,000 GP/hr',
             gpTrend: 'positive',
-            whereToSell: "High Level Alchemy (5,760 GP per Addy +2 Platebody) or Horvik's Armour Shop (Varrock)",
+            whereToSell: "High Level Alchemy (55 Magic, 60%), Low Alch (21 Magic, 40%), or General Store (30% flat rate — Horvik's rejects +2 gear)",
             notes: 'Also craft Adamant Pickaxes +2 and Hatchets for your whole team.',
             mapData: {
               terrain: 'city',
               lodestone: 'Falador Lodestone',
               bank: 'Artisans\' Metal Bank',
               target: "Artisans' Workshop Anvils",
-              sellSpot: "High Level Alchemy / Horvik's (Varrock)",
-              routeNote: 'Smelt Adamantite Bars (1 Addy + 1 Luminite), smith Platebodies +2, and High Alch at Bank.'
+              sellSpot: "High Alch (60%) / Low Alch (40%) / General Store (30%)",
+              routeNote: 'Smelt Adamantite Bars (1 Addy + 1 Luminite), smith Platebodies +2, and High/Low Alch (or sell +2 to Falador General Store at 30% if pre-21 Magic).'
             },
             steps: [
               'Mine 1:1 Adamantite Ore (Rimmington) and Luminite (Dwarven Mine).',
               'Smelt Adamantite Bars into your Metal Bank at Artisans\' Workshop.',
               'Smith Adamant Platebodies and upgrade to +2 while keeping heat above 66%.',
-              'High Alch (55 Magic) or sell directly to Horvik\'s Armour Shop in Varrock.'
+              'High Alch (55 Magic, 60%), Low Alch (21 Magic, 40%), or sell +2 pieces to a General Store (30% flat rate; specialty shops like Horvik\'s reject +2 items).'
             ]
           },
           {
@@ -713,21 +713,21 @@ export const SKILLING_METHODS = {
             ironmanPrep: '~38 min mining Runite & Luminite (or Shooting Star buff) per 22 min smithing',
             gpPerHour: '+450,000 – +700,000 GP/hr',
             gpTrend: 'positive',
-            whereToSell: "High Level Alchemy (20,000 GP each) or Scavvo's Rune Store / Horvik's Armour Shop",
+            whereToSell: "High Level Alchemy (20,000 GP each), Low Alch (13,333 GP), or General Store (10,000 GP at 30% — Scavvo's/Horvik's reject +3 gear)",
             notes: 'Primary F2P Group Ironman raw GP engine; funds all daily Feather & Rune shop runs.',
             mapData: {
               terrain: 'city',
               lodestone: 'Falador Lodestone',
               bank: 'Artisans\' Metal Bank / Falador East Bank',
               target: "Artisans' Workshop Anvils",
-              sellSpot: "High Level Alchemy (55 Magic) / Scavvo's Rune Store",
+              sellSpot: "High Alch (20,000 GP) / Low Alch (13,333 GP) / General Store (10,000 GP)",
               routeNote: 'Smelt Runite Bars at Artisans\' Furnace, upgrade Platebodies to +3, then High Alch right next to the bank.'
             },
             steps: [
               'Unlock Scroll of Efficiency (20k DG tokens) so smelting/smithing saves free Runite Bars.',
               'Smelt 1:1 Runite + Luminite into Runite Bars at Falador Artisans\' Workshop.',
               'Forge Rune Platebodies (base → +1 → +2 → +3), reheating at the forge whenever heat <66%.',
-              'High Alch each Rune Platebody +3 for 20,000 GP (or sell at Scavvo\'s Rune Store in Champions\' Guild).'
+              'High Alch each Rune Platebody +3 for 20,000 GP (or Low Alch at 21 Magic for 13,333 GP, or sell to a General Store at 10,000 GP; specialty shops like Scavvo\'s reject +3 items).'
             ]
           },
           {

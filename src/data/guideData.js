@@ -67,7 +67,7 @@ const BASE_SKILLS_DATA = [
     peakXpHr: '12k – 45k XP/hr',
     netGpHr: '+25k – +450k GP/hr',
     gpTrend: 'positive',
-    defaultSellLocation: "High Level Alchemy (55 Magic) on smithed Rune/Addy items, Horvik's Armour Shop (Varrock), Wayne's Chains (Falador), Scavvo's Rune Store (Champions' Guild), or Grum's Gold Exchange (Port Sarim) for cut gems/jewellery.",
+    defaultSellLocation: "High Level Alchemy (55 Magic, 60%) or Low Alch (21 Magic, 40%) on +1/+2/+3 smithed gear, or General Stores (30% flat rate — buys +1/+2/+3; specialty shops like Horvik's/Wayne's only buy base +0 stock). Sell cut gem jewellery at Grum's Gold Exchange.",
     ironmanGatheringNote: 'Self-contained gathering skill (0 external prep time once Pickaxe & Ore Box are upgraded). Click sparkling Rockertunities every ~15s and maintain stamina for +25–40% faster ore acquisition.',
     gimSynergy: 'Critical — Supplies all Copper/Tin, Iron, Coal, Mithril, Adamantite, Runite, Luminite, and Al Kharid Gems into Group Storage for Smithing and Crafting.',
     overview: 'RS3\'s Mining rework means rocks never deplete and stamina resets on every click or Rockertunity. An Ore Box stores 100–140 of each ore tier, drastically reducing banking trips for Ironmen.',
@@ -105,7 +105,7 @@ const BASE_SKILLS_DATA = [
         ironmanPrep: '0 min prep (upgrade Iron Pickaxe & Iron Ore Box at 10 Smithing)',
         gpPerHour: '+45,000 GP/hr',
         gpTrend: 'positive',
-        whereToSell: "Smelt Iron Bars & smith Iron +1 Platebodies; sell to Horvik's Armour Shop (Varrock) at 60% value",
+        whereToSell: "High Alch (55 Magic, 60%), Low Alch (21 Magic, 40%), or Varrock General Store (30%) on Iron +1 Platebodies (Horvik's buys base +0 only)",
         notes: 'Complete The Knight\'s Sword at 10 Mining to skip directly to 29 Smithing.'
       },
       {
@@ -129,7 +129,7 @@ const BASE_SKILLS_DATA = [
         ironmanPrep: '0 min prep (1:1 Coal to Mithril ratio)',
         gpPerHour: '+95,000 GP/hr',
         gpTrend: 'positive',
-        whereToSell: "Smelt & smith Mithril +2 Chainbodies/Platebodies; sell to Wayne's Chains (Falador) or Horvik's (Varrock)",
+        whereToSell: "High Alch (55 Magic, 60%), Low Alch (21 Magic, 40%), or Falador General Store (30%) on Mithril +2 Platebodies (Wayne's Chains buys base +0 chainbodies only)",
         notes: 'Keep Mining Urns active in pocket slot for +20% bonus XP.'
       },
       {
@@ -141,7 +141,7 @@ const BASE_SKILLS_DATA = [
         ironmanPrep: '0 min prep (Luminite is required 1:1 with Adamantite & Runite)',
         gpPerHour: '+150,000 GP/hr',
         gpTrend: 'positive',
-        whereToSell: "Smith Adamant +2 Platebodies and High Alch (55 Magic) for 5,760 GP, or sell to Horvik's Armour Shop",
+        whereToSell: "High Alch (55 Magic, 60%), Low Alch (21 Magic, 40%), or General Store (30% flat rate) on Adamant +2 Platebodies (Horvik's rejects +2)",
         notes: 'Dwarven Mine Resource Dungeon (15 DG) has convenient rocks close to deposit box.'
       },
       {
@@ -153,7 +153,7 @@ const BASE_SKILLS_DATA = [
         ironmanPrep: '0 min prep (daily 10 min Shooting Star grants 15 min Double Ore buff)',
         gpPerHour: '+300,000 – +450,000 GP/hr',
         gpTrend: 'positive',
-        whereToSell: "Smith Rune Platebodies +3 & High Alch (20,000 GP each) or sell at Scavvo's Rune Store (Champions' Guild)",
+        whereToSell: "Smith Rune Platebodies +3 & High Alch (20,000 GP), Low Alch (13,333 GP), or General Store (10,000 GP at 30%; Scavvo's rejects +3)",
         notes: 'Use Shooting Star double-ore buff strictly on Runite rocks for peak GIM GP.'
       }
     ],
@@ -172,7 +172,7 @@ const BASE_SKILLS_DATA = [
     peakXpHr: '22k – 58k XP/hr (IM) | 155k/hr (Anvil)',
     netGpHr: '+450k GP/hr (Alch) / -320k GP/hr (Burial)',
     gpTrend: 'positive',
-    defaultSellLocation: "High Level Alchemy (55 Magic, 20,000 GP per Rune Platebody +3), Horvik's Armour Shop (Varrock), Wayne's Chains (Falador), or Scavvo's Rune Store (Champions' Guild). Burial Armour yields 0 GP.",
+    defaultSellLocation: "High Level Alchemy (55 Magic, 20,000 GP per Rune +3), Low Alch (21 Magic, 13,333 GP), or General Stores (30% flat rate = 10,000 GP per Rune +3). Specialty shops (Horvik's / Wayne's / Scavvo's) only buy un-upgraded (+0) stocked items; Burial Armour yields 0 GP.",
     ironmanGatheringNote: 'Effective Ironman XP/hr includes ~35–42 minutes of mining ores + Luminite/Coal per ~18–25 minutes of smelting & anvil smithing (roughly 60% Mining / 40% Smithing split).',
     gimSynergy: 'Critical — Outfits the entire team with Tier 50 Rune +3 weapons, armour, pickaxes, and hatchets via Group Storage, and generates up to 700k GP/hr via High Alch.',
     overview: 'RS3\'s Smithing rework splits training into two paths: upgrading Platebodies to +3 for huge High Alch/shop profit, or destroying +3 sets on Burial Anvils at Falador Artisans\' Workshop for maximum XP at a net GP loss.',
@@ -180,7 +180,7 @@ const BASE_SKILLS_DATA = [
       "The Knight's Sword quest (10 Mining) — skips levels 1 to 29 Smithing",
       "What's Mine is Yours (5 Smithing) for Gofannon Amulet",
       'Mining 1–50+ (or Group Ironman Miner supplying Runite + Luminite)',
-      '55 Magic for High Level Alchemy (or specialty NPC shop access for pre-55 alch)',
+      '55 Magic for High Level Alchemy (or 21 Magic Low Alch / General Store at 30% for +1/+2/+3 gear)',
       'Artisans\' Workshop in SE Falador + Scroll of Efficiency (20k DG Tokens)'
     ],
     quests: [
@@ -198,7 +198,7 @@ const BASE_SKILLS_DATA = [
         ironmanPrep: '~15 min baking Redberry Pie, smelting 2 Iron Bars & mining Blurite',
         gpPerHour: '+15,000 GP/hr',
         gpTrend: 'positive',
-        whereToSell: "Keep spare Blurite items; sell early Bronze/Iron leftovers to Horvik's Armour Shop (Varrock)",
+        whereToSell: "Keep spare Blurite items; sell base (+0) Bronze/Iron leftovers to Horvik's Armour Shop (Varrock) or General Store",
         notes: 'Never smith Bronze/Iron from 1–29; always do Knight\'s Sword after Doric\'s Quest.'
       },
       {
@@ -210,7 +210,7 @@ const BASE_SKILLS_DATA = [
         ironmanPrep: '~35 min mining Iron/Coal/Mithril per 25 min smithing',
         gpPerHour: '+75,000 GP/hr',
         gpTrend: 'positive',
-        whereToSell: "Horvik's Armour Shop (Varrock) or Wayne's Chains (Falador) at 60% specialty value",
+        whereToSell: "High Alch (55 Magic, 60%), Low Alch (21 Magic, 40%), or General Store (30% flat rate) on +1/+2 gear (Wayne's Chains buys base +0 chainbodies only)",
         notes: 'Upgrade your Iron/Steel/Mithril Pickaxes & Hatchets for the team here.'
       },
       {
@@ -234,7 +234,7 @@ const BASE_SKILLS_DATA = [
         ironmanPrep: '~38 min mining Adamantite & Luminite per 22 min smithing',
         gpPerHour: '+160,000 GP/hr',
         gpTrend: 'positive',
-        whereToSell: "High Level Alchemy (5,760 GP per Addy +2 Platebody) or Horvik's Armour Shop",
+        whereToSell: "High Level Alchemy (55 Magic, 60%), Low Alch (21 Magic, 40%), or General Store (30% flat rate — Horvik's rejects +2 gear)",
         notes: 'Craft Adamant Pickaxes +2 and Arrowheads for GIM Ranged.'
       },
       {
@@ -246,7 +246,7 @@ const BASE_SKILLS_DATA = [
         ironmanPrep: '~38 min mining Runite & Luminite (or Shooting Star buff) per 22 min smithing',
         gpPerHour: '+450,000 – +700,000 GP/hr',
         gpTrend: 'positive',
-        whereToSell: "High Level Alchemy (20,000 GP each) or Scavvo's Rune Store / Horvik's Armour Shop",
+        whereToSell: "High Level Alchemy (20,000 GP each), Low Alch (13,333 GP), or General Store (10,000 GP at 30% — Scavvo's/Horvik's reject +3 gear)",
         notes: 'Primary F2P Group Ironman raw GP engine; funds all feather/rune shop runs.'
       },
       {
@@ -265,7 +265,8 @@ const BASE_SKILLS_DATA = [
     tips: [
       'Unlock the Scroll of Efficiency (20k DG Tokens) before grinding 50–99 — it regularly saves Runite/Luminite bars.',
       'Reheat items on the forge whenever heat drops below 66% to maintain max Smithing progress per swing.',
-      'Deposit extra Runite Bars into the Artisan Metal Bank so any furnace/anvil can access them.'
+      'Deposit extra Runite Bars into the Artisan Metal Bank so any furnace/anvil can access them.',
+      'Specialty armour/weapon shops (Horvik\'s, Wayne\'s, Scavvo\'s) only buy un-upgraded (+0) items they natively stock — sell +1/+2/+3 gear via High Alch (60%), Low Alch (40%), or General Stores (30% flat rate).'
     ]
   },
   {

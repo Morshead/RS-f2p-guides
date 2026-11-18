@@ -5,6 +5,7 @@ import Badge from '../components/ui/Badge';
 import SectionHeader from '../components/ui/SectionHeader';
 import CalloutBanner from '../components/ui/CalloutBanner';
 import CollapsibleSection from '../components/ui/CollapsibleSection';
+import LiquidationBreakdown from '../components/ui/LiquidationBreakdown';
 import { MONEY_MAKING_DATA } from '../data/guideData';
 
 const MONEY_FILTERS = [
@@ -109,6 +110,14 @@ export default function MoneyMakingView({
               </div>
 
               <p className="card-desc">{method.description}</p>
+
+              <LiquidationBreakdown
+                gpPerHour={method.gpPerHour}
+                gpTrend="positive"
+                whereToSell={`${method.description} ${method.steps.join(' ')}`}
+                title={method.title}
+                description={method.description}
+              />
 
               <CalloutBanner label="Group Storage Sharing" variant="emerald">
                 {method.gimShareable}
