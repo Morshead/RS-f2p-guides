@@ -102,7 +102,7 @@ export default function App() {
   }, [activeSection, selectedItemId]);
 
   return (
-    <div className="app-shell">
+    <div className="app-shell" data-section={activeSection}>
       <Sidebar
         activeSection={activeSection}
         selectedItemId={selectedItemId}

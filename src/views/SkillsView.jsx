@@ -24,6 +24,26 @@ import { SKILLS_DATA, QUESTS_DATA } from '../data/guideData';
 const SKILL_FILTERS = ['All', 'Combat', 'Artisan', 'Gathering', 'Support', 'F2P Cap 20/5'];
 const GEO_VARIANTS = ['grid', 'circles', 'triangles'];
 
+const COMBAT_AFK_SKILL_IDS = new Set([
+  'attack',
+  'strength',
+  'defence',
+  'constitution',
+  'magic',
+  'ranged',
+  'necromancy'
+]);
+
+function getSkillCategoryKey(category = '') {
+  const c = category.toLowerCase();
+  if (c.includes('combat')) return 'combat';
+  if (c.includes('artisan')) return 'artisan';
+  if (c.includes('gathering')) return 'gathering';
+  if (c.includes('support')) return 'support';
+  if (c.includes('cap')) return 'cap';
+  return 'artisan';
+}
+
 function findMatchingQuestId(questName) {
   const normalized = questName.toLowerCase();
   const match = QUESTS_DATA.find(
@@ -147,7 +167,10 @@ export default function SkillsView({
     };
 
     return (
-      <div className="view-stack">
+      <div
+        className="view-stack"
+        data-skill-cat={getSkillCategoryKey(focusedSkill.category)}
+      >
         <SectionHeader
           icon={Pickaxe}
           title={focusedSkill.name}
@@ -243,6 +266,21 @@ export default function SkillsView({
                 ))}
               </div>
             </div>
+          )}
+
+          {COMBAT_AFK_SKILL_IDS.has(focusedSkill.id) && (
+            <CalloutBanner label="Best F2P Ironman AFK Spots" variant="cyan">
+              Early (1–30): Burthorpe Trolls (zero food w/ Necro Vengeful Ghost) &amp; Lumbridge Catacombs (Spider Silk). Mid (25–65): Stronghold Floor 2 Flesh Crawlers (auto-aggro + Fire Runes) &amp; Floor 4 Ankous (Death/Blood/Law runes). High (65–99): Varrock Sewers Deadly Red Spiders (peak AFK XP) &amp; Forinthry Dungeon Hellhounds / Greater Demons (PvP Opted-Out).{' '}
+              <button
+                type="button"
+                className="prereq-link-btn"
+                style={{ display: 'inline-flex', marginLeft: '6px', verticalAlign: 'middle' }}
+                onClick={() => onNavigate('pvm', 'all', null, returnCtx)}
+              >
+                <span>Open PvM AFK Table</span>
+                <ArrowUpRight size={12} />
+              </button>
+            </CalloutBanner>
           )}
 
           <CalloutBanner label="Ironman Item Gathering & Prep Time" variant="amber">
@@ -602,6 +640,7 @@ export default function SkillsView({
             <div
               key={skill.id}
               className="geo-card skill-geo-card"
+              data-skill-cat={getSkillCategoryKey(skill.category)}
               onClick={() => onSelectSkill(skill.id)}
               role="button"
               tabIndex={0}

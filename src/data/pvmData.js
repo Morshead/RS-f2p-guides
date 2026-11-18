@@ -65,6 +65,81 @@ export const TOP_F2P_LOOT_HIGHLIGHTS = [
   }
 ];
 
+export const TOP_F2P_AFK_SPOTS = [
+  {
+    spot: 'Burthorpe Troll Cave',
+    bracketLabel: 'CB 3–25 (Trolls)',
+    bracketId: 'cb-3-25',
+    optionIdx: 0,
+    sustain: 'Zero Food (Necro Vengeful Ghost)',
+    xpAndDrops: '15k–25k XP/hr • Grimy Guam & Marrentill',
+    whyAfk: 'Fast respawns with minimal damage. With Necromancy Conjure Vengeful Ghost you sustain HP passively without banking.'
+  },
+  {
+    spot: 'Lumbridge Catacombs',
+    bracketLabel: 'CB 25–45 (Corpse Spiders / Skeletons)',
+    bracketId: 'cb-25-45',
+    optionIdx: 2,
+    sustain: 'Minimal / No Food',
+    xpAndDrops: '20k–30k XP/hr • Spider Silk & Mask Parts',
+    whyAfk: 'Low-HP multi-spawns right next to Lumbridge Bank. Ideal AFK farm for Spider Silk (T20 Magic & Necromancy gear).'
+  },
+  {
+    spot: 'Stronghold of Security Floor 2',
+    bracketLabel: 'CB 25–45 (Flesh Crawlers)',
+    bracketId: 'cb-25-45',
+    optionIdx: 1,
+    sustain: 'Auto-Aggro • Trout / Salmon',
+    xpAndDrops: '34k–44k XP/hr • Fire Runes & Herbs',
+    whyAfk: 'Naturally aggressive in 3+ spawn rooms for 10-minute AFK timers. Great early-to-mid Defence/Melee XP with useful Fire Runes.'
+  },
+  {
+    spot: 'Varrock Sewers — Red Spider Chamber',
+    bracketLabel: 'CB 45–65+ (Deadly Red Spiders)',
+    bracketId: 'cb-45-65',
+    optionIdx: 3,
+    sustain: 'Auto-Aggro • Swordfish / Lobsters',
+    xpAndDrops: '75k–88k XP/hr • Peak Raw F2P XP (No Alchs)',
+    whyAfk: 'Multiple aggressive spiders pile you for 100% AoE Revolution++ uptime (Cleave/Hurricane/Quake). Highest raw XP/hr in F2P.'
+  },
+  {
+    spot: 'Stronghold of Security Floor 4',
+    bracketLabel: 'CB 65–80 (Ankous)',
+    bracketId: 'cb-65-80',
+    optionIdx: 0,
+    sustain: '10-Min Aggro • Swordfish / Lobsters',
+    xpAndDrops: '55k–75k XP/hr • Death/Blood/Law Runes & Salvage',
+    whyAfk: 'Naturally aggressive with stackable rune drops, Mithril/Adamant salvage, and Weapon Poison — top AFK Magic/Melee profit spot.'
+  },
+  {
+    spot: 'Karamja / Forinthry Lesser Demons',
+    bracketLabel: 'CB 65–80 (Lesser Demons)',
+    bracketId: 'cb-65-80',
+    optionIdx: 1,
+    sustain: 'Aggro (Forinthry) • Swordfish',
+    xpAndDrops: '50k–70k XP/hr • Rune Salvage & Fire Runes',
+    whyAfk: 'Strong Magic/Ranged AoE target; Forinthry Dungeon (PvP Opted-Out) keeps aggro active while dropping High Alch Rune salvage.'
+  },
+  {
+    spot: 'Forinthry Dungeon — Greater Demons',
+    bracketLabel: 'CB 80–95 (Greater Demons)',
+    bracketId: 'cb-80-95',
+    optionIdx: 0,
+    sustain: 'Auto-Aggro (PvP Opted-Out) • Swordfish',
+    xpAndDrops: '65k–80k XP/hr • Rune Salvage & T50 Magic Shortbow',
+    whyAfk: 'Safe PvP-opted-out aggression near Edgeville Bank. Consistently drops Rune salvage for High Alch GP.'
+  },
+  {
+    spot: 'Forinthry Dungeon — Hellhounds',
+    bracketLabel: 'CB 80–95 (Hellhounds AFK)',
+    bracketId: 'cb-80-95',
+    optionIdx: 3,
+    sustain: 'Pure Auto-Aggro • Swordfish / Lobsters',
+    xpAndDrops: '68k–82k XP/hr • Gold Charms & Hard Clues',
+    whyAfk: 'Pure AFK aggression with zero loot clutter — stand in the Hellhound wing with AoE Revolution++ until food runs low.'
+  }
+];
+
 export const PVM_BRACKETS = [
   {
     id: 'cb-3-25',
@@ -76,6 +151,8 @@ export const PVM_BRACKETS = [
     options: [
       {
         id: 'pvm-trolls',
+        isAfk: true,
+        isAggressive: false,
         shortName: 'Burthorpe Trolls',
         name: 'Burthorpe Troll Brutes, Shamans & Chuckers',
         monsterCb: '1–4',
@@ -208,6 +285,8 @@ export const PVM_BRACKETS = [
       },
       {
         id: 'pvm-wizards',
+        isAfk: false,
+        isAggressive: true,
         shortName: 'Dark Wizards',
         name: "Dark Wizards & Wizards' Tower Wizards",
         monsterCb: '9–20',
@@ -277,25 +356,89 @@ export const PVM_BRACKETS = [
         }
       },
       {
-        id: 'pvm-cows-minotaurs',
-        shortName: 'Cows & Minotaurs',
-        name: 'Lumbridge Cows & Stronghold Minotaurs',
-        monsterCb: '2–12',
-        lifepoints: '400 – 850 LP',
+        id: 'pvm-cows',
+        isAfk: false,
+        isAggressive: false,
+        shortName: 'Lumbridge Cows',
+        name: 'Lumbridge & Burthorpe Cows',
+        monsterCb: '2',
+        lifepoints: '400 LP',
         weakness: 'Any Combat Style',
-        gpPerHour: '+30,000 – +50,000 GP/hr',
+        gpPerHour: '+25,000 – +40,000 GP/hr',
         gpTrend: 'positive',
-        location: 'Lumbridge Cow Field / Stronghold Floor 1',
-        aggression: 'Non-Aggressive / Auto-Aggressive',
-        overview: 'Ideal starter drops for Ironmen building supplies: 100% Cowhides (Crafting 1–20), hundreds of Bronze/Iron Arrows (Minotaurs), Noted Pure Essence, and the Right Skull Half.',
-        gimSynergy: 'High — Feeds Group Crafting (Leather) and Ranged (Iron Arrows) while claiming 10k Stronghold starter GP.',
+        location: 'Lumbridge Cow Pen (East of River Lum) / Burthorpe NW',
+        aggression: 'Non-Aggressive',
+        overview: 'Classic Day 1 Ironman starter: 100% Cowhides (1–20 Crafting), Raw Beef (early Cooking), and Bones (early Prayer). Safe, zero-food kills.',
+        gimSynergy: 'High — Feeds Group Crafting (Leather 1–20) immediately on Day 1.',
         prereqs: [
-          'Level 5–20 Combat',
+          'Level 3+ Combat (Bronze/Starter gear)',
+          'Optional: Burthorpe Bank Chest or Lumbridge Combat Academy Bank'
+        ],
+        prereqLinks: [
+          { label: 'Crafting: Leather Crafting (1–20)', section: 'skills', itemId: 'crafting', bracket: '1–20' }
+        ],
+        lootDrops: [
+          {
+            item: 'Cowhide (100% Drop)',
+            rarity: 'Always (100%)',
+            isHighlight: true,
+            value: '1–20 Crafting Material',
+            gpTrend: 'positive',
+            ironmanUseAndSell: 'Bank Cowhides and tan with Ellis in Al Kharid (1 GP each) for Hard/Soft Leather Crafting.'
+          },
+          {
+            item: 'Raw Beef & Bones (100% Drop)',
+            rarity: 'Always (100%)',
+            isHighlight: false,
+            value: 'Early Cooking + Prayer XP',
+            gpTrend: 'positive',
+            ironmanUseAndSell: 'Cook Raw Beef at Lumbridge Range or bury/offer Bones at Chaos Altar.'
+          }
+        ],
+        mechanics: [
+          {
+            title: 'Zero-Cost Day 1 Leather Supply',
+            badge: '100% COWHIDE DROP',
+            howItWorks: 'Every Cow drops 1 Cowhide + 1 Raw Beef + 1 Bones with negligible incoming damage.',
+            howToUse: 'Fill inventory with Cowhides in the Lumbridge Cow Pen and bank west at Lumbridge Combat Academy.'
+          }
+        ],
+        steps: [
+          'Walk east across the River Lum bridge to the Lumbridge Cow Pen.',
+          'Kill Cows with any combat style and Area Loot Cowhides.',
+          'Bank at Lumbridge Combat Academy or tan directly at Ellis in Al Kharid.'
+        ],
+        mapData: {
+          terrain: 'city',
+          lodestone: 'Lumbridge Lodestone',
+          bank: 'Lumbridge Combat Academy Bank',
+          target: 'Lumbridge Cow Pen (East of River Lum)',
+          sellSpot: 'Al Kharid Tannery (Ellis)',
+          routeNote: 'Cross River Lum east of Lumbridge Castle -> farm Cowhides -> tan at Ellis in Al Kharid.'
+        }
+      },
+      {
+        id: 'pvm-minotaurs',
+        isAfk: true,
+        isAggressive: true,
+        shortName: 'Minotaurs (AFK)',
+        name: 'Minotaurs — Stronghold of Security Floor 1',
+        monsterCb: '14–21',
+        lifepoints: '700 – 1,050 LP',
+        weakness: 'Water Spells / Bolts',
+        gpPerHour: '+35,000 – +55,000 GP/hr',
+        gpTrend: 'positive',
+        location: 'Stronghold of Security Floor 1 (Vault of War)',
+        aggression: 'Always Aggressive (10 Min AFK)',
+        overview: 'Auto-aggressive early AFK spot inside the Vault of War! Drops hundreds of Bronze & Iron Arrows for Ranged, Noted Pure Essence (15), Tin/Copper Ore, and the Right Skull Half.',
+        gimSynergy: 'High — Supplies free Iron Arrows for Group Ranged while claiming 10k Stronghold starter GP.',
+        prereqs: [
+          'Level 10–25 Combat + Trout/Salmon food',
           'Account Security enabled for Stronghold of Security 10k GP chests'
         ],
         prereqLinks: [
           { label: 'Money: Stronghold 20k Starter GP', section: 'money', itemId: 'stronghold-security' },
-          { label: 'Crafting: Leather Crafting (1–20)', section: 'skills', itemId: 'crafting', bracket: '1–20' }
+          { label: 'Ranged: 1–20 Kayle\'s Chargebow', section: 'skills', itemId: 'ranged', bracket: '1–20' }
         ],
         lootDrops: [
           {
@@ -308,33 +451,33 @@ export const PVM_BRACKETS = [
           },
           {
             item: 'Noted Pure Essence (15) & Tin/Copper Ore',
-            rarity: 'Common (Minotaurs)',
+            rarity: 'Common',
             isHighlight: false,
             value: 'Runecrafting & Smithing Fuel',
             gpTrend: 'positive',
-            ironmanUseAndSell: 'Bank Pure Essence for Altars; store Cowhides to tan with Ellis in Al Kharid.'
+            ironmanUseAndSell: 'Bank Pure Essence for Altars and deposit Ores into Group Metal Bank.'
           }
         ],
         mechanics: [
           {
-            title: 'Minotaur Multi-Spawn Arrow Farm',
-            badge: 'FREE STARTER ARROWS',
-            howItWorks: 'Level 12 Minotaurs inside Stronghold Floor 1 drop stacks of Bronze & Iron Arrows frequently.',
-            howToUse: 'Use AoE Melee or Magic on Minotaurs while looting Iron Arrows and Pure Essence via Area Loot.'
+            title: '10-Minute Auto-Aggro Arrow Farm',
+            badge: 'EARLY AFK + ARROWS',
+            howItWorks: 'Minotaurs in Stronghold Floor 1 rooms stay aggressive for 10 minutes and drop stackable Bronze/Iron Arrows.',
+            howToUse: 'Stand in a multi-spawn Minotaur room with Revolution++ and Area Loot Iron Arrows + Pure Essence.'
           }
         ],
         steps: [
-          'Kill Lumbridge Cows early if you need Cowhides for 1–20 Crafting.',
-          'Move to Stronghold of Security Floor 1 Minotaurs in Barbarian Village.',
+          'Climb down the Barbarian Village center entrance into Stronghold of Security Floor 1.',
+          'Stand in a multi-spawn Minotaur room (Level 14/21) with Auto-Retaliate ON.',
           'Collect Iron Arrows, Noted Pure Essence, and the Right Skull Half.',
           'Bank north at Edgeville Bank.'
         ],
         mapData: {
           terrain: 'dungeon',
-          lodestone: 'Edgeville / Lumbridge Lodestone',
-          bank: 'Edgeville Bank / Combat Academy',
-          target: 'Stronghold Floor 1 Minotaurs / Lumbridge Cow Pen',
-          sellSpot: "Al Kharid Tannery (Ellis) / Lumbridge General Store",
+          lodestone: 'Edgeville Lodestone',
+          bank: 'Edgeville Bank',
+          target: 'Stronghold Floor 1 Minotaurs (Vault of War)',
+          sellSpot: 'Edgeville General Store',
           routeNote: 'Climb down Barbarian Village center hole -> Floor 1 Minotaurs -> bank north in Edgeville.'
         }
       }
@@ -437,6 +580,8 @@ export const PVM_BRACKETS = [
       },
       {
         id: 'pvm-flesh-crawlers',
+        isAfk: true,
+        isAggressive: true,
         shortName: 'Flesh Crawlers',
         name: 'Flesh Crawlers & Zombies — Stronghold Floor 2',
         monsterCb: '28–35',
@@ -506,25 +651,27 @@ export const PVM_BRACKETS = [
         }
       },
       {
-        id: 'pvm-spiders-warriors',
-        shortName: 'Catacombs & Al Kharid',
-        name: 'Lumbridge Catacombs Corpse Spiders & Al Kharid Warriors',
-        monsterCb: '14–28',
-        lifepoints: '900 – 1,500 LP',
-        weakness: 'Slash / Air Spells',
-        gpPerHour: '+45,000 – +75,000 GP/hr',
+        id: 'pvm-catacombs',
+        isAfk: true,
+        isAggressive: false,
+        shortName: 'Lumbridge Catacombs',
+        name: 'Corpse Spiders & Skeletons — Lumbridge Catacombs',
+        monsterCb: '4–14',
+        lifepoints: '450 – 900 LP',
+        weakness: 'Crush / Air Spells',
+        gpPerHour: '+35,000 – +55,000 GP/hr',
         gpTrend: 'positive',
-        location: 'Lumbridge Graveyard Catacombs / Al Kharid Palace',
-        aggression: 'Aggressive / Multi-Combat',
-        overview: 'Corpse Spiders inside Lumbridge Catacombs are the fastest source of Spider Silk (needed for Tier 20 Magic Robes & Kili\'s Tier 20 Necromancy upgrade!), while Al Kharid Warriors drop frequent Herbs and Metal Salvage.',
+        location: 'Lumbridge Graveyard Catacombs',
+        aggression: 'Non-Aggressive (Low-Damage Multi-Spawn)',
+        overview: 'Fastest F2P source of Spider Silk (needed for Tier 20 Magic Robes & Kili\'s Tier 20 Necromancy upgrade!). Low incoming damage makes it a great zero-food AFK spot with Necromancy Vengeful Ghost.',
         gimSynergy: 'High — Gather 30+ Spider Silk in 10 minutes to outfit all Magic and Necromancy teammates with Tier 20 gear.',
         prereqs: [
-          'The Blood Pact completed (3 min Lumbridge Graveyard quest) for Catacombs',
-          '20+ Combat'
+          'The Blood Pact completed (3 min Lumbridge Graveyard quest)',
+          '10+ Combat'
         ],
         prereqLinks: [
           { label: 'Necromancy: Tier 20 Spider Silk Upgrade', section: 'skills', itemId: 'necromancy', bracket: '10–20' },
-          { label: 'Strength: Al Kharid Warriors (33–55)', section: 'skills', itemId: 'strength', bracket: '33–55' }
+          { label: 'Attack: Lumbridge Catacombs (1–20)', section: 'skills', itemId: 'attack', bracket: '1–20' }
         ],
         lootDrops: [
           {
@@ -536,8 +683,72 @@ export const PVM_BRACKETS = [
             ironmanUseAndSell: 'Craft Spider Silk Robes (20 Crafting/Magic) and turn in to Kili for Tier 20 Deathwarden Necromancy gear!'
           },
           {
-            item: 'Steel/Mithril Salvage & Grimy Herbs',
-            rarity: 'Common (Al Kharid Warriors)',
+            item: 'Bronze/Iron Salvage & Mask Parts',
+            rarity: 'Common',
+            isHighlight: false,
+            value: 'Early GP / Collection',
+            gpTrend: 'positive',
+            ironmanUseAndSell: 'Sell unwanted salvage north at Lumbridge General Store.'
+          }
+        ],
+        mechanics: [
+          {
+            title: 'Zero-Food Early AFK Room',
+            badge: 'SPIDER SILK + ZERO FOOD',
+            howItWorks: 'Corpse Spiders hit very low and respawn almost instantly in the Catacombs.',
+            howToUse: 'Use AoE abilities or Conjure Vengeful Ghost for passive sustain and Area Loot Spider Silk.'
+          }
+        ],
+        steps: [
+          'Complete The Blood Pact inside Lumbridge Graveyard.',
+          'Descend into the Catacombs and camp the Corpse Spider / Skeleton chambers.',
+          'Area Loot 30+ Spider Silk for 20 Crafting/Magic robes and Necromancy Tier 20 upgrades.',
+          'Bank at Lumbridge Combat Academy or sell at Lumbridge General Store.'
+        ],
+        mapData: {
+          terrain: 'dungeon',
+          lodestone: 'Lumbridge Lodestone',
+          bank: 'Lumbridge Combat Academy Bank',
+          target: 'Lumbridge Graveyard Catacombs (Corpse Spiders)',
+          sellSpot: 'Lumbridge General Store',
+          routeNote: 'Enter the crypt south of Lumbridge Church and farm Corpse Spiders for Spider Silk.'
+        }
+      },
+      {
+        id: 'pvm-al-kharid-warriors',
+        isAfk: true,
+        isAggressive: true,
+        shortName: 'Al Kharid Warriors',
+        name: 'Al Kharid Warriors — Al Kharid Palace',
+        monsterCb: '18',
+        lifepoints: '1,100 LP',
+        weakness: 'Water Spells',
+        gpPerHour: '+50,000 – +80,000 GP/hr',
+        gpTrend: 'positive',
+        location: 'Al Kharid Palace Courtyard',
+        aggression: 'Linked Multi-Aggro (Swarms on Hit)',
+        overview: 'Attacking one Al Kharid Warrior inside the Palace triggers nearby Warriors to assist, creating constant 3-target AoE packs 10 seconds from Al Kharid Bank & Zeke\'s Scimitars.',
+        gimSynergy: 'Medium — Fast CB 25–45 XP alongside Grimy Herbs and Steel/Mithril Salvage.',
+        prereqs: [
+          '20+ Combat Stats + Trout/Salmon food',
+          'Al Kharid Lodestone unlocked'
+        ],
+        prereqLinks: [
+          { label: 'Strength: Al Kharid Warriors (33–55)', section: 'skills', itemId: 'strength', bracket: '33–55' },
+          { label: 'Attack: 20–40 Combat Training', section: 'skills', itemId: 'attack', bracket: '20–40' }
+        ],
+        lootDrops: [
+          {
+            item: 'Grimy Herbs (Guam / Marrentill / Tarromin)',
+            rarity: 'Common',
+            isHighlight: true,
+            value: 'Early Herblore XP',
+            gpTrend: 'positive',
+            ironmanUseAndSell: 'Save Guam for Attack Potions (Level 3 Herblore).'
+          },
+          {
+            item: 'Steel/Mithril Salvage & Coins',
+            rarity: 'Common',
             isHighlight: false,
             value: '500 – 2,500 GP each',
             gpTrend: 'positive',
@@ -547,23 +758,24 @@ export const PVM_BRACKETS = [
         mechanics: [
           {
             title: 'Multi-Aggro Al Kharid Palace Hall',
-            badge: 'FAST COMBAT XP',
-            howItWorks: 'Attacking one Al Kharid Warrior inside the Palace triggers nearby Warriors to assist, creating constant 3-target AoE packs.',
-            howToUse: 'Use Cleave/Chain/Ricochet inside the Palace courtyard and bank 10 seconds west.'
+            badge: 'LINKED AGGRO AOE',
+            howItWorks: 'Warriors inside Al Kharid Palace share aggression — hitting one pulls nearby Warriors into melee range automatically.',
+            howToUse: 'Use Water spells (weakness!) or Cleave/Hurricane inside the Palace courtyard and bank 10 seconds west.'
           }
         ],
         steps: [
-          'Farm Corpse Spiders in Lumbridge Graveyard Catacombs until you have 30+ Spider Silk.',
-          'Move to Al Kharid Palace Warriors for fast CB 25–45 XP + Herbs.',
-          'Bank at Al Kharid Bank (10s west) and sell weapon drops at Zeke\'s Superior Scimitars.'
+          'Teleport to Al Kharid Lodestone and enter Al Kharid Palace.',
+          'Attack any Warrior inside the courtyard to pull a 3-target AoE pack.',
+          'Loot Grimy Herbs and Salvage via Area Loot.',
+          'Bank 10 seconds west at Al Kharid Bank or sell to Zeke\'s Scimitars.'
         ],
         mapData: {
           terrain: 'city',
-          lodestone: 'Al Kharid / Lumbridge Lodestone',
-          bank: 'Al Kharid Bank',
-          target: 'Al Kharid Palace / Lumbridge Catacombs',
+          lodestone: 'Al Kharid Lodestone',
+          bank: 'Al Kharid Bank (West)',
+          target: 'Al Kharid Palace Courtyard',
           sellSpot: "Zeke's Superior Scimitars (Al Kharid)",
-          routeNote: 'Kill Corpse Spiders in Lumbridge Catacombs for Spider Silk, then AoE Warriors inside Al Kharid Palace.'
+          routeNote: 'Al Kharid Bank -> walk east into Al Kharid Palace courtyard -> AoE linked Warriors.'
         }
       }
     ]
@@ -664,25 +876,26 @@ export const PVM_BRACKETS = [
         }
       },
       {
-        id: 'pvm-moss-ice-giants',
-        shortName: 'Moss & Ice Giants',
-        name: 'Moss Giants & Ice Giants — Sewers / Ice Dungeon',
-        monsterCb: '42–53',
-        lifepoints: '2,600 – 4,500 LP',
-        weakness: 'Fire Spells / Slash',
-        gpPerHour: '+95,000 – +160,000 GP/hr',
+        id: 'pvm-moss-giants',
+        isAfk: false,
+        isAggressive: false,
+        shortName: 'Moss Giants',
+        name: 'Moss Giants — Varrock Sewers & Crandor',
+        monsterCb: '42',
+        lifepoints: '2,600 LP',
+        weakness: 'Slash / Fire Spells',
+        gpPerHour: '+90,000 – +150,000 GP/hr',
         gpTrend: 'positive',
-        location: 'Varrock Sewers / Asgarnian Ice Dungeon / Crandor',
+        location: 'Varrock Sewers (West Chamber) / Crandor Island',
         aggression: 'Non-Aggressive',
-        overview: 'Step-up from Hill Giants! Moss Giants & Ice Giants drop 100% Big Bones (52.5 Prayer XP at Chaos Altar) alongside frequent Nature (6), Law, Cosmic, and Death runes plus Mithril/Rune drops.',
+        overview: 'Step-up from Hill Giants! Moss Giants drop 100% Big Bones (52.5 Prayer XP at Chaos Altar) alongside frequent Nature (6), Law, Cosmic, and Death runes plus Mithril drops.',
         gimSynergy: 'High — Stocks early Nature & Cosmic Runes before 55 Magic while piling up Big Bones for team 43 Prayer.',
         prereqs: [
-          '40+ Combat Stats (Fire Bolt/Blast works best vs. Fire weakness!)',
-          'Varrock Sewers or Asgarnian Ice Dungeon access'
+          '40+ Combat Stats (Slash 2H or Fire Bolt/Blast)',
+          'Varrock Sewers manhole access (east of Varrock Palace)'
         ],
         prereqLinks: [
-          { label: 'Prayer: 28–43 Chaos Altar Big Bones', section: 'skills', itemId: 'prayer', bracket: '28–43' },
-          { label: 'Defence: 50–70 Ice Giants', section: 'skills', itemId: 'defence', bracket: '50–70' }
+          { label: 'Prayer: 28–43 Chaos Altar Big Bones', section: 'skills', itemId: 'prayer', bracket: '28–43' }
         ],
         lootDrops: [
           {
@@ -712,47 +925,121 @@ export const PVM_BRACKETS = [
         ],
         mechanics: [
           {
-            title: 'Fire Spell Weakness Multiplier',
-            badge: 'MAX ACCURACY VS GIANTS',
-            howItWorks: 'Both Moss Giants and Ice Giants have a strong weakness to Fire spells.',
-            howToUse: 'Wield a Staff of Fire (1,500 GP at Zaff) and cast Fire Bolt/Blast with Chain + Dragon Breath.'
+            title: 'Varrock East Bank → Sewer Big Bone Loop',
+            badge: 'FAST BIG BONES + NATURES',
+            howItWorks: 'The Varrock Sewers Moss Giant room sits a 30-second run from Varrock East Bank.',
+            howToUse: 'Use Slash 2H melee or Fire spells with AoE Cleave/Chain, then bank Big Bones at Varrock East.'
           }
         ],
         steps: [
-          'Equip a Staff of Fire (or best melee/ranged weapon) with Trout/Lobsters.',
-          'Enter Varrock Sewers (Moss Giants) or Asgarnian Ice Dungeon (Ice Giants).',
-          'Kill Giants while collecting Big Bones, Nature/Law/Cosmic Runes & Gems.',
-          'Bank at Varrock East Bank or Port Sarim Deposit Box.'
+          'Gear up with Slash 2H or Staff of Fire + Trout/Lobsters at Varrock East Bank.',
+          'Climb down the Varrock Sewers manhole east of Varrock Palace and head west.',
+          'Kill Moss Giants while collecting Big Bones, Nature/Law/Cosmic Runes & Gems.',
+          'Bank Big Bones at Varrock East Bank.'
         ],
         mapData: {
           terrain: 'dungeon',
           lodestone: 'Varrock Lodestone',
           bank: 'Varrock East Bank',
-          target: 'Varrock Sewers Moss Giants / Asgarnian Ice Giants',
+          target: 'Varrock Sewers Moss Giants (West Chamber)',
           sellSpot: 'Chaos Altar (Bones) / Varrock Swordshop',
           routeNote: 'Varrock East Bank -> Varrock Sewers manhole -> cross pipe north to Moss Giants chamber.'
         }
       },
       {
-        id: 'pvm-red-spiders-catablepons',
-        shortName: 'Red Spiders & Catablepons',
-        name: 'Deadly Red Spiders & Catablepons (Eggs + Sceptre + Runes)',
-        monsterCb: '34–64',
-        lifepoints: '2,200 – 4,500 LP',
-        weakness: 'Fire / Slash / Arrows',
-        gpPerHour: '+85,000 – +150,000 GP/hr',
+        id: 'pvm-ice-giants',
+        isAfk: true,
+        isAggressive: true,
+        shortName: 'Ice Giants (AFK)',
+        name: 'Ice Giants — Asgarnian Ice Dungeon',
+        monsterCb: '53',
+        lifepoints: '4,500 LP',
+        weakness: 'Fire Spells / Crush',
+        gpPerHour: '+105,000 – +170,000 GP/hr',
         gpTrend: 'positive',
-        location: 'Varrock Sewers (Spiders) / Stronghold Floor 3 (Catablepons)',
-        aggression: 'Aggressive (Spiders) / Non-Aggressive (Catablepons)',
-        overview: 'Deadly Red Spiders host Red Spiders\' Egg floor spawns (paired with Limpwurt Roots at Varrock Apothecary for 4-dose Strength Potions!) plus peak AFK Combat XP; Catablepons drop the Top of Sceptre, Noted Coal & Law/Death/Cosmic Runes.',
-        gimSynergy: 'High — Gather 100+ Red Spiders\' Eggs in 10 minutes so the whole GIM team has free F2P Strength Potions for bosses!',
+        location: 'Asgarnian Ice Dungeon (South of Port Sarim)',
+        aggression: 'Aggressive (10 Min AFK at Mid Levels)',
+        overview: 'Stronger Big Bone + Rune dropper in the Asgarnian Ice Dungeon! Ice Giants are weak to Fire spells (100% multiplier) and sit right next to the Port Sarim Deposit Box.',
+        gimSynergy: 'High — Great Fire-Magic AFK/semi-AFK spot for Big Bones, Nature/Death Runes, and Mithril/Rune drops.',
         prereqs: [
-          '45+ Combat Stats + Lobsters/Trout food',
+          '45+ Combat Stats (Staff of Fire + Fire Bolt/Blast recommended)',
+          'Port Sarim Lodestone unlocked'
+        ],
+        prereqLinks: [
+          { label: 'Prayer: 28–43 Chaos Altar Big Bones', section: 'skills', itemId: 'prayer', bracket: '28–43' },
+          { label: 'Defence: 50–70 Ice Giants', section: 'skills', itemId: 'defence', bracket: '50–70' }
+        ],
+        lootDrops: [
+          {
+            item: 'Big Bones (100% Drop)',
+            rarity: 'Always (100%)',
+            isHighlight: true,
+            value: '52.5 Prayer XP (Chaos Altar)',
+            gpTrend: 'positive',
+            ironmanUseAndSell: 'Deposit at Port Sarim Deposit Box and offer at Chaos Altar (PvP Opt-Out).'
+          },
+          {
+            item: 'Nature, Law, Cosmic & Death Runes',
+            rarity: 'Common',
+            isHighlight: true,
+            value: '2,500 – 6,000 GP/drop',
+            gpTrend: 'positive',
+            ironmanUseAndSell: 'Sustains High Alch & Enchanting runes.'
+          },
+          {
+            item: 'Mithril/Adamant Salvage & Uncut Gems',
+            rarity: 'Common',
+            isHighlight: false,
+            value: '3,000 – 12,000 GP/drop',
+            gpTrend: 'positive',
+            ironmanUseAndSell: 'High Alch Salvage on the spot or deposit Gems at Port Sarim.'
+          }
+        ],
+        mechanics: [
+          {
+            title: 'Fire Spell Weakness Multiplier',
+            badge: 'MAX ACCURACY VS ICE',
+            howItWorks: 'Ice Giants take massive bonus accuracy and damage from Fire spells.',
+            howToUse: 'Wield a Staff of Fire (1,500 GP at Zaff) and cast Fire Bolt/Blast with Chain + Dragon Breath.'
+          }
+        ],
+        steps: [
+          'Teleport to Port Sarim Lodestone and run south to the Asgarnian Ice Dungeon trapdoor.',
+          'Head south past Muggers/Pirates into the Ice Giant chamber.',
+          'Camp with Fire spells or Crush melee and collect Big Bones + Runes.',
+          'Bank via Port Sarim Deposit Box on the docks.'
+        ],
+        mapData: {
+          terrain: 'dungeon',
+          lodestone: 'Port Sarim Lodestone',
+          bank: 'Port Sarim Deposit Box',
+          target: 'Asgarnian Ice Dungeon (Ice Giants)',
+          sellSpot: 'High Level Alchemy / Port Sarim',
+          routeNote: 'Port Sarim Lodestone -> south to Mudskipper Point trapdoor -> Ice Giant room.'
+        }
+      },
+      {
+        id: 'pvm-red-spiders',
+        isAfk: true,
+        isAggressive: true,
+        shortName: 'Deadly Red Spiders (AFK)',
+        name: 'Deadly Red Spiders — Varrock Sewers',
+        monsterCb: '95',
+        lifepoints: '3,500 LP',
+        weakness: 'Crush',
+        gpPerHour: '-15,000 GP/hr (Pure XP / Eggs)',
+        gpTrend: 'negative',
+        location: 'Varrock Sewers (West Red Spider Chamber)',
+        aggression: 'Always Aggressive (10 Min Pure AFK)',
+        overview: 'Peak F2P AFK Combat XP (75k–88k XP/hr with AoE Revolution++) AND home to continuously respawning Red Spiders\' Eggs on the floor (combine with Limpwurt Roots at Varrock Apothecary for 4-dose Strength Potions!).',
+        gimSynergy: 'High — Gather 100+ Red Spiders\' Eggs in 10 minutes for team Strength Potions, or AFK camp for peak F2P Melee/Constitution XP.',
+        prereqs: [
+          '60+ Combat Stats + Swordfish/Lobsters for AFK combat (or 0 combat for Egg-only runs)',
           'Limpwurt Roots banked from Hill Giants for Varrock Apothecary'
         ],
         prereqLinks: [
           { label: 'Strength: Deadly Red Spiders (75–99)', section: 'skills', itemId: 'strength', bracket: '75–99' },
-          { label: 'Attack: 60–99 Combat Training', section: 'skills', itemId: 'attack', bracket: '60–99' }
+          { label: 'Attack: Deadly Red Spiders (60–99)', section: 'skills', itemId: 'attack', bracket: '60–99' }
         ],
         lootDrops: [
           {
@@ -764,15 +1051,21 @@ export const PVM_BRACKETS = [
             ironmanUseAndSell: 'Combine 1 Red Spiders\' Egg + 1 Limpwurt Root + 5 GP at Varrock Apothecary for 4-dose Strength Potions!'
           },
           {
-            item: 'Top of Sceptre, Noted Coal & Law/Death Runes (Catablepons)',
-            rarity: 'Rare / Common',
-            isHighlight: true,
-            value: 'Skull Sceptre + Metal Bank Coal',
-            gpTrend: 'positive',
-            ironmanUseAndSell: 'Combine with other Sceptre halves; deposit Noted Coal into Artisans\' Metal Bank.'
+            item: 'Zero Alch Drops (Pure AFK XP Focus)',
+            rarity: 'N/A',
+            isHighlight: false,
+            value: '75k–88k Combat XP/hr',
+            gpTrend: 'negative',
+            ironmanUseAndSell: 'No loot clutter — focus 100% on AoE Revolution++ XP until Swordfish/Lobsters run out.'
           }
         ],
         mechanics: [
+          {
+            title: '10-Minute Multi-Spider AFK Pile',
+            badge: 'PEAK F2P AFK XP',
+            howItWorks: 'Multiple aggressive Deadly Red Spiders swarm the center of the west chamber, giving 100% uptime on Cleave, Hurricane & Quake.',
+            howToUse: 'Stand in the center with Gravite 2h / Rune +3 2h and Swordfish; step out past Moss Giants every 10 mins to reset aggro.'
+          },
           {
             title: 'Zero-Kill Egg Gathering & Varrock Apothecary',
             badge: 'INSTANT BOSS POTIONS',
@@ -781,18 +1074,81 @@ export const PVM_BRACKETS = [
           }
         ],
         steps: [
+          'Pack 24 Swordfish/Lobsters at Varrock East Bank (or empty inventory for Egg runs).',
           'Enter Varrock Sewers east of Varrock Palace and run west past Moss Giants to the Red Spider room.',
-          'Pick up 28 Red Spiders\' Eggs off the floor (or AFK train Combat on the Spiders).',
-          'For Catablepons, visit Stronghold Floor 3 to loot Noted Coal, Runes, and Top of Sceptre.',
+          'Stand in the center so aggressive spiders pile you for AoE Revolution++ XP (or grab Eggs off the floor).',
           'Take Limpwurt Roots + Red Spiders\' Eggs + 5 GP to Varrock Apothecary for Strength Potions (4).'
         ],
         mapData: {
           terrain: 'dungeon',
           lodestone: 'Varrock Lodestone',
           bank: 'Varrock East Bank',
-          target: 'Varrock Sewers Red Spiders / Stronghold Floor 3',
+          target: 'Varrock Sewers Red Spider Chamber (West)',
           sellSpot: 'Varrock Apothecary (SW Varrock)',
-          routeNote: 'Varrock East Bank -> Varrock Sewers -> West Red Spider den for Eggs -> Varrock SW Apothecary.'
+          routeNote: 'Varrock East Bank -> Varrock Sewers -> West Red Spider den for AFK XP & Eggs.'
+        }
+      },
+      {
+        id: 'pvm-catablepons',
+        isAfk: true,
+        isAggressive: true,
+        shortName: 'Catablepons (AFK)',
+        name: 'Catablepons — Stronghold of Security Floor 3',
+        monsterCb: '54',
+        lifepoints: '2,700 LP',
+        weakness: 'Ranged (Arrows / Bolts)',
+        gpPerHour: '+85,000 – +140,000 GP/hr',
+        gpTrend: 'positive',
+        location: 'Stronghold of Security Floor 3 (Pit of Pestilence)',
+        aggression: 'Always Aggressive (10 Min AFK)',
+        overview: 'Auto-aggressive Floor 3 Stronghold mobs! Catablepons drop the Top of Sceptre (for the Skull Sceptre teleport staff), Noted Coal for your Metal Bank, and frequent Law/Death/Cosmic Runes.',
+        gimSynergy: 'High — Completes the Skull Sceptre while feeding Noted Coal into Artisans\' Metal Bank and stocking Law/Death Runes.',
+        prereqs: [
+          '45+ Combat Stats (Ranged recommended for style weakness!) + Lobsters/Swordfish',
+          'Stronghold Floor 3 portal unlocked'
+        ],
+        prereqLinks: [
+          { label: 'Ranged: 50–99 Training', section: 'skills', itemId: 'ranged', bracket: '50–99' }
+        ],
+        lootDrops: [
+          {
+            item: 'Top of Sceptre (Skull Sceptre Piece)',
+            rarity: 'Rare (~1/100)',
+            isHighlight: true,
+            value: 'Skull Sceptre Unlock',
+            gpTrend: 'positive',
+            ironmanUseAndSell: 'Combine with Right/Left Skull Halves & Bottom of Sceptre for free Barbarian Village teleports.'
+          },
+          {
+            item: 'Noted Coal & Law/Death/Cosmic Runes',
+            rarity: 'Common',
+            isHighlight: true,
+            value: 'Metal Bank Coal + Tele/Alch Runes',
+            gpTrend: 'positive',
+            ironmanUseAndSell: 'Deposit Noted Coal into Artisans\' Metal Bank and keep Law/Death Runes for teleports & Magic.'
+          }
+        ],
+        mechanics: [
+          {
+            title: 'Pit of Pestilence AFK Ranged Spot',
+            badge: 'SCEPTRE + NOTED COAL',
+            howItWorks: 'Catablepons are weak to Ranged and stay aggressive for 10 minutes; they cast Weaken occasionally so Ranged/Magic keeps DPS high.',
+            howToUse: 'Stand in a multi-spawn Floor 3 chamber with Magic Shortbow / AoE Ricochet and Area Loot Noted Coal & Runes.'
+          }
+        ],
+        steps: [
+          'Pack Lobsters/Swordfish at Edgeville Bank and descend Stronghold of Security to Floor 3.',
+          'Camp a Catablepon room using Ranged (their weakness) with Auto-Retaliate ON.',
+          'Area Loot Top of Sceptre, Noted Coal, and Law/Death/Cosmic Runes.',
+          'Bank north at Edgeville Bank.'
+        ],
+        mapData: {
+          terrain: 'dungeon',
+          lodestone: 'Edgeville Lodestone',
+          bank: 'Edgeville Bank',
+          target: 'Stronghold Floor 3 Catablepons (Pit of Pestilence)',
+          sellSpot: 'Artisans\' Workshop Metal Bank (Noted Coal)',
+          routeNote: 'Barbarian Village center -> portal to Floor 3 -> Catablepon chambers -> bank north in Edgeville.'
         }
       }
     ]
@@ -808,6 +1164,8 @@ export const PVM_BRACKETS = [
     options: [
       {
         id: 'pvm-ankous',
+        isAfk: true,
+        isAggressive: true,
         shortName: 'Ankous (Floor 4)',
         name: 'Ankous — Stronghold of Security Floor 4',
         monsterCb: '60–68',
@@ -887,6 +1245,8 @@ export const PVM_BRACKETS = [
       },
       {
         id: 'pvm-lesser-demons',
+        isAfk: true,
+        isAggressive: true,
         shortName: 'Lesser Demons',
         name: 'Lesser Demons — Karamja Volcano & Crandor',
         monsterCb: '82',
@@ -947,24 +1307,26 @@ export const PVM_BRACKETS = [
         }
       },
       {
-        id: 'pvm-ice-warriors-hobgoblins',
-        shortName: 'Ice Warriors & Hobgoblins',
-        name: 'Ice Warriors & Crafting Guild Hobgoblins',
-        monsterCb: '42–57',
-        lifepoints: '2,800 – 3,800 LP',
-        weakness: 'Fire / Slash',
-        gpPerHour: '+110,000 – +180,000 GP/hr',
+        id: 'pvm-ice-warriors',
+        isAfk: true,
+        isAggressive: true,
+        shortName: 'Ice Warriors (AFK)',
+        name: 'Ice Warriors — Asgarnian Ice Dungeon',
+        monsterCb: '54–57',
+        lifepoints: '2,850 LP',
+        weakness: 'Fire Spells',
+        gpPerHour: '+100,000 – +165,000 GP/hr',
         gpTrend: 'positive',
-        location: 'Asgarnian Ice Dungeon / Hobgoblin Peninsula (W of Crafting Guild)',
-        aggression: 'Non-Aggressive',
-        overview: 'Fast multi-target spawns dropping Nature (4), Law (2), Cosmic, and Death runes, Mithril/Adamant Salvage, and frequent Limpwurt Roots (Hobgoblins).',
-        gimSynergy: 'Medium — Great backup spot for Limpwurt Roots + Nature/Cosmic Runes without competition.',
+        location: 'Asgarnian Ice Dungeon (South of Port Sarim)',
+        aggression: 'Aggressive (10 Min AFK)',
+        overview: 'Aggressive mid-level Fire-Magic AFK spot! Ice Warriors take 100% bonus damage from Fire spells and drop Nature (4), Law (2), Cosmic, and Death runes alongside Mithril/Adamant Salvage.',
+        gimSynergy: 'Medium — Great Fire-Magic AFK spot for Nature/Cosmic Runes right next to Port Sarim Deposit Box.',
         prereqs: [
-          '45+ Combat Stats (Fire spells vs. Ice Warriors)',
+          '45+ Combat Stats (Staff of Fire + Fire Bolt/Blast recommended)',
           'Port Sarim Lodestone unlocked'
         ],
         prereqLinks: [
-          { label: 'Ranged: 60–99 Ice Dungeon', section: 'skills', itemId: 'ranged', bracket: '60–99' }
+          { label: 'Magic: 40–55 Blast Training', section: 'skills', itemId: 'magic', bracket: '40–55' }
         ],
         lootDrops: [
           {
@@ -976,34 +1338,96 @@ export const PVM_BRACKETS = [
             ironmanUseAndSell: 'Consistent rune refills for High Alch & Enchanting.'
           },
           {
-            item: 'Limpwurt Roots (Hobgoblins) & Mithril/Rune Salvage',
+            item: 'Mithril/Adamant Salvage & Uncut Gems',
             rarity: 'Common',
             isHighlight: false,
-            value: 'Strength Potions + Alchs',
+            value: '2,000 – 8,000 GP/drop',
             gpTrend: 'positive',
-            ironmanUseAndSell: 'Save Limpwurt Roots for Varrock Apothecary; High Alch Salvage.'
+            ironmanUseAndSell: 'High Alch Salvage on the spot and store Gems in Gem Bag.'
+          }
+        ],
+        mechanics: [
+          {
+            title: '100% Fire Weakness AFK Room',
+            badge: 'AGGRESSIVE + FIRE WEAKNESS',
+            howItWorks: 'Ice Warriors are naturally aggressive in the Asgarnian Ice Dungeon and melt quickly to Fire spells.',
+            howToUse: 'Stand in the Ice Warrior corridor with Staff of Fire + AoE Chain/Dragon Breath and Area Loot runes.'
+          }
+        ],
+        steps: [
+          'Teleport to Port Sarim Lodestone and run south to the Asgarnian Ice Dungeon trapdoor.',
+          'Head past the Pirates into the Ice Warrior corridor.',
+          'Camp with Fire spells on Revolution++ and Area Loot Runes & Salvage.'
+        ],
+        mapData: {
+          terrain: 'dungeon',
+          lodestone: 'Port Sarim Lodestone',
+          bank: 'Port Sarim Deposit Box',
+          target: 'Asgarnian Ice Dungeon (Ice Warriors)',
+          sellSpot: 'High Level Alchemy',
+          routeNote: 'Port Sarim Lodestone -> south to Mudskipper Point trapdoor -> Ice Warrior corridor.'
+        }
+      },
+      {
+        id: 'pvm-hobgoblins',
+        isAfk: false,
+        isAggressive: false,
+        shortName: 'Hobgoblins',
+        name: 'Hobgoblins — Crafting Guild Peninsula',
+        monsterCb: '32–42',
+        lifepoints: '1,600 – 2,200 LP',
+        weakness: 'Crush / Magic',
+        gpPerHour: '+110,000 – +175,000 GP/hr',
+        gpTrend: 'positive',
+        location: 'Hobgoblin Peninsula (West of Crafting Guild)',
+        aggression: 'Non-Aggressive',
+        overview: 'Uncrowded open-air spawn right next to the Crafting Guild & Port Sarim! Hobgoblins are one of the best F2P sources of Limpwurt Roots (for Strength Potions) alongside Nature, Law, and Cosmic runes.',
+        gimSynergy: 'Medium — Great uncontested spot for Limpwurt Roots + Nature/Cosmic Runes.',
+        prereqs: [
+          '35+ Combat Stats (Ranged or Magic AoE works great)',
+          'Port Sarim or Falador Lodestone unlocked'
+        ],
+        prereqLinks: [
+          { label: 'Ranged: 60–99 Training', section: 'skills', itemId: 'ranged', bracket: '60–99' }
+        ],
+        lootDrops: [
+          {
+            item: 'Limpwurt Roots',
+            rarity: 'Common (~1/12)',
+            isHighlight: true,
+            value: 'F2P Strength Potions (4)',
+            gpTrend: 'positive',
+            ironmanUseAndSell: 'Combine with Red Spiders\' Eggs + 5 GP at Varrock Apothecary for Strength Potions (4).'
+          },
+          {
+            item: 'Nature, Law, Cosmic & Body Runes',
+            rarity: 'Common',
+            isHighlight: true,
+            value: '2,000 – 4,500 GP/drop',
+            gpTrend: 'positive',
+            ironmanUseAndSell: 'Consistent rune refills for High Alch & Enchanting.'
           }
         ],
         mechanics: [
           {
             title: 'Hobgoblin Peninsula Ranged/Magic Snipe',
             badge: 'EASY LIMPWURTS & RUNES',
-            howItWorks: 'Hobgoblins on the peninsula west of the Crafting Guild respawn fast right near Port Sarim Deposit Box.',
-            howToUse: 'Use AoE abilities across grouped Hobgoblins or Ice Warriors and loot runes + Limpwurts via Area Loot.'
+            howItWorks: 'Hobgoblins on the peninsula west of the Crafting Guild respawn fast with zero dungeon travel.',
+            howToUse: 'Use AoE abilities (Ricochet/Chain) across grouped Hobgoblins and loot Limpwurts + runes via Area Loot.'
           }
         ],
         steps: [
-          'Teleport to Port Sarim Lodestone and run south to Ice Dungeon (or north to Hobgoblin Peninsula).',
-          'Kill packs with Fire/AoE abilities.',
-          'Collect Nature/Law/Cosmic Runes & Limpwurt Roots.'
+          'Teleport to Port Sarim Lodestone and run northwest to the peninsula west of the Crafting Guild.',
+          'Kill Hobgoblins with Ranged/Magic AoE abilities.',
+          'Collect Limpwurt Roots & Nature/Law/Cosmic Runes; bank at Falador Bank or Port Sarim Deposit Box.'
         ],
         mapData: {
           terrain: 'coast',
-          lodestone: 'Port Sarim Lodestone',
-          bank: 'Port Sarim Deposit Box / Falador Bank',
-          target: 'Asgarnian Ice Dungeon / Hobgoblin Peninsula',
-          sellSpot: 'High Level Alchemy / Varrock Apothecary',
-          routeNote: 'Port Sarim Lodestone -> south to Ice Dungeon or northwest to Hobgoblin Peninsula.'
+          lodestone: 'Port Sarim / Falador Lodestone',
+          bank: 'Falador Bank / Port Sarim Deposit Box',
+          target: 'Hobgoblin Peninsula (W of Crafting Guild)',
+          sellSpot: 'Varrock Apothecary (Limpwurts) / High Alch',
+          routeNote: 'Port Sarim Lodestone -> northwest past Rimmington to Hobgoblin Peninsula.'
         }
       }
     ]
@@ -1019,6 +1443,8 @@ export const PVM_BRACKETS = [
     options: [
       {
         id: 'pvm-greater-demons',
+        isAfk: true,
+        isAggressive: true,
         shortName: 'Greater Demons',
         name: 'Greater Demons — Forinthry Dungeon (Safe PvP Off)',
         monsterCb: '92',
@@ -1234,6 +1660,70 @@ export const PVM_BRACKETS = [
           target: 'Forinthry Dungeon Revenant Corridor',
           sellSpot: 'Mandrith (Edgeville) & High Level Alchemy',
           routeNote: 'Opt Out PvP at Edgeville -> Forinthry Revenant corridor -> redeem Statuettes at Mandrith in Edgeville.'
+        }
+      },
+      {
+        id: 'pvm-hellhounds',
+        isAfk: true,
+        isAggressive: true,
+        shortName: 'Hellhounds (AFK)',
+        name: 'Hellhounds — Forinthry Dungeon (PvP Opted-Out)',
+        monsterCb: '85–92',
+        lifepoints: '6,500 LP',
+        weakness: 'Slash / Bolts',
+        gpPerHour: '-10,000 GP/hr (Pure AFK XP + Charms)',
+        gpTrend: 'negative',
+        location: 'Forinthry Dungeon (Hellhound Wing — PvP Opted-Out)',
+        aggression: 'Always Aggressive (10 Min Pure AFK)',
+        overview: 'Pure AFK high-level training spot! Forinthry Hellhounds auto-aggro in a tight multi-combat room with zero loot clutter — ideal for 70+ Defence/Attack/Strength AFK sessions while banking Gold Charms and Hard Clue Scrolls.',
+        gimSynergy: 'Medium — Pure AFK combat XP (68k–82k XP/hr) with zero inventory management right next to Edgeville Bank.',
+        prereqs: [
+          '70+ Defence & Combat Stats + Gravite / Rune +3 2H',
+          'PvP Opted-Out (talk to Vala at Edgeville Wilderness wall)'
+        ],
+        prereqLinks: [
+          { label: 'Defence: 70–99 Forinthry Hellhounds', section: 'skills', itemId: 'defence', bracket: '70–99' },
+          { label: 'Fishing: Swordfish Prep (50–99)', section: 'skills', itemId: 'fishing', bracket: '50–99' }
+        ],
+        lootDrops: [
+          {
+            item: 'Gold Charms & Hard Clue Scrolls',
+            rarity: 'Very Common (~70%)',
+            isHighlight: true,
+            value: 'Summoning Prep + Clue Drops',
+            gpTrend: 'positive',
+            ironmanUseAndSell: 'Stack Gold Charms for future P2P Summoning; complete Hard Clues if going P2P later.'
+          },
+          {
+            item: 'Bones (100% Drop)',
+            rarity: 'Always',
+            isHighlight: false,
+            value: 'Ignore for Pure AFK',
+            gpTrend: 'negative',
+            ironmanUseAndSell: 'Leave Bones on the floor to keep 100% AFK uptime until Swordfish run out.'
+          }
+        ],
+        mechanics: [
+          {
+            title: 'Zero-Clutter 10-Min Auto-Aggro Room',
+            badge: 'PURE AFK XP',
+            howItWorks: 'Forinthry Hellhounds stay aggressive for 10 minutes and drop only Gold Charms, Bones, and Clues.',
+            howToUse: 'Pack 24+ Swordfish/Lobsters from Edgeville Bank, turn on Revolution++ AoE, and step out/in every 10 minutes.'
+          }
+        ],
+        steps: [
+          'Verify PvP is Opted-Out with Vala at the Edgeville Wilderness wall.',
+          'Pack 24+ Swordfish/Lobsters at Edgeville Bank and enter Forinthry Dungeon.',
+          'Stand in the Hellhound wing with Auto-Retaliate & AoE Revolution++ ON.',
+          'Bank at Edgeville whenever food runs low.'
+        ],
+        mapData: {
+          terrain: 'wilderness',
+          lodestone: 'Edgeville Lodestone',
+          bank: 'Edgeville Bank',
+          target: 'Forinthry Dungeon Hellhound Wing',
+          sellSpot: '0 Drops (Pure AFK XP + Charms)',
+          routeNote: 'Edgeville Bank -> cross Wilderness ditch (PvP Opt-Out!) -> Forinthry Dungeon Hellhound room.'
         }
       }
     ]

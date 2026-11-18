@@ -152,7 +152,7 @@ export default function Sidebar({
           </div>
 
           {/* Overview Link */}
-          <div className="nav-group">
+          <div className="nav-group" data-area="overview">
             <button
               type="button"
               className={`nav-section-header ${activeSection === 'overview' ? 'active' : ''}`}
@@ -167,7 +167,7 @@ export default function Sidebar({
           </div>
 
           {/* SKILLS MENU */}
-          <div className="nav-group">
+          <div className="nav-group" data-area="skills">
             <div className="nav-group-label">SKILLS CATALOG</div>
             <div className="nav-section-row">
               <button
@@ -222,7 +222,7 @@ export default function Sidebar({
           </div>
 
           {/* MONEY MAKING MENU */}
-          <div className="nav-group">
+          <div className="nav-group" data-area="money">
             <div className="nav-group-label">ECONOMY &amp; GP</div>
             <div className="nav-section-row">
               <button
@@ -277,7 +277,7 @@ export default function Sidebar({
           </div>
 
           {/* PVM & BOSS LOOT MENU */}
-          <div className="nav-group">
+          <div className="nav-group" data-area="pvm">
             <div className="nav-group-label">PVM &amp; BOSS LOOT</div>
             <div className="nav-section-row">
               <button
@@ -332,7 +332,7 @@ export default function Sidebar({
           </div>
 
           {/* QUESTS MENU */}
-          <div className="nav-group">
+          <div className="nav-group" data-area="quests">
             <div className="nav-group-label">QUEST LEDGER</div>
             <div className="nav-section-row">
               <button

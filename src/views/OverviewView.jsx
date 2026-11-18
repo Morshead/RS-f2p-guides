@@ -151,6 +151,7 @@ export default function OverviewView({
       <div className="summary-grid-4">
         <div
           className="geo-card"
+          data-area="skills"
           onClick={() => onNavigate('skills', 'all')}
           role="button"
           tabIndex={0}
@@ -183,6 +184,7 @@ export default function OverviewView({
 
         <div
           className="geo-card"
+          data-area="pvm"
           onClick={() => onNavigate('pvm', 'all')}
           role="button"
           tabIndex={0}
@@ -215,6 +217,7 @@ export default function OverviewView({
 
         <div
           className="geo-card"
+          data-area="money"
           onClick={() => onNavigate('money', 'all')}
           role="button"
           tabIndex={0}
@@ -247,6 +250,7 @@ export default function OverviewView({
 
         <div
           className="geo-card"
+          data-area="quests"
           onClick={() => onNavigate('quests', 'all')}
           role="button"
           tabIndex={0}

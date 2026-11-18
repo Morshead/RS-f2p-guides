@@ -7,7 +7,8 @@ import {
   ArrowUpRight,
   CheckSquare,
   Cpu,
-  Trophy
+  Trophy,
+  Clock
 } from 'lucide-react';
 import GlassCard from '../components/ui/GlassCard';
 import Badge from '../components/ui/Badge';
@@ -15,10 +16,11 @@ import SectionHeader from '../components/ui/SectionHeader';
 import CalloutBanner from '../components/ui/CalloutBanner';
 import CollapsibleSection from '../components/ui/CollapsibleSection';
 import BlueprintMap from '../components/ui/BlueprintMap';
-import { PVM_BRACKETS, TOP_F2P_LOOT_HIGHLIGHTS } from '../data/guideData';
+import { PVM_BRACKETS, TOP_F2P_LOOT_HIGHLIGHTS, TOP_F2P_AFK_SPOTS } from '../data/guideData';
 
 const PVM_FILTERS = [
   'All',
+  'AFK / Aggressive',
   'CB 3–25',
   'CB 25–45',
   'CB 45–65',
@@ -57,7 +59,10 @@ export default function PvmView({
         if (selectedItemId && selectedItemId !== 'all' && bracket.id !== selectedItemId) {
           return false;
         }
-        if (activeFilter !== 'All' && bracket.combatRange !== activeFilter) {
+        if (activeFilter === 'AFK / Aggressive') {
+          const hasAfkOrAggro = bracket.options.some((opt) => opt.isAfk || opt.isAggressive);
+          if (!hasAfkOrAggro) return false;
+        } else if (activeFilter !== 'All' && bracket.combatRange !== activeFilter) {
           return false;
         }
         if (!q) return true;
@@ -213,6 +218,69 @@ export default function PvmView({
         </GlassCard>
       )}
 
+      {/* Best F2P Ironman AFK Combat Spots (shown in full view) */}
+      {!focusedBracket && (
+        <GlassCard
+          icon={Clock}
+          title="Best F2P Ironman AFK Combat Spots"
+          subtitle="Naturally aggressive monsters (10-minute aggro timer) and low-damage rooms for Revolution++ AFK training"
+          badge={<Badge variant="cyan">{TOP_F2P_AFK_SPOTS.length} AFK Spots</Badge>}
+          className="afk-highlight-card"
+        >
+          <div style={{ marginBottom: '12px' }}>
+            <CalloutBanner label="F2P AFK Mechanics" variant="cyan">
+              F2P has no Aggression Potions or Soul Split — camp naturally aggressive multi-combat mobs with Revolution++ AoE abilities (Cleave / Hurricane / Chain / Ricochet), and step out/in every 10 minutes to reset aggression.
+            </CalloutBanner>
+          </div>
+          <div className="table-wrap">
+            <table className="compact-table">
+              <thead>
+                <tr>
+                  <th>AFK Location</th>
+                  <th>Combat Bracket / Target</th>
+                  <th>Sustain &amp; Food</th>
+                  <th>XP/hr &amp; Ironman Drops</th>
+                  <th>Why It Works AFK</th>
+                </tr>
+              </thead>
+              <tbody>
+                {TOP_F2P_AFK_SPOTS.map((afk, idx) => (
+                  <tr key={idx}>
+                    <td className="method-cell">{afk.spot}</td>
+                    <td>
+                      <button
+                        type="button"
+                        className="prereq-link-btn"
+                        onClick={() => {
+                          if (afk.skillLink) {
+                            onNavigate(
+                              afk.skillLink.section,
+                              afk.skillLink.itemId,
+                              afk.skillLink.bracket,
+                              { section: 'pvm', itemId: 'all', label: 'PvM & Drops' }
+                            );
+                          } else {
+                            handleJumpToDrop(afk.bracketId, afk.optionIdx);
+                          }
+                        }}
+                      >
+                        <span>{afk.bracketLabel}</span>
+                        <ArrowUpRight size={12} />
+                      </button>
+                    </td>
+                    <td>
+                      <Badge variant="cyan">{afk.sustain}</Badge>
+                    </td>
+                    <td className="notes-cell">{afk.xpAndDrops}</td>
+                    <td className="notes-cell">{afk.whyAfk}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </GlassCard>
+      )}
+
       {/* Sorted Combat Level Bracket Dropdowns */}
       <GlassCard
         title="PvM Progression by Combat Level (CB 3 → CB 126+)"
@@ -244,12 +312,19 @@ export default function PvmView({
         ) : (
           <div className="bracket-stack">
             {sortedBrackets.map((bracket) => {
-              const isOpen = !!openBrackets[bracket.id] || !!focusedBracket;
-              const activeOptIdx = Math.min(
-                selectedOptionByBracket[bracket.id] ?? 0,
-                bracket.options.length - 1
-              );
+              const isAfkFilter = activeFilter === 'AFK / Aggressive';
+              const indexedOptions = bracket.options
+                .map((opt, optIdx) => ({ opt, optIdx }))
+                .filter(({ opt }) => !isAfkFilter || opt.isAfk || opt.isAggressive);
+
+              const storedIdx = selectedOptionByBracket[bracket.id] ?? 0;
+              const matchedEntry =
+                indexedOptions.find((item) => item.optIdx === storedIdx) ||
+                indexedOptions[0];
+              const activeOptIdx = matchedEntry ? matchedEntry.optIdx : 0;
               const activeOption = bracket.options[activeOptIdx];
+              const isOpen = !!openBrackets[bracket.id] || !!focusedBracket || isAfkFilter;
+              const afkCount = bracket.options.filter((o) => o.isAfk || o.isAggressive).length;
 
               const returnCtx = {
                 section: 'pvm',
@@ -289,9 +364,15 @@ export default function PvmView({
                     </div>
 
                     <div className="bracket-trigger-right">
-                      <Badge>{bracket.options.length} OPTIONS</Badge>
+                      {afkCount > 0 && (
+                        <Badge variant="cyan">{afkCount} AFK / AGGRO</Badge>
+                      )}
+                      <Badge>{indexedOptions.length} OPTIONS</Badge>
                       <Badge>CB {activeOption.monsterCb}</Badge>
-                      <Badge variant="emerald" mono>
+                      <Badge
+                        variant={activeOption.gpTrend === 'negative' ? 'red' : 'emerald'}
+                        mono
+                      >
                         {activeOption.gpPerHour}
                       </Badge>
                     </div>
@@ -301,7 +382,7 @@ export default function PvmView({
                     <div className="bracket-dropdown-body">
                       {/* Multi-Option Togglable Monster/Boss Tabs */}
                       <div className="method-tabs-bar" role="tablist">
-                        {bracket.options.map((opt, optIdx) => {
+                        {indexedOptions.map(({ opt, optIdx }) => {
                           const isActiveTab = optIdx === activeOptIdx;
                           return (
                             <button
@@ -311,7 +392,7 @@ export default function PvmView({
                               aria-selected={isActiveTab}
                               className={`method-tab-btn ${
                                 isActiveTab ? 'active' : ''
-                              }`}
+                              } ${opt.isAfk || opt.isAggressive ? 'method-tab-afk' : ''}`.trim()}
                               onClick={() =>
                                 handleSelectOptionTab(bracket.id, optIdx)
                               }
@@ -322,6 +403,11 @@ export default function PvmView({
                               <span>
                                 {opt.shortName} (CB {opt.monsterCb})
                               </span>
+                              {(opt.isAfk || opt.isAggressive) && (
+                                <span className="method-afk-pill">
+                                  {opt.isAfk ? 'AFK' : 'AGGRO'}
+                                </span>
+                              )}
                             </button>
                           );
                         })}

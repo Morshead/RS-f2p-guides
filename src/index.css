@@ -14,6 +14,36 @@
   --gp-green-soft: rgba(5, 150, 105, 0.1);
   --gp-red: #DC2626;
   --gp-red-soft: rgba(220, 38, 38, 0.1);
+
+  /* Area & Category Color System (Blueprint Ink Accents) */
+  --area-overview: #4F46E5;
+  --area-overview-soft: rgba(79, 70, 229, 0.08);
+  --area-skills: #D97706;
+  --area-skills-soft: rgba(217, 119, 6, 0.09);
+  --area-pvm: #DC2626;
+  --area-pvm-soft: rgba(220, 38, 38, 0.08);
+  --area-money: #059669;
+  --area-money-soft: rgba(5, 150, 105, 0.08);
+  --area-quests: #7C3AED;
+  --area-quests-soft: rgba(124, 58, 237, 0.08);
+  --area-afk: #0284C7;
+  --area-afk-soft: rgba(2, 132, 199, 0.09);
+
+  /* Skill Category Accents */
+  --cat-combat: #DC2626;
+  --cat-combat-soft: rgba(220, 38, 38, 0.08);
+  --cat-artisan: #D97706;
+  --cat-artisan-soft: rgba(217, 119, 6, 0.08);
+  --cat-gathering: #059669;
+  --cat-gathering-soft: rgba(5, 150, 105, 0.08);
+  --cat-support: #0284C7;
+  --cat-support-soft: rgba(2, 132, 199, 0.08);
+  --cat-cap: #7C3AED;
+  --cat-cap-soft: rgba(124, 58, 237, 0.08);
+
+  /* Active section defaults (overridden by [data-section]) */
+  --area-accent: var(--area-overview);
+  --area-soft: var(--area-overview-soft);
 }
 
 *,
@@ -928,6 +958,7 @@ textarea {
   display: flex;
   flex-direction: column;
   gap: 14px;
+  border-top: 3px solid var(--area-accent);
 }
 
 .section-header-top {
@@ -951,9 +982,9 @@ textarea {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: var(--surface-geo);
-  border: 1px solid var(--border);
-  color: var(--primary);
+  background: var(--area-soft);
+  border: 1px solid color-mix(in srgb, var(--area-accent) 28%, var(--border));
+  color: var(--area-accent);
   flex-shrink: 0;
 }
 
@@ -1009,9 +1040,9 @@ textarea {
 }
 
 .pill-tab.active {
-  background: var(--primary);
+  background: var(--area-accent);
   color: var(--surface);
-  border-color: var(--primary);
+  border-color: var(--area-accent);
 }
 
 .pill-tab-count {
@@ -1220,8 +1251,24 @@ textarea {
 }
 
 .badge-blue,
-.badge-amber,
-.badge-indigo,
+.badge-cyan {
+  background: var(--area-afk-soft);
+  border: 1px solid rgba(2, 132, 199, 0.28);
+  color: #0369A1;
+}
+
+.badge-amber {
+  background: var(--area-skills-soft);
+  border: 1px solid rgba(217, 119, 6, 0.28);
+  color: #B45309;
+}
+
+.badge-indigo {
+  background: var(--area-overview-soft);
+  border: 1px solid rgba(79, 70, 229, 0.28);
+  color: #4338CA;
+}
+
 .badge-slate {
   background: var(--bg-app);
   border: 1px solid var(--border);
@@ -1268,16 +1315,24 @@ textarea {
 }
 
 .callout-blue,
+.callout-cyan {
+  border-left-color: var(--area-afk);
+  background: var(--area-afk-soft);
+}
+
 .callout-amber {
-  border-left-color: var(--primary);
+  border-left-color: var(--area-skills);
+  background: var(--area-skills-soft);
 }
 
 .callout-emerald {
   border-left-color: var(--gp-green);
+  background: var(--gp-green-soft);
 }
 
 .callout-red {
   border-left-color: var(--gp-red);
+  background: var(--gp-red-soft);
 }
 
 .callout-label {
@@ -2153,4 +2208,159 @@ textarea {
 /* ==================== PVM LOOT TABLE HIGHLIGHTS ==================== */
 .loot-highlight-row td {
   background: var(--surface-geo);
+}
+
+/* ==================== AREA COLOR DIFFERENTIATION ==================== */
+.app-shell[data-section="overview"] {
+  --area-accent: var(--area-overview);
+  --area-soft: var(--area-overview-soft);
+}
+
+.app-shell[data-section="skills"] {
+  --area-accent: var(--area-skills);
+  --area-soft: var(--area-skills-soft);
+}
+
+.app-shell[data-section="pvm"] {
+  --area-accent: var(--area-pvm);
+  --area-soft: var(--area-pvm-soft);
+}
+
+.app-shell[data-section="money"] {
+  --area-accent: var(--area-money);
+  --area-soft: var(--area-money-soft);
+}
+
+.app-shell[data-section="quests"] {
+  --area-accent: var(--area-quests);
+  --area-soft: var(--area-quests-soft);
+}
+
+/* Sidebar Area Accents */
+.nav-group[data-area="overview"] { --nav-accent: var(--area-overview); --nav-soft: var(--area-overview-soft); }
+.nav-group[data-area="skills"]   { --nav-accent: var(--area-skills);   --nav-soft: var(--area-skills-soft); }
+.nav-group[data-area="pvm"]      { --nav-accent: var(--area-pvm);      --nav-soft: var(--area-pvm-soft); }
+.nav-group[data-area="money"]    { --nav-accent: var(--area-money);    --nav-soft: var(--area-money-soft); }
+.nav-group[data-area="quests"]   { --nav-accent: var(--area-quests);   --nav-soft: var(--area-quests-soft); }
+
+.nav-group[data-area] .nav-header-left svg {
+  color: var(--nav-accent);
+}
+
+.nav-group[data-area] .nav-section-header.active {
+  border-color: color-mix(in srgb, var(--nav-accent) 35%, var(--border));
+  border-left: 3px solid var(--nav-accent);
+  background: var(--surface);
+}
+
+.nav-group[data-area] .nav-section-header.active .nav-count {
+  background: var(--nav-soft);
+  color: var(--nav-accent);
+  border-color: color-mix(in srgb, var(--nav-accent) 30%, var(--border));
+}
+
+.nav-group[data-area] .nav-submenu {
+  border-left: 1px solid color-mix(in srgb, var(--nav-accent) 30%, var(--border));
+}
+
+.nav-group[data-area] .nav-subitem.active {
+  color: var(--nav-accent);
+  border-color: color-mix(in srgb, var(--nav-accent) 35%, var(--border));
+  background: var(--nav-soft);
+}
+
+/* Overview Quick-Jump Area Cards */
+.geo-card[data-area="skills"] { --card-accent: var(--area-skills); --card-soft: var(--area-skills-soft); }
+.geo-card[data-area="pvm"]    { --card-accent: var(--area-pvm);    --card-soft: var(--area-pvm-soft); }
+.geo-card[data-area="money"]  { --card-accent: var(--area-money);  --card-soft: var(--area-money-soft); }
+.geo-card[data-area="quests"] { --card-accent: var(--area-quests); --card-soft: var(--area-quests-soft); }
+
+.geo-card[data-area] {
+  border-top: 3px solid var(--card-accent);
+}
+
+.geo-card[data-area]:hover {
+  border-color: var(--card-accent);
+}
+
+.geo-card[data-area] .geo-box-icon {
+  color: var(--card-accent);
+  opacity: 0.45;
+}
+
+.geo-card[data-area]:hover .geo-box-icon {
+  color: var(--card-accent);
+  opacity: 1;
+}
+
+/* Skill Matrix Category Accents */
+.skill-geo-card[data-skill-cat="combat"]    { --cat-accent: var(--cat-combat);    --cat-soft: var(--cat-combat-soft); }
+.skill-geo-card[data-skill-cat="artisan"]   { --cat-accent: var(--cat-artisan);   --cat-soft: var(--cat-artisan-soft); }
+.skill-geo-card[data-skill-cat="gathering"] { --cat-accent: var(--cat-gathering); --cat-soft: var(--cat-gathering-soft); }
+.skill-geo-card[data-skill-cat="support"]   { --cat-accent: var(--cat-support);   --cat-soft: var(--cat-support-soft); }
+.skill-geo-card[data-skill-cat="cap"]       { --cat-accent: var(--cat-cap);       --cat-soft: var(--cat-cap-soft); }
+
+.skill-geo-card[data-skill-cat] {
+  border-top: 3px solid var(--cat-accent);
+}
+
+.skill-geo-card[data-skill-cat]:hover {
+  border-color: var(--cat-accent);
+}
+
+.skill-geo-card[data-skill-cat] .geo-box-icon {
+  color: var(--cat-accent);
+  opacity: 0.4;
+}
+
+.skill-geo-card[data-skill-cat]:hover .geo-box-icon {
+  color: var(--cat-accent);
+  opacity: 1;
+}
+
+.skill-geo-card[data-skill-cat] .geo-tag-chip {
+  background: var(--cat-soft);
+  color: var(--cat-accent);
+  border-color: color-mix(in srgb, var(--cat-accent) 28%, var(--border));
+}
+
+.view-stack[data-skill-cat="combat"]    { --area-accent: var(--cat-combat);    --area-soft: var(--cat-combat-soft); }
+.view-stack[data-skill-cat="artisan"]   { --area-accent: var(--cat-artisan);   --area-soft: var(--cat-artisan-soft); }
+.view-stack[data-skill-cat="gathering"] { --area-accent: var(--cat-gathering); --area-soft: var(--cat-gathering-soft); }
+.view-stack[data-skill-cat="support"]   { --area-accent: var(--cat-support);   --area-soft: var(--cat-support-soft); }
+.view-stack[data-skill-cat="cap"]       { --area-accent: var(--cat-cap);       --area-soft: var(--cat-cap-soft); }
+
+/* AFK Combat Highlight Card */
+.afk-highlight-card {
+  border-top: 3px solid var(--area-afk);
+}
+
+.afk-highlight-card .card-title-icon {
+  color: var(--area-afk);
+}
+
+.method-tab-btn.method-tab-afk {
+  border-color: rgba(2, 132, 199, 0.35);
+}
+
+.method-tab-btn.method-tab-afk.active {
+  border-color: var(--area-afk);
+}
+
+.method-afk-pill {
+  font-size: 8.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 1px 5px;
+  border-radius: 3px;
+  background: var(--area-afk-soft);
+  color: #0369A1;
+  border: 1px solid rgba(2, 132, 199, 0.3);
+}
+
+.method-tab-btn.active .method-afk-pill {
+  background: rgba(255, 255, 255, 0.2);
+  color: #FFFFFF;
+  border-color: rgba(255, 255, 255, 0.35);
 }
