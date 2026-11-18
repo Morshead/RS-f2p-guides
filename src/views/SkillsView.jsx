@@ -19,6 +19,8 @@ import CalloutBanner from '../components/ui/CalloutBanner';
 import CollapsibleSection from '../components/ui/CollapsibleSection';
 import BlueprintMap from '../components/ui/BlueprintMap';
 import LiquidationBreakdown from '../components/ui/LiquidationBreakdown';
+import MechanicsGrid from '../components/ui/MechanicsGrid';
+import ItemText from '../components/ui/ItemText';
 import { AbstractGeometricBox } from '../components/ui/GeometricPattern';
 import { SKILLS_DATA, QUESTS_DATA } from '../data/guideData';
 
@@ -232,13 +234,17 @@ export default function SkillsView({
           title="Prerequisites, Ironman Prep & Where to Sell"
           badge={<Badge>{focusedSkill.prerequisites.length} Prerequisites</Badge>}
         >
-          <p className="focused-overview">{focusedSkill.overview}</p>
+          <p className="focused-overview">
+            <ItemText>{focusedSkill.overview}</ItemText>
+          </p>
 
           <div className="prereq-grid">
             {focusedSkill.prerequisites.map((prereq, idx) => (
               <div key={idx} className="prereq-item">
                 <span className="prereq-bullet">&gt;</span>
-                <span>{prereq}</span>
+                <span>
+                  <ItemText>{prereq}</ItemText>
+                </span>
               </div>
             ))}
           </div>
@@ -285,18 +291,18 @@ export default function SkillsView({
           )}
 
           <CalloutBanner label="Ironman Item Gathering & Prep Time" variant="amber">
-            {focusedSkill.ironmanGatheringNote}
+            <ItemText>{focusedSkill.ironmanGatheringNote}</ItemText>
           </CalloutBanner>
 
           <CalloutBanner
             label="Where to Sell Items (Ironman Liquidation)"
             variant={focusedSkill.gpTrend === 'positive' ? 'emerald' : 'red'}
           >
-            {focusedSkill.defaultSellLocation}
+            <ItemText>{focusedSkill.defaultSellLocation}</ItemText>
           </CalloutBanner>
 
           <CalloutBanner label="Group Ironman Synergy" variant="blue">
-            {focusedSkill.gimSynergy}
+            <ItemText>{focusedSkill.gimSynergy}</ItemText>
           </CalloutBanner>
         </GlassCard>
 
@@ -308,24 +314,7 @@ export default function SkillsView({
             subtitle="RS3-specific clicks, hotkeys, settings & boosts that significantly increase XP/hr or save resources"
             badge={<Badge>{focusedSkill.mechanics.length} Core Mechanics</Badge>}
           >
-            <div className="mechanics-grid">
-              {focusedSkill.mechanics.map((mech, idx) => (
-                <div key={idx} className="mechanic-card">
-                  <div className="mechanic-card-header">
-                    <span className="mechanic-title">{mech.title}</span>
-                    <Badge>{mech.badge}</Badge>
-                  </div>
-                  <div className="mechanic-row">
-                    <span className="meta-label">HOW IT WORKS:</span>{' '}
-                    <span>{mech.howItWorks}</span>
-                  </div>
-                  <div className="mechanic-row">
-                    <span className="meta-label">ACTION / SETTING:</span>{' '}
-                    <span>{mech.howToUse}</span>
-                  </div>
-                </div>
-              ))}
-            </div>
+            <MechanicsGrid mechanics={focusedSkill.mechanics} />
           </GlassCard>
         )}
 
@@ -469,14 +458,14 @@ export default function SkillsView({
                           <div className="telemetry-box">
                             <div className="telemetry-label">IRONMAN PREP TIME</div>
                             <div className="telemetry-value">
-                              {activeMethod.ironmanPrep}
+                              <ItemText>{activeMethod.ironmanPrep}</ItemText>
                             </div>
                           </div>
 
                           <div className="telemetry-box">
                             <div className="telemetry-label">WHERE TO SELL ITEMS</div>
                             <div className="telemetry-value">
-                              {activeMethod.whereToSell}
+                              <ItemText>{activeMethod.whereToSell}</ItemText>
                             </div>
                           </div>
                         </div>
@@ -492,18 +481,22 @@ export default function SkillsView({
                         <div className="method-prereq-panel">
                           <div>
                             <span className="meta-label">PREREQUISITES:</span>{' '}
-                            <span>{activeMethod.prereqs}</span>
+                            <span>
+                              <ItemText>{activeMethod.prereqs}</ItemText>
+                            </span>
                           </div>
                           <div>
                             <span className="meta-label">OPTIMIZATION NOTES:</span>{' '}
-                            <span>{activeMethod.notes}</span>
+                            <span>
+                              <ItemText>{activeMethod.notes}</ItemText>
+                            </span>
                           </div>
                           {focusedSkill.mechanics && focusedSkill.mechanics[0] && (
                             <div>
                               <span className="meta-label">IN-GAME MECHANIC REMINDER:</span>{' '}
                               <span>
                                 {focusedSkill.mechanics[0].title} —{' '}
-                                {focusedSkill.mechanics[0].howToUse}
+                                <ItemText>{focusedSkill.mechanics[0].howToUse}</ItemText>
                               </span>
                             </div>
                           )}
@@ -546,7 +539,9 @@ export default function SkillsView({
                           >
                             <ol className="numbered-steps">
                               {activeMethod.steps.map((step, sIdx) => (
-                                <li key={sIdx}>{step}</li>
+                                <li key={sIdx}>
+                                  <ItemText>{step}</ItemText>
+                                </li>
                               ))}
                             </ol>
                           </CollapsibleSection>
@@ -616,7 +611,9 @@ export default function SkillsView({
           >
             <ul className="compact-list roomy-list">
               {focusedSkill.tips.map((tip, idx) => (
-                <li key={idx}>{tip}</li>
+                <li key={idx}>
+                  <ItemText>{tip}</ItemText>
+                </li>
               ))}
             </ul>
           </GlassCard>
@@ -690,11 +687,15 @@ export default function SkillsView({
               <div className="geo-card-submeta">
                 <div>
                   <span className="meta-label">PREREQ:</span>{' '}
-                  <span>{skill.prerequisites[0]}</span>
+                  <span>
+                    <ItemText>{skill.prerequisites[0]}</ItemText>
+                  </span>
                 </div>
                 <div>
                   <span className="meta-label">SELL:</span>{' '}
-                  <span>{skill.defaultSellLocation}</span>
+                  <span>
+                    <ItemText>{skill.defaultSellLocation}</ItemText>
+                  </span>
                 </div>
               </div>
 

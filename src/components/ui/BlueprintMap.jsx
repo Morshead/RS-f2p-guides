@@ -1,5 +1,6 @@
 import React, { useId } from 'react';
 import { Compass, MapPin } from 'lucide-react';
+import ItemText from './ItemText';
 
 function TerrainOverlay({ terrain = 'city' }) {
   if (terrain === 'river') {
@@ -260,14 +261,17 @@ export default function BlueprintMap({ locationName, mapData }) {
           <span className="map-pin-badge">$</span>
           <div>
             <div className="meta-label">PROCESS / SELL SHOP</div>
-            <div className="map-waypoint-val">{data.sellSpot}</div>
+            <div className="map-waypoint-val">
+              <ItemText>{data.sellSpot}</ItemText>
+            </div>
           </div>
         </div>
       </div>
 
       {data.routeNote && (
         <div className="blueprint-map-route">
-          <span className="meta-label">ROUTE NOTE:</span> {data.routeNote}
+          <span className="meta-label">ROUTE NOTE:</span>{' '}
+          <ItemText>{data.routeNote}</ItemText>
         </div>
       )}
     </div>

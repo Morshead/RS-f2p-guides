@@ -6,7 +6,6 @@ import {
   ChevronRight,
   ArrowUpRight,
   CheckSquare,
-  Cpu,
   Trophy,
   Clock
 } from 'lucide-react';
@@ -17,6 +16,8 @@ import CalloutBanner from '../components/ui/CalloutBanner';
 import CollapsibleSection from '../components/ui/CollapsibleSection';
 import BlueprintMap from '../components/ui/BlueprintMap';
 import LiquidationBreakdown from '../components/ui/LiquidationBreakdown';
+import MechanicsGrid from '../components/ui/MechanicsGrid';
+import ItemText from '../components/ui/ItemText';
 import { PVM_BRACKETS, TOP_F2P_LOOT_HIGHLIGHTS, TOP_F2P_AFK_SPOTS } from '../data/guideData';
 
 const PVM_FILTERS = [
@@ -189,7 +190,9 @@ export default function PvmView({
               <tbody>
                 {TOP_F2P_LOOT_HIGHLIGHTS.map((highlight, idx) => (
                   <tr key={idx}>
-                    <td className="method-cell">{highlight.item}</td>
+                    <td className="method-cell">
+                      <ItemText compound>{highlight.item}</ItemText>
+                    </td>
                     <td>
                       <button
                         type="button"
@@ -210,7 +213,9 @@ export default function PvmView({
                         {highlight.value}
                       </Badge>
                     </td>
-                    <td className="notes-cell">{highlight.whyItMatters}</td>
+                    <td className="notes-cell">
+                      <ItemText>{highlight.whyItMatters}</ItemText>
+                    </td>
                   </tr>
                 ))}
               </tbody>
@@ -270,10 +275,16 @@ export default function PvmView({
                       </button>
                     </td>
                     <td>
-                      <Badge variant="cyan">{afk.sustain}</Badge>
+                      <Badge variant="cyan">
+                        <ItemText>{afk.sustain}</ItemText>
+                      </Badge>
                     </td>
-                    <td className="notes-cell">{afk.xpAndDrops}</td>
-                    <td className="notes-cell">{afk.whyAfk}</td>
+                    <td className="notes-cell">
+                      <ItemText>{afk.xpAndDrops}</ItemText>
+                    </td>
+                    <td className="notes-cell">
+                      <ItemText>{afk.whyAfk}</ItemText>
+                    </td>
                   </tr>
                 ))}
               </tbody>
@@ -416,7 +427,9 @@ export default function PvmView({
 
                       {/* Active Monster/Boss Panel */}
                       <div className="method-panel">
-                        <p className="card-desc">{activeOption.overview}</p>
+                        <p className="card-desc">
+                          <ItemText>{activeOption.overview}</ItemText>
+                        </p>
 
                         <div className="method-telemetry-grid">
                           <div className="telemetry-box">
@@ -498,7 +511,7 @@ export default function PvmView({
                                   >
                                     <td>
                                       <div className="method-cell">
-                                        {drop.item}{' '}
+                                        <ItemText compound>{drop.item}</ItemText>{' '}
                                         {drop.isHighlight && (
                                           <Badge>★ TOP DROP</Badge>
                                         )}
@@ -520,7 +533,7 @@ export default function PvmView({
                                       </Badge>
                                     </td>
                                     <td className="notes-cell">
-                                      {drop.ironmanUseAndSell}
+                                      <ItemText>{drop.ironmanUseAndSell}</ItemText>
                                     </td>
                                   </tr>
                                 ))}
@@ -536,7 +549,9 @@ export default function PvmView({
                           </div>
                           <ul className="compact-list">
                             {activeOption.prereqs.map((req, rIdx) => (
-                              <li key={rIdx}>{req}</li>
+                              <li key={rIdx}>
+                                <ItemText>{req}</ItemText>
+                              </li>
                             ))}
                           </ul>
 
@@ -570,44 +585,11 @@ export default function PvmView({
                           label="Group Ironman PvM Synergy"
                           variant="blue"
                         >
-                          {activeOption.gimSynergy}
+                          <ItemText>{activeOption.gimSynergy}</ItemText>
                         </CalloutBanner>
 
                         {/* Mechanics Cards */}
-                        {activeOption.mechanics &&
-                          activeOption.mechanics.length > 0 && (
-                            <div className="mechanics-grid">
-                              {activeOption.mechanics.map((mech, mIdx) => (
-                                <div key={mIdx} className="mechanic-card">
-                                  <div className="mechanic-card-header">
-                                    <span className="mechanic-title">
-                                      <Cpu
-                                        size={13}
-                                        style={{
-                                          marginRight: '6px',
-                                          verticalAlign: 'middle'
-                                        }}
-                                      />
-                                      {mech.title}
-                                    </span>
-                                    <Badge>{mech.badge}</Badge>
-                                  </div>
-                                  <div className="mechanic-row">
-                                    <span className="meta-label">
-                                      HOW IT WORKS:
-                                    </span>{' '}
-                                    <span>{mech.howItWorks}</span>
-                                  </div>
-                                  <div className="mechanic-row">
-                                    <span className="meta-label">
-                                      ACTION / SETTING:
-                                    </span>{' '}
-                                    <span>{mech.howToUse}</span>
-                                  </div>
-                                </div>
-                              ))}
-                            </div>
-                          )}
+                        <MechanicsGrid mechanics={activeOption.mechanics} showCpuIcon />
 
                         {/* Collapsible Step-by-Step Kill Walkthrough */}
                         <CollapsibleSection
@@ -617,7 +599,9 @@ export default function PvmView({
                         >
                           <ol className="numbered-steps">
                             {activeOption.steps.map((step, sIdx) => (
-                              <li key={sIdx}>{step}</li>
+                              <li key={sIdx}>
+                                <ItemText>{step}</ItemText>
+                              </li>
                             ))}
                           </ol>
                         </CollapsibleSection>

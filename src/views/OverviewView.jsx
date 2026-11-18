@@ -15,6 +15,8 @@ import {
 import GlassCard from '../components/ui/GlassCard';
 import Badge from '../components/ui/Badge';
 import CalloutBanner from '../components/ui/CalloutBanner';
+import MechanicsGrid from '../components/ui/MechanicsGrid';
+import ItemText from '../components/ui/ItemText';
 import {
   GeometricSvg,
   AbstractGeometricBox
@@ -343,34 +345,21 @@ export default function OverviewView({
                     <Badge variant="blue">{role.badge}</Badge>
                   </div>
                   <div className="role-focus">Focus: {role.focus}</div>
-                  <p className="card-desc">{role.summary}</p>
+                  <p className="card-desc">
+                    <ItemText>{role.summary}</ItemText>
+                  </p>
                   <ul className="compact-list">
                     {role.milestones.map((m, i) => (
-                      <li key={i}>{m}</li>
+                      <li key={i}>
+                        <ItemText>{m}</ItemText>
+                      </li>
                     ))}
                   </ul>
                 </div>
               ))}
             </div>
           ) : strategyTab === 'mechanics' ? (
-            <div className="roles-grid-2">
-              {GLOBAL_RS3_MECHANICS.map((mech, idx) => (
-                <div key={idx} className="mechanic-card">
-                  <div className="mechanic-card-header">
-                    <span className="mechanic-title">{mech.title}</span>
-                    <Badge>{mech.badge}</Badge>
-                  </div>
-                  <div className="mechanic-row">
-                    <span className="meta-label">HOW IT WORKS:</span>{' '}
-                    <span>{mech.howItWorks}</span>
-                  </div>
-                  <div className="mechanic-row">
-                    <span className="meta-label">ACTION / SETTING:</span>{' '}
-                    <span>{mech.howToUse}</span>
-                  </div>
-                </div>
-              ))}
-            </div>
+            <MechanicsGrid mechanics={GLOBAL_RS3_MECHANICS} />
           ) : (
             <div className="roadmap-list">
               {DAY_1_STEPS.map((item) => (
@@ -378,7 +367,9 @@ export default function OverviewView({
                   <div className="roadmap-step-num">{item.step}</div>
                   <div className="roadmap-body">
                     <div className="roadmap-title">{item.title}</div>
-                    <p className="card-desc">{item.detail}</p>
+                    <p className="card-desc">
+                      <ItemText>{item.detail}</ItemText>
+                    </p>
                   </div>
                 </div>
               ))}
@@ -416,7 +407,9 @@ export default function OverviewView({
                     checked={checked}
                     onChange={() => onToggleDaily(item.id)}
                   />
-                  <span className="check-row-label">{item.label}</span>
+                  <span className="check-row-label">
+                    <ItemText>{item.label}</ItemText>
+                  </span>
                   <Badge variant="amber">{item.category}</Badge>
                 </label>
               );
@@ -424,7 +417,9 @@ export default function OverviewView({
           </div>
 
           <CalloutBanner label="Group Storage Tip" variant="emerald">
-            Pool daily Feather Packs (10,000/player/day) and Zaff/Burthorpe elemental runes into shared Group Storage so your Fletcher and Alcher never run dry.
+            <ItemText>
+              Pool daily Feather Packs (10,000/player/day) and Zaff/Burthorpe elemental runes into shared Group Storage so your Fletcher and Alcher never run dry.
+            </ItemText>
           </CalloutBanner>
         </GlassCard>
       </div>

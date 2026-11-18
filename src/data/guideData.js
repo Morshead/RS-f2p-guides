@@ -1,6 +1,14 @@
 import { enrichSkillsData } from './skillMethodsData.js';
 export { GLOBAL_RS3_MECHANICS } from './skillMechanicsData.js';
 export { PVM_DATA, PVM_BRACKETS, TOP_F2P_LOOT_HIGHLIGHTS, TOP_F2P_AFK_SPOTS } from './pvmData.js';
+export {
+  ITEMS_DICTIONARY,
+  ITEMS_LIST,
+  ITEM_ALIASES,
+  lookupItem,
+  getItemsByCategory,
+  searchItems
+} from './itemLookup.js';
 
 export const GIM_ROLES = [
   {

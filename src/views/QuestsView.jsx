@@ -5,6 +5,7 @@ import Badge from '../components/ui/Badge';
 import SectionHeader from '../components/ui/SectionHeader';
 import CalloutBanner from '../components/ui/CalloutBanner';
 import CollapsibleSection from '../components/ui/CollapsibleSection';
+import ItemText from '../components/ui/ItemText';
 import { QUESTS_DATA } from '../data/guideData';
 
 const QUEST_FILTERS = [
@@ -144,7 +145,7 @@ export default function QuestsView({
                 </div>
 
                 <div className="quest-rewards-box">
-                  <strong>Rewards:</strong> {quest.rewards}
+                  <strong>Rewards:</strong> <ItemText>{quest.rewards}</ItemText>
                 </div>
 
                 <CollapsibleSection
@@ -153,13 +154,14 @@ export default function QuestsView({
                 >
                   <div className="quest-details-stack">
                     <div>
-                      <strong>Requirements:</strong> {quest.reqs}
+                      <strong>Requirements:</strong> <ItemText>{quest.reqs}</ItemText>
                     </div>
                     <div>
-                      <strong>Items Needed:</strong> {quest.itemsNeeded}
+                      <strong>Items Needed:</strong>{' '}
+                      <ItemText compound>{quest.itemsNeeded}</ItemText>
                     </div>
                     <CalloutBanner label="Group Ironman Tip" variant="blue">
-                      {quest.gimTip}
+                      <ItemText>{quest.gimTip}</ItemText>
                     </CalloutBanner>
                   </div>
                 </CollapsibleSection>

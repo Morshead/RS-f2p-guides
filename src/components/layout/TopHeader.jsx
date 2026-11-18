@@ -4,8 +4,11 @@ import {
   CheckCircle2,
   ChevronRight,
   Search,
+  Package,
   X
 } from 'lucide-react';
+import { ITEMS_LIST } from '../../data/itemLookup';
+import { useItemLookup } from '../../context/ItemLookupContext';
 
 const SECTION_LABELS = {
   overview: 'OVERVIEW & ROLES',
@@ -28,6 +31,7 @@ export default function TopHeader({
   searchQuery,
   onSearchChange
 }) {
+  const { openItemBrowser } = useItemLookup();
   const sectionLabel = SECTION_LABELS[activeSection] || 'GUIDE';
 
   return (
@@ -84,6 +88,16 @@ export default function TopHeader({
             <span>
               {completedDailyCount}/{totalDailies} DAILIES
             </span>
+          </button>
+
+          <button
+            type="button"
+            className="stat-pill interactive-pill"
+            onClick={() => openItemBrowser('')}
+            title="Open global RS3 Item Lookup Dictionary"
+          >
+            <Package size={12} />
+            <span>ITEMS ({ITEMS_LIST.length})</span>
           </button>
         </div>
 

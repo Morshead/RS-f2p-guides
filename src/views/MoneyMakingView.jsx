@@ -6,6 +6,7 @@ import SectionHeader from '../components/ui/SectionHeader';
 import CalloutBanner from '../components/ui/CalloutBanner';
 import CollapsibleSection from '../components/ui/CollapsibleSection';
 import LiquidationBreakdown from '../components/ui/LiquidationBreakdown';
+import ItemText from '../components/ui/ItemText';
 import { MONEY_MAKING_DATA } from '../data/guideData';
 
 const MONEY_FILTERS = [
@@ -109,7 +110,9 @@ export default function MoneyMakingView({
                 <Badge variant="slate">{method.risk}</Badge>
               </div>
 
-              <p className="card-desc">{method.description}</p>
+              <p className="card-desc">
+                <ItemText>{method.description}</ItemText>
+              </p>
 
               <LiquidationBreakdown
                 gpPerHour={method.gpPerHour}
@@ -120,7 +123,7 @@ export default function MoneyMakingView({
               />
 
               <CalloutBanner label="Group Storage Sharing" variant="emerald">
-                {method.gimShareable}
+                <ItemText>{method.gimShareable}</ItemText>
               </CalloutBanner>
 
               <CollapsibleSection
@@ -130,7 +133,9 @@ export default function MoneyMakingView({
               >
                 <ol className="numbered-steps">
                   {method.steps.map((step, i) => (
-                    <li key={i}>{step}</li>
+                    <li key={i}>
+                      <ItemText>{step}</ItemText>
+                    </li>
                   ))}
                 </ol>
               </CollapsibleSection>

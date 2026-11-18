@@ -6,6 +6,8 @@ import SkillsView from './views/SkillsView';
 import PvmView from './views/PvmView';
 import MoneyMakingView from './views/MoneyMakingView';
 import QuestsView from './views/QuestsView';
+import ItemLookupModal from './components/ui/ItemLookupModal';
+import { ItemLookupProvider } from './context/ItemLookupContext';
 import {
   SKILLS_DATA,
   PVM_DATA,
@@ -102,8 +104,9 @@ export default function App() {
   }, [activeSection, selectedItemId]);
 
   return (
-    <div className="app-shell" data-section={activeSection}>
-      <Sidebar
+    <ItemLookupProvider>
+      <div className="app-shell" data-section={activeSection}>
+        <Sidebar
         activeSection={activeSection}
         selectedItemId={selectedItemId}
         onSelectNav={handleSelectNav}
@@ -196,7 +199,9 @@ export default function App() {
             searchQuery={searchQuery}
           />
         )}
-      </main>
-    </div>
+        </main>
+      </div>
+      <ItemLookupModal />
+    </ItemLookupProvider>
   );
 }
