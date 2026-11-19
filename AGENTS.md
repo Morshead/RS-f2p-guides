@@ -14,8 +14,8 @@ Whenever you create, edit, or delete files in this project, follow the [`github-
 
 1. Run `git status --short --branch` as a standalone command and draft a descriptive commit comment directly related to the changes made.
 2. Ask the user **once**: *"Do you want to push these changes to GitHub?"* (including the proposed commit comment).
-3. Once the user responds affirmatively, automatically execute each Git command as its own **separate tool call** (never chained on one line with `;` or `&&`):
-   - `git add -A`
-   - `git commit -m "<comment>"`
-   - `git push`
-   - `git status --short --branch`
+3. Once the user responds affirmatively, automatically execute each Git command as its own **separate tool call** (never chained on one line with `;` or `&&`). Run `git add`, `git commit`, and `git push` directly with `BypassSandbox: true` (since the Windows sandbox blocks `.git/index.lock` writes and network access), and run `git status --short --branch` in the sandbox:
+   - `git add -A` (`BypassSandbox: true`)
+   - `git commit -m "<comment>"` (`BypassSandbox: true`)
+   - `git push` (`BypassSandbox: true`)
+   - `git status --short --branch` (sandboxed)
