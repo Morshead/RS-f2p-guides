@@ -2751,3 +2751,318 @@ textarea {
   border-top: 1px solid var(--border);
   padding-top: 6px;
 }
+
+/* ==================== MONEY MAKING TIME & RESOURCE BREAKDOWN ==================== */
+.mm-header-badges {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 6px;
+}
+
+.mm-time-badge {
+  gap: 4px;
+  color: var(--primary);
+}
+
+.mm-overview-panel {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface-geo);
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.mm-overview-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+}
+
+.mm-overview-title-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.mm-cycle-scope {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.mm-total-time-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  background: var(--primary);
+  color: var(--surface);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+
+.mm-overview-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+@media (max-width: 900px) {
+  .mm-overview-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.mm-overview-cell {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 9px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.mm-timeline-strip {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-top: 8px;
+  border-top: 1px solid var(--border);
+}
+
+.mm-timeline-pills {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.mm-timeline-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.mm-timeline-num {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+}
+
+.mm-timeline-sep {
+  color: var(--text-muted);
+}
+
+.mm-timeline-xp {
+  font-size: 9.5px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.mm-step-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.mm-step-card {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface-geo);
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  transition: border-color 150ms ease-in-out;
+}
+
+.mm-step-card:hover {
+  border-color: var(--primary);
+}
+
+.mm-step-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.mm-step-header-left {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-width: 0;
+}
+
+.mm-step-title {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.mm-step-badges {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.mm-step-xp-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 8px;
+  border-radius: 4px;
+  background: var(--bg-app);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  flex-shrink: 0;
+}
+
+.mm-step-time-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 8px;
+  border-radius: 4px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--primary);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  flex-shrink: 0;
+}
+
+.mm-step-instruction {
+  font-size: 11.5px;
+  color: var(--text-secondary);
+  line-height: 1.55;
+}
+
+.mm-step-resources-box {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.mm-step-resources-head {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--primary);
+}
+
+.mm-step-resources-desc {
+  font-size: 11px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.mm-resource-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding-top: 4px;
+  border-top: 1px solid var(--border);
+}
+
+.mm-resource-row {
+  display: grid;
+  grid-template-columns: 74px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 8px;
+  border-radius: 4px;
+  background: var(--surface-geo);
+  border: 1px solid var(--border);
+  font-size: 11px;
+}
+
+@media (max-width: 600px) {
+  .mm-resource-row {
+    grid-template-columns: 1fr;
+    gap: 3px;
+  }
+}
+
+.mm-resource-role {
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+}
+
+.mm-resource-item {
+  font-weight: 600;
+  color: var(--primary);
+  min-width: 0;
+}
+
+.mm-resource-qty {
+  font-size: 10.5px;
+  font-weight: 700;
+  color: var(--primary);
+  text-align: right;
+}
+
+@media (max-width: 600px) {
+  .mm-resource-qty {
+    text-align: left;
+  }
+}
+
+.mm-total-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--primary);
+  background: var(--surface-geo);
+}
+
+.mm-total-footer-left {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.mm-total-formula {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--primary);
+}

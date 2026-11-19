@@ -1723,12 +1723,72 @@ export const MONEY_MAKING_DATA = [
     requirements: 'Every 25 Quest Points (25 QP, 50 QP)',
     risk: 'Safe',
     gimShareable: 'Indirectly (buy group consumables/feathers/shops)',
+    cycleScope: '0 → 50 Quest Points (2x Tier 1 Magical Dice)',
+    totalEstimatedTime: '~95–120 min',
+    timeBreakdownFormula: '10–15m + 35–40m + 2m + 48–63m = ~95–120 min (45–55m for first 250k GP)',
+    resourceOverview: {
+      collect: [
+        '1x Super Large Egg, Top-Quality Milk & Extra Fine Flour',
+        '6x Clay, 4x Copper Ore, 2x Iron Ore',
+        '4x Imp Beads (Red, Yellow, Black, White)',
+        '3x Goblin Mail + 1x Orange Dye + 1x Blue Dye',
+        '1x Beer + 1x Garlic'
+      ],
+      consume: ['10–15x Trout or Crayfish (quest bosses)', '50 Quest Points earned'],
+      output: ['2x Magical Dice (T1)', '500,000 GP total raw cash', '2x Easy Clue Treasure Trail rolls']
+    },
     description: 'Located just southwest of the Varrock Lodestone, May rewards you with a Tier 1 Magical Die (T1) at 25 Quest Points (+250k GP) and another at 50 Quest Points (+250k GP), plus useful Treasure Trail items.',
     steps: [
-      'Complete quick Novice F2P quests (Cook\'s Assistant, Sheep Shearer, Restless Ghost, Ernest the Chicken, Goblin Diplomacy, etc.) to reach 25 and 40+ QP.',
-      'Teleport to Varrock Lodestone and talk to May next to her caravan.',
-      'Open the Quest Point Track and claim your Magical Dice (T1).',
-      'Roll the dice in your inventory for an instant 250,000 GP cash injection per group member!'
+      'Gather shared GIM quest items in one batch: 1x Super Large Egg, Top-Quality Milk, Extra Fine Flour, 6x Clay, 4x Copper Ore, 2x Iron Ore, 4x Imp Beads (Red, Yellow, Black, White), 3x Goblin Mail, Orange Dye, Blue Dye, 1x Beer, and 1x Garlic.',
+      'Complete fast Novice F2P quests (Goblin Diplomacy 5 QP, Ernest the Chicken 4 QP, Vampyre Slayer 3 QP, Demon Slayer 3 QP, The Death of Chivalry 3 QP, One Piercing Note 2 QP, Swept Away 2 QP, Shadow over Ashdale 2 QP, Cook\'s Assistant 1 QP, Doric\'s Quest 1 QP, The Restless Ghost 1 QP, Imp Catcher 1 QP) to reach 25+ QP.',
+      'Teleport to Varrock Lodestone, talk to May next to her caravan, claim your 1st Magical Dice (T1), and roll it for +250,000 GP.',
+      'Complete remaining quick F2P quests (+25 QP to reach 50 QP total, e.g. Gunnar\'s Ground, Pirate\'s Treasure, Dragon Slayer) and claim + roll your 2nd Magical Dice (T1) for +250,000 GP more.'
+    ],
+    stepMeta: [
+      {
+        sectionTitle: 'Section 1: Shared Quest Supply Gathering',
+        timeEstimate: '~10–15 min',
+        xpPerHour: '0 – 2k XP/hr (Prep)',
+        resourcesOverview: 'Collect all physical quest items in one trip before starting quests (have 1 GIM teammate gather multiples for the whole group to save ~30 min across the team).',
+        resources: [
+          { item: 'Super large egg / Top-quality milk / Extra fine flour', quantity: '1x each per player', role: 'Collect' },
+          { item: 'Clay / Copper ore / Iron ore', quantity: '6x / 4x / 2x', role: 'Collect' },
+          { item: 'Red bead / Yellow bead / Black bead / White bead', quantity: '1x each (4 total)', role: 'Collect' },
+          { item: 'Goblin mail / Orange dye / Blue dye', quantity: '3x Mail + 1x each Dye', role: 'Collect' },
+          { item: 'Beer & Garlic', quantity: '1x each', role: 'Collect' }
+        ]
+      },
+      {
+        sectionTitle: 'Section 2: Novice Quest Rush (0 → 25 QP)',
+        timeEstimate: '~35–40 min',
+        xpPerHour: '35k – 60k Total XP/hr (Quest Rewards)',
+        resourcesOverview: 'Knock out fast zero-requirement Novice quests totaling 28 QP (note: Sheep Shearer is a 0 QP miniquest in RS3). Bring 10–15 early food for Count Draynor and Delrith.',
+        resources: [
+          { item: 'Trout / Shrimps / Crayfish', quantity: '10–15x', role: 'Bring' },
+          { item: 'Quest Points Earned', quantity: '25+ QP (12 fast quests)', role: 'Collect' }
+        ]
+      },
+      {
+        sectionTitle: 'Section 3: Claim & Roll 1st Tier 1 Magical Die',
+        timeEstimate: '~2 min',
+        xpPerHour: '0 XP/hr (Claim & Roll)',
+        resourcesOverview: 'Teleport to Varrock Lodestone, walk southwest to May\'s Quest Caravan, open the Quest Point Track, and roll your first Tier 1 Magical Die.',
+        resources: [
+          { item: 'Magical dice (T1)', quantity: '1x claimed at 25 QP', role: 'Reward' },
+          { item: 'Coins + Easy Clue Reward', quantity: '250,000 GP + 1x TT item', role: 'Reward' }
+        ]
+      },
+      {
+        sectionTitle: 'Section 4: Push 25 → 50 QP & Claim 2nd Magical Die',
+        timeEstimate: '~48–63 min',
+        xpPerHour: '30k – 50k Total XP/hr (Quest Rewards)',
+        resourcesOverview: 'Finish another 25 QP of short/medium F2P quests (Gunnar\'s Ground 5 QP, Black Knights\' Fortress 3 QP, Stolen Hearts 3 QP, Pirate\'s Treasure 2 QP, Dragon Slayer 2 QP, Rune Mysteries 1 QP, etc.) and return to May at 50 QP.',
+        resources: [
+          { item: 'Quest Points Earned', quantity: '+25 QP (50 QP total)', role: 'Collect' },
+          { item: 'Magical dice (T1)', quantity: '1x claimed at 50 QP', role: 'Reward' },
+          { item: 'Coins + Easy Clue Reward', quantity: '+250,000 GP (500k total)', role: 'Reward' }
+        ]
+      }
     ]
   },
   {
@@ -1739,11 +1799,51 @@ export const MONEY_MAKING_DATA = [
     requirements: 'Account Security enabled; Level 10+ Combat recommended',
     risk: 'Safe',
     gimShareable: 'Pool towards early Feather Packs & Rune Shops',
+    cycleScope: 'One-Time Dual-Stronghold Starter Run',
+    totalEstimatedTime: '~10–14 min',
+    timeBreakdownFormula: '2m + 4–6m + 4–6m = ~10–14 min total',
+    resourceOverview: {
+      collect: ['No gathering required — pure dungeon chest loot run'],
+      consume: ['10–15x Early Food (Crayfish, Shrimps, or Trout) for Floor 3–4'],
+      output: ['20,000 GP raw starter cash', '1x Fancy Boots or Fighting Boots', '1x Safety Gloves + 2x 500 XP Antique Lamps']
+    },
     description: 'Every new Group Ironman character can claim 10,000 GP from the four floors of the Stronghold of Security in Barbarian Village, plus another 10,000 GP and two 500 XP lamps from the Stronghold of Player Safety.',
     steps: [
-      'Enter the Stronghold of Security in the center of Barbarian Village (Gunnarsgrunn).',
+      'Withdraw 10–15x early food (Crayfish, Shrimps, or Trout) and enter the Stronghold of Security in the center of Barbarian Village (Gunnarsgrunn).',
       'Run through the 4 floors: Vault of War (2k GP), Catacomb of Famine (3k GP), Pit of Pestilence (5k GP), and Sepulchre of Death (Fancy/Fighting Boots).',
-      'Head north toward Edgeville Jail and complete the Stronghold of Player Safety exam + hidden lever backdoor for 10,000 GP and Safety Gloves.'
+      'Head north toward Edgeville Jail and complete the Stronghold of Player Safety exam (if prompted) + hidden lever chest for 10,000 GP, Safety Gloves, and two 500 XP Antique Lamps.'
+    ],
+    stepMeta: [
+      {
+        sectionTitle: 'Section 1: Prep Food & Enter Barbarian Village Stronghold',
+        timeEstimate: '~2 min',
+        xpPerHour: '0 XP/hr (Prep)',
+        resourcesOverview: 'Grab 10–15 basic food so level 40–60 monsters on Floors 3–4 cannot KO a fresh account, and verify Account Security is enabled.',
+        resources: [
+          { item: 'Crayfish / Shrimps / Trout', quantity: '10–15x', role: 'Bring' }
+        ]
+      },
+      {
+        sectionTitle: 'Section 2: Clear Floors 1–4 (Stronghold of Security)',
+        timeEstimate: '~4–6 min',
+        xpPerHour: '0 XP/hr (Sprint Run)',
+        resourcesOverview: 'Sprint through the security doors across all four floors, answering basic safety prompts to unlock each chest/cradle.',
+        resources: [
+          { item: 'Floor 1–3 Gift Chest Coins', quantity: '10,000 GP (2k + 3k + 5k)', role: 'Reward' },
+          { item: 'Fancy boots / Fighting boots', quantity: '1x choice at Floor 4', role: 'Reward' }
+        ]
+      },
+      {
+        sectionTitle: 'Section 3: Stronghold of Player Safety Chest (Edgeville)',
+        timeEstimate: '~4–6 min',
+        xpPerHour: '10k – 15k Any-Skill XP/hr eq. (1,000 XP Lamps)',
+        resourcesOverview: 'Walk north to the Misthalin Training Centre of Excellence south of Edgeville, pass through the upper jail lever route, and open the locked treasure chest.',
+        resources: [
+          { item: 'Treasure Chest Coins', quantity: '10,000 GP (20k total)', role: 'Reward' },
+          { item: 'Safety gloves', quantity: '1x', role: 'Reward' },
+          { item: 'Antique lamp', quantity: '2x (500 XP each = 1,000 XP)', role: 'Reward' }
+        ]
+      }
     ]
   },
   {
@@ -1754,12 +1854,83 @@ export const MONEY_MAKING_DATA = [
     requirements: '50+ Mining, 50+ Smithing, 55 Magic (1 Group Member)',
     risk: 'Safe',
     gimShareable: 'Yes — Deposit Rune +3 items in Group Storage for the designated Alcher',
-    description: 'Mining Runite & Luminite and smithing Rune Platebodies +3 or Rune 2h Swords +3 generates reliable pure coin via High Level Alchemy.',
+    cycleScope: '10x Rune Platebody +3 Full Cycle (400 Bars → 200,000 GP Raw Alch)',
+    totalEstimatedTime: '~85–115 min',
+    timeBreakdownFormula: '40–55m + 20–28m + 7–10m + 17–21m + 1m = ~85–115 min (65–90m w/ Star buff)',
+    resourceOverview: {
+      collect: [
+        '400x Runite Ore (~360–380x w/ Scroll of Efficiency)',
+        '400x Luminite Ore (1:1 smelting ratio)'
+      ],
+      consume: [
+        '400x Runite Bar smelted & forged (40 bars per +3 Platebody)',
+        '10x Nature Rune (plus Staff of Fire)'
+      ],
+      output: [
+        '10x Rune Platebody +3',
+        '200,000 GP via High Alch (20k each)',
+        '96,000 Smithing XP (anvil phase scales to 450k–750k GP/hr)'
+      ]
+    },
+    description: 'Mining Runite & Luminite and smithing Rune Platebodies +3 or Rune 2h Swords +3 generates reliable pure coin via High Level Alchemy (20,000 GP each; Low Alch 13,333 GP or General Store 10,000 GP).',
     steps: [
-      'Miners gather Runite Ore (Mining Guild / Wilderness / Karamja) and Luminite (Dwarven Mine).',
-      'Smelt Runite Bars using Smelting Gauntlets (if unlocked) or Artisans\' Workshop.',
-      'Smith Rune Platebodies up to +3 and pass them via Group Storage to your group member with 55 Magic.',
-      'Cast High Level Alchemy using a Staff of Fire and Nature Runes.'
+      'Miners equip a Rune Pickaxe +3 and Rune Ore Box to gather 400x Runite Ore in the Mining Guild (60+ Mining), Wilderness, or Karamja.',
+      'Mine 400x Luminite (1:1 ratio) in the Dwarven Mine or 15 Dungeoneering Resource Dungeon and deposit all ore at Artisans\' Workshop.',
+      'Smelt 400x Runite Bars into your Metal Bank at Artisans\' Workshop Furnace (use Scroll of Efficiency to save free bars).',
+      'Smith 10x Rune Platebody +3 (40 Runite Bars each: 5 base + 5 + 10 + 20) at Artisans\' Workshop Anvils and pass via Group Storage to your 55 Magic Alcher.',
+      'Cast High Level Alchemy using a Staff of Fire and 10x Nature Runes for 200,000 GP (or Low Alch for 13,333 GP / General Store for 10,000 GP each).'
+    ],
+    stepMeta: [
+      {
+        sectionTitle: 'Section 1: Runite Ore Gathering (Mining)',
+        timeEstimate: '~40–55 min',
+        xpPerHour: '32k – 45k Mining XP/hr',
+        resourcesOverview: 'Fill a Rune Ore Box (120–140 capacity) ~3 times to collect 400x Runite Ore. Using your daily 15-minute Shooting Star Double Ore buff cuts this step to ~20–30 min.',
+        resources: [
+          { item: 'Rune pickaxe +3 & Rune ore box', quantity: '1x each', role: 'Bring' },
+          { item: 'Runite ore', quantity: '400x (40 per +3 Platebody)', role: 'Collect' }
+        ]
+      },
+      {
+        sectionTitle: 'Section 2: Luminite Gathering (1:1 Secondary Ore)',
+        timeEstimate: '~20–28 min',
+        xpPerHour: '26k – 34k Mining XP/hr',
+        resourcesOverview: 'Mine 400x Luminite in the Dwarven Mine (or the quiet 15 DG Resource Dungeon) to match your 400x Runite Ore 1:1.',
+        resources: [
+          { item: 'Luminite', quantity: '400x (1:1 ratio w/ Runite)', role: 'Collect' }
+        ]
+      },
+      {
+        sectionTitle: 'Section 3: Smelt Runite Bars into Metal Bank',
+        timeEstimate: '~7–10 min',
+        xpPerHour: '24k – 34k Smithing XP/hr',
+        resourcesOverview: 'Smelt 28 bars per inventory (~15 trips) at Falador Artisans\' Workshop Furnace. Scroll of Efficiency (20k DG tokens) regularly refunds Runite Ore + Luminite.',
+        resources: [
+          { item: 'Runite ore & Luminite', quantity: '400x each', role: 'Consume' },
+          { item: 'Runite bar', quantity: '400x (stored in Metal Bank)', role: 'Produce' }
+        ]
+      },
+      {
+        sectionTitle: 'Section 4: Forge 10x Rune Platebodies +3',
+        timeEstimate: '~17–21 min',
+        xpPerHour: '75k – 85k Smithing XP/hr',
+        resourcesOverview: 'Smith 10x base Rune Platebody (50 bars), then upgrade +1 (+50 bars), +2 (+100 bars), and +3 (+200 bars), reheating at the forge whenever heat drops below 66%.',
+        resources: [
+          { item: 'Runite bar', quantity: '400x total', role: 'Consume' },
+          { item: 'Rune platebody +3', quantity: '10x (9,600 Smithing XP each)', role: 'Produce' }
+        ]
+      },
+      {
+        sectionTitle: 'Section 5: High Level Alchemy Liquidation',
+        timeEstimate: '~1 min',
+        xpPerHour: '55k – 65k Magic XP/hr (65 XP/cast)',
+        resourcesOverview: 'Equip a Staff of Fire and cast High Level Alchemy on all 10x Rune Platebody +3 (note: Scavvo\'s/Horvik\'s reject +3 gear; General Stores pay 10,000 GP if under 55 Magic).',
+        resources: [
+          { item: 'Nature rune', quantity: '10x (self-farmed or shop)', role: 'Consume' },
+          { item: 'Rune platebody +3', quantity: '10x', role: 'Consume' },
+          { item: 'Coins (High Alch)', quantity: '200,000 GP (20,000 GP each)', role: 'Reward' }
+        ]
+      }
     ]
   },
   {
@@ -1770,12 +1941,67 @@ export const MONEY_MAKING_DATA = [
     requirements: '10–90 Mining (scales by Star Size 1–9)',
     risk: 'Safe',
     gimShareable: 'Star sprite grants untradeable GP, Cosmic/Astral runes, and Gold/Runite ore buff',
+    cycleScope: '1x Daily Star + 15-Min Double-Ore Runite Burst',
+    totalEstimatedTime: '~25 min',
+    timeBreakdownFormula: '2–3m + 6–7m + 1m + 15m = ~25 min/day (~10m star + 15m buff)',
+    resourceOverview: {
+      collect: [
+        '200x Stardust (daily reward cap)',
+        '120–160x Runite Ore during 15m Double Ore buff'
+      ],
+      consume: ['200x Stardust handed to Star Sprite'],
+      output: [
+        '50,000 GP raw coins',
+        '152x Cosmic Rune + 52x Astral Rune + 20x Gold Ore',
+        '3–4x Rune Platebody +3 worth of Runite Ore (~60k–80k extra GP)'
+      ]
+    },
     description: 'Once per day, mining 200 Stardust from a crashed Shooting Star rewards 50,000 coins, 152 Cosmic Runes, 52 Astral Runes, 20 Gold Ore, and a 15-minute buff where every ore mined gives double ore!',
     steps: [
-      'Check the telescope in a POH or hop/join the "Star Find" Friends Chat to locate an active F2P Shooting Star.',
-      'Mine the star until you have collected 200 Stardust (stacks in inventory).',
-      'Fully mine the star down to expose the Star Sprite inside and claim your daily reward.',
-      'Immediately go mine Runite Ore during your 15-minute double-ore buff!'
+      'Check the telescope in a POH or join the "Star Find" Friends Chat to locate an active F2P Shooting Star and Lodestone teleport nearby.',
+      'Mine the star layers until you have collected 200x Stardust (stackable in inventory; excess gives XP only).',
+      'Fully mine the star down to expose the Star Sprite inside and hand over 200x Stardust for 50,000 GP, 152x Cosmic Runes, 52x Astral Runes, and 20x Gold Ore.',
+      'Immediately go mine Runite Ore in the Mining Guild or Wilderness during your 15-minute double-ore buff (~120–160x Runite Ore)!'
+    ],
+    stepMeta: [
+      {
+        sectionTitle: 'Section 1: Scout & Travel to Crashed Star',
+        timeEstimate: '~2–3 min',
+        xpPerHour: '0 XP/hr (Scout & Travel)',
+        resourcesOverview: 'Hop to the called F2P world from "Star Find" FC and Lodestone teleport to the crash site with your Pickaxe and Rune Ore Box ready.',
+        resources: [
+          { item: 'Rune pickaxe +3 & Rune ore box', quantity: '1x each', role: 'Bring' }
+        ]
+      },
+      {
+        sectionTitle: 'Section 2: Mine 200 Stardust',
+        timeEstimate: '~6–7 min',
+        xpPerHour: '35k – 65k Mining XP/hr',
+        resourcesOverview: 'Mine the star until you reach exactly 200x Stardust (daily cap for maximum Star Sprite loot). Lower sizes (Size 1–4) require only 10–40 Mining.',
+        resources: [
+          { item: 'Stardust', quantity: '200x (stackable)', role: 'Collect' }
+        ]
+      },
+      {
+        sectionTitle: 'Section 3: Claim Daily Star Sprite Package',
+        timeEstimate: '~1 min',
+        xpPerHour: '0 XP/hr (Claim Reward)',
+        resourcesOverview: 'Clear the final Size 1 layer and speak to the Star Sprite to exchange 200x Stardust for guaranteed GP, runes, Gold Ore, and the 15-minute Double Ore buff.',
+        resources: [
+          { item: 'Stardust', quantity: '200x', role: 'Consume' },
+          { item: 'Coins', quantity: '50,000 GP', role: 'Reward' },
+          { item: 'Cosmic rune / Astral rune / Gold ore', quantity: '152x / 52x / 20x', role: 'Reward' }
+        ]
+      },
+      {
+        sectionTitle: 'Section 4: 15-Minute Double-Ore Runite Harvest',
+        timeEstimate: '~15 min',
+        xpPerHour: '32k – 45k Mining XP/hr',
+        resourcesOverview: 'Rush straight to Falador Mining Guild (60 Mining) or Wilderness Lava Maze Runite rocks while the buff is active to double every Runite Ore mined.',
+        resources: [
+          { item: 'Runite ore', quantity: '120–160x (3–4 Rune +3 Platebodies)', role: 'Collect' }
+        ]
+      }
     ]
   },
   {
@@ -1786,12 +2012,60 @@ export const MONEY_MAKING_DATA = [
     requirements: '50+ Combat, 55 Magic for Alching',
     risk: 'Safe',
     gimShareable: 'Yes — Trade Rune Salvage, Law/Death/Nature Runes & Gems via Group Storage',
-    description: 'Cockroach Soldiers in the Stronghold of Player Safety drop Medium/Large Blunt Rune Salvage (alchs for 16,000–32,000 GP each!), plus Law, Death, and Nature runes and noted Mithril/Adamantite ore.',
+    cycleScope: '1-Hour Active Farming Trip (~180–220 Kills)',
+    totalEstimatedTime: '~60 min',
+    timeBreakdownFormula: '2m + 53m + 5m (interleaved alching + bank) = ~60 min (1-Hour Run)',
+    resourceOverview: {
+      collect: [
+        '10–15x Medium & Large Blunt Rune Salvage',
+        '2–4x Rune Scimitar & Rune Sq Shield',
+        '130–220x Law, Death & Nature Runes combined',
+        '30–50x Carapace + 25–40x Uncut Gems + 40–80x Noted Mithril/Addy Ore'
+      ],
+      consume: ['12–19x Nature Rune (self-sustained from drops)', '0–10x Food (0 if safespotting)'],
+      output: ['350,000 – 550,000 GP raw High Alch cash', 'Group Crafting Carapace, Gems & Bars', 'Net positive Rune supply']
+    },
+    description: 'Cockroach Soldiers in the Stronghold of Player Safety drop Medium/Large Blunt Rune Salvage (alchs for 24,000–32,000 GP each!), plus Law, Death, and Nature runes and noted Mithril/Adamantite ore.',
     steps: [
-      'Enter the crevice south of Edgeville Jail into the Stronghold of Player Safety dungeon.',
-      'Use AoE Magic (Air Blast + Dragon Breath/Chain) or Melee (Rune +3 2h) to farm Cockroach Soldiers.',
-      'Bring a Gem Bag, Nature Runes, and Fire Staff to High Alch all Rune Salvage on the spot.',
-      'Collect all Law, Death, and Nature runes plus Carapace for Crafting XP.'
+      'Gear up with Staff of Fire, Gem Bag, 25x starter Nature Runes, and 5–10x Trout/Lobster, then enter the crevice south of Edgeville Jail into the Stronghold of Player Safety dungeon.',
+      'Use AoE Magic (Air Blast + Dragon Breath/Chain) or Melee (Rune 2h Sword) to farm ~180–220 Cockroach Soldiers per hour (or safespot behind the western rock pillars).',
+      'High Alch all Medium/Large Blunt Rune Salvage, Rune Scimitars, and Rune Sq Shields on the spot using dropped Nature Runes, then bank Carapace, Gems, Runes, and Noted Ores at Edgeville.'
+    ],
+    stepMeta: [
+      {
+        sectionTitle: 'Section 1: Gear Loadout & Dungeon Entry',
+        timeEstimate: '~2 min',
+        xpPerHour: '0 XP/hr (Prep & Travel)',
+        resourcesOverview: 'Teleport to Edgeville Lodestone, withdraw your Gem Bag, Staff of Fire, and 25x starter Nature Runes (replenished by drops), and descend into the lower Soldier chamber.',
+        resources: [
+          { item: 'Gem bag & Staff of fire', quantity: '1x each', role: 'Bring' },
+          { item: 'Nature rune (starter float)', quantity: '25x', role: 'Bring' },
+          { item: 'Trout / Lobster', quantity: '5–10x (0 needed if safespotting)', role: 'Bring' }
+        ]
+      },
+      {
+        sectionTitle: 'Section 2: 1-Hour Combat & Loot Collection (~180–220 Kills)',
+        timeEstimate: '~53 min',
+        xpPerHour: '45k – 65k Melee / 75k – 95k Magic XP/hr',
+        resourcesOverview: 'Farm Cockroach Soldiers continuously with Area Loot enabled. Stackable runes, noted ores, Carapace, and Gem Bag gems let you stay for the full hour without banking.',
+        resources: [
+          { item: 'Medium blunt rune salvage / Large blunt rune salvage', quantity: '10–15x combined (24k–32k GP each)', role: 'Collect' },
+          { item: 'Rune scimitar / Rune sq shield', quantity: '2–4x combined (15.3k–23k GP each)', role: 'Collect' },
+          { item: 'Law rune / Death rune / Nature rune', quantity: '40–70x / 40–70x / 50–80x', role: 'Collect' },
+          { item: 'Carapace & Uncut sapphire / emerald / ruby', quantity: '30–50x Carapace + 25–40x Gems', role: 'Collect' },
+          { item: 'Adamantite ore (noted)', quantity: '40–80x Mithril/Addy noted', role: 'Collect' }
+        ]
+      },
+      {
+        sectionTitle: 'Section 3: On-Site High Alchemy & Edgeville Bank Deposit',
+        timeEstimate: '~5 min',
+        xpPerHour: '55k – 65k Magic XP/hr (Alch rate)',
+        resourcesOverview: 'Alch every Salvage and Rune weapon/shield between kills (using 12–19x dropped Nature Runes) to stay inventory-free, then walk north to Edgeville Bank to store stackables.',
+        resources: [
+          { item: 'Nature rune', quantity: '12–19x (covered by drops)', role: 'Consume' },
+          { item: 'Coins (High Alch)', quantity: '350,000 – 550,000 GP', role: 'Reward' }
+        ]
+      }
     ]
   },
   {
@@ -1802,12 +2076,75 @@ export const MONEY_MAKING_DATA = [
     requirements: '20 Mining, 40+ Crafting, 55 Magic',
     risk: 'Safe',
     gimShareable: 'Yes — Gems, Gold Bars, and Amulets can all be shared in Group Storage',
+    cycleScope: '1-Hour Self-Sufficient Batch (~110x Ruby/Diamond Jewellery)',
+    totalEstimatedTime: '~60 min',
+    timeBreakdownFormula: '23m + 11m + 8m + 18m = ~60 min (34m mining + 26m crafting/selling)',
+    resourceOverview: {
+      collect: [
+        '85–100x Uncut Ruby + 20–30x Uncut Diamond',
+        '180–220x Uncut Sapphire & Uncut Emerald (bonus Crafting/GP)',
+        '110x Gold Ore (1:1 with Rubies/Diamonds)'
+      ],
+      consume: [
+        '110x Gold Bar + 110x Cut Ruby/Diamond',
+        '0 Nature Runes if sold at Grum\'s (or 110x Nature Runes for High Alch)'
+      ],
+      output: [
+        '110x Ruby Amulet / Diamond Necklace / Diamond Amulet',
+        '250,000 – 400,000 GP total (incl. Sapphire/Emerald jewellery)',
+        'Solid Mining, Crafting & Magic XP'
+      ]
+    },
     description: 'Mining Common & Uncommon Gem Rocks in Al Kharid and crafting Gold/Silver Ruby & Diamond Amulets or Necklaces provides simultaneous Mining, Crafting, and Magic XP alongside solid alch value.',
     steps: [
-      'Bring a Daemonheim Gem Bag to the Al Kharid Mine and mine Uncommon Gem Rocks.',
-      'Mine Gold Ore in Rimmington or the Karamja Volcano (or Dwarven Mine).',
-      'Craft Ruby and Diamond Amulets/Necklaces at the Edgeville or Lumbridge furnace.',
-      'High Alch or sell surplus jewellery to the Port Sarim Jewellery Shop.'
+      'Bring a Daemonheim Gem Bag to the Al Kharid North Mine and mine Uncommon Gem Rocks for ~85–100x Uncut Rubies, ~20–30x Uncut Diamonds, and ~180–220x Sapphires/Emeralds.',
+      'Mine 110x Gold Ore in Rimmington, Dwarven Mine, or the Karamja Volcano (fits in 1 Rune Ore Box trip).',
+      'Cut all Rubies & Diamonds with your Tool Belt Chisel and smelt 110x Gold Bars into the Edgeville Furnace Metal Bank.',
+      'Craft 110x Ruby Amulets, Diamond Necklaces, and Diamond Amulets at Edgeville Furnace, then sell to Grum\'s Gold Exchange in Port Sarim or High Alch.'
+    ],
+    stepMeta: [
+      {
+        sectionTitle: 'Section 1: Mine Uncommon Gem Rocks (Al Kharid)',
+        timeEstimate: '~22–24 min',
+        xpPerHour: '18k – 32k Mining XP/hr',
+        resourcesOverview: 'Fill your Gem Bag (100 capacity) 2–3 times at Al Kharid North Mine (~280–350 total gems/batch) to pull ~110x high-tier Rubies & Diamonds plus ~200x Sapphires/Emeralds.',
+        resources: [
+          { item: 'Gem bag & Rune pickaxe +3', quantity: '1x each', role: 'Bring' },
+          { item: 'Uncut ruby', quantity: '85–100x', role: 'Collect' },
+          { item: 'Uncut diamond', quantity: '20–30x', role: 'Collect' },
+          { item: 'Uncut sapphire & Uncut emerald', quantity: '180–220x (bonus XP/GP)', role: 'Collect' }
+        ]
+      },
+      {
+        sectionTitle: 'Section 2: Mine Gold Ore (Rimmington / Dwarven Mine)',
+        timeEstimate: '~10–12 min',
+        xpPerHour: '22k – 28k Mining XP/hr',
+        resourcesOverview: 'Mine 110x Gold Ore (1:1 ratio with your Rubies and Diamonds) using a Rune Ore Box so you complete the entire batch in a single banking trip.',
+        resources: [
+          { item: 'Gold ore', quantity: '110x (up to 300x if crafting Sapphires too)', role: 'Collect' }
+        ]
+      },
+      {
+        sectionTitle: 'Section 3: Cut Gems & Smelt Gold Bars (Edgeville)',
+        timeEstimate: '~7–9 min',
+        xpPerHour: '65k – 85k Craft / 18k – 24k Smith XP/hr',
+        resourcesOverview: 'Cut all 110x Rubies & Diamonds using your Tool Belt Chisel (~2 min) and smelt 110x Gold Ore into Gold Bars directly inside Edgeville Furnace Metal Bank (~5–7 min).',
+        resources: [
+          { item: 'Gold ore', quantity: '110x', role: 'Consume' },
+          { item: 'Gold bar', quantity: '110x (Metal Bank)', role: 'Produce' }
+        ]
+      },
+      {
+        sectionTitle: 'Section 4: Forge Jewellery & Liquidate at Grum\'s / High Alch',
+        timeEstimate: '~17–19 min',
+        xpPerHour: '65k – 95k Crafting XP/hr (55k–65k Magic if Alching)',
+        resourcesOverview: 'Forge 28 jewellery pieces per inventory at Edgeville Furnace. Keep 1 Diamond Amulet per teammate (enchant at 57 Magic into Amulet of Power); sell the rest at Grum\'s Gold Exchange (Port Sarim) or High Alch.',
+        resources: [
+          { item: 'Gold bar & Cut Rubies/Diamonds', quantity: '110x each', role: 'Consume' },
+          { item: 'Ruby amulet / Diamond necklace / Diamond amulet', quantity: '110x total', role: 'Produce' },
+          { item: 'Coins (Grum\'s or High Alch)', quantity: '250,000 – 400,000 GP (incl. bonus gems)', role: 'Reward' }
+        ]
+      }
     ]
   }
 ];

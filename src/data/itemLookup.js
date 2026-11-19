@@ -2819,7 +2819,7 @@ export const ITEMS_LIST = [
   makeItem({
     id: 'magical-dice-t1',
     name: 'Magical dice (T1)',
-    aliases: ['Magical Dice', 'Tier 1 Magical Die'],
+    aliases: ['Magical Dice', 'Tier 1 Magical Die', 'Magical die'],
     category: 'Quest Item',
     tradeable: false,
     sellPrices: { generalStore: null, specialtyShop: null },
@@ -2963,6 +2963,49 @@ export const ITEMS_LIST = [
     craftingRequirements: null,
     guideSources: ['Global Mechanics', 'Firemaking', 'Quests: Beneath Cursed Tides'],
     wikiUrl: 'https://runescape.wiki/w/Tinderbox'
+  }),
+  makeItem({
+    id: 'goblin-mail',
+    name: 'Goblin mail',
+    category: 'Quest Item',
+    ...alchFromHigh(24, { lowAlch: 16, generalStore: 12 }),
+    useRequirements: { skills: {}, quests: ['Goblin Diplomacy'], notes: 'Cannot be equipped by players; 3x required for Goblin Diplomacy (5 QP).' },
+    craftingRequirements: null,
+    guideSources: ['Money Making: May Quest Caravan'],
+    wikiUrl: 'https://runescape.wiki/w/Goblin_mail'
+  }),
+  makeItem({
+    id: 'orange-dye',
+    name: 'Orange dye',
+    category: 'Quest Item',
+    ...alchFromHigh(3, { lowAlch: 2, generalStore: 1 }),
+    useRequirements: { skills: {}, quests: ['Goblin Diplomacy'], notes: 'Combined from Red dye + Yellow dye (made by Aggie in Draynor Village) to dye Goblin mail.' },
+    craftingRequirements: { skills: {}, materials: ['1x Red dye', '1x Yellow dye'], station: 'Combine in inventory', quests: [], notes: 'Aggie makes Red dye (3 Redberries + 5 GP) and Yellow dye (2 Onions + 5 GP).' },
+    guideSources: ['Money Making: May Quest Caravan'],
+    wikiUrl: 'https://runescape.wiki/w/Orange_dye'
+  }),
+  makeItem({
+    id: 'blue-dye',
+    name: 'Blue dye',
+    category: 'Quest Item',
+    ...alchFromHigh(3, { lowAlch: 2, generalStore: 1 }),
+    useRequirements: { skills: {}, quests: ['Goblin Diplomacy'], notes: 'Used to dye Goblin mail blue during Goblin Diplomacy (5 QP).' },
+    craftingRequirements: { skills: {}, materials: ['2x Woad leaf', '5x Coins'], station: 'Aggie (Draynor Village)', quests: [], notes: 'Buy Woad leaves from Wyson the Gardener in Falador Park.' },
+    guideSources: ['Money Making: May Quest Caravan'],
+    wikiUrl: 'https://runescape.wiki/w/Blue_dye'
+  }),
+  makeItem({
+    id: 'antique-lamp',
+    name: 'Antique lamp',
+    aliases: ['Antique Lamps', '500 XP Antique Lamp'],
+    category: 'Quest Item',
+    tradeable: false,
+    sellPrices: { generalStore: null, specialtyShop: null },
+    alchPrices: { alchable: false, lowAlch: null, highAlch: null },
+    useRequirements: { skills: {}, quests: [], notes: 'Untradeable XP lamp; 2x (500 XP each in any skill) rewarded from Stronghold of Player Safety chest.' },
+    craftingRequirements: null,
+    guideSources: ['Money Making: Stronghold of Security & Player Safety'],
+    wikiUrl: 'https://runescape.wiki/w/Antique_lamp_(Stronghold_of_Player_Safety)'
   })
 ];
 
